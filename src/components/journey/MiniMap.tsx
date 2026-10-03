@@ -1,0 +1,72 @@
+import React from 'react';
+import { chaptersData } from '../../data/chaptersData';
+
+interface MiniMapProps {
+  currentProgress: number;
+  onJumpTo: (progress: number) => void;
+}
+
+export const MiniMap: React.FC<MiniMapProps> = ({ currentProgress, onJumpTo }) => {
+  const stops = [
+    ...chaptersData.map((ch) => ({
+      name: ch.regionName,
+      title: `Ch. ${ch.number}`,
+      pos: ch.stopPosition,
+    })),
+    {
+      name: 'Harbour',
+      title: 'Cases',
+      pos: 1.0,
+    },
+  ];
+
+  // Find nearest stop for active label
+  const nearest = stops.reduce((prev, curr) =>
+    Math.abs(curr.pos - currentProgress) < Math.abs(prev.pos - currentProgress) ? curr : prev
+  );
+
+  return (
+    <nav
+      aria-label="River Journey Progress Map"
+      className="fixed left-6 top-1/2 -translate-y-1/2 z-40 hidden md:flex flex-col items-center bg-white/90 backdrop-blur-md border border-[#2F6F6A]/25 py-6 px-3 rounded-full shadow-lg"
+    >
+      <span className="text-[10px] font-mono uppercase tracking-widest text-[#85590A] font-semibold -rotate-90 my-4 select-none whitespace-nowrap">
+        {nearest.name}
+      </span>
+
+      <div className="relative h-48 w-1.5 bg-[#E8EFEA] rounded-full my-2 flex flex-col justify-between items-center">
+        {/* Fill bar */}
+        <div
+          className="absolute top-0 left-0 w-full bg-[#1F4F4B] rounded-full transition-all duration-150"
+          style={{ height: `${Math.min(Math.max(currentProgress * 100, 0), 100)}%` }}
+        />
+
+        {/* Clickable stop dots */}
+        {stops.map((s, idx) => {
+          const isActive = Math.abs(currentProgress - s.pos) < 0.05;
+          return (
+            <button
+              key={idx}
+              onClick={() => onJumpTo(s.pos)}
+              className={`group relative z-10 w-4 h-4 rounded-full transition-all focus:outline-none focus:ring-2 focus:ring-[#1F4F4B] cursor-pointer ${
+                isActive
+                  ? 'bg-[#1F4F4B] ring-4 ring-[#2F6F6A]/25 scale-125'
+                  : 'bg-white border-2 border-[#8E9C96] hover:border-[#1F4F4B]'
+              }`}
+              title={`Sail to ${s.name} (${s.title})`}
+              aria-label={`Sail to ${s.name}`}
+            >
+              <span className="absolute left-6 top-1/2 -translate-y-1/2 bg-white text-[#1E2B26] text-[11px] font-mono px-2 py-0.5 rounded border border-[#2F6F6A]/30 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none shadow-md font-medium">
+                {s.name} ({s.title})
+              </span>
+            </button>
+          );
+        })}
+      </div>
+
+      <span className="text-[10px] font-mono text-[#4F5E57] mt-2 select-none font-semibold">
+        {Math.round(currentProgress * 100)}%
+      </span>
+    </nav>
+  );
+};

@@ -1,0 +1,6 @@
+{
+  "name": "The River of Insights",
+  "description": "An immersive 3D and 2D river journey through Analytics Leadership (Chapters 7–11 of Behind Every Good Decision by Piyanka Jain & Puneet Sharma).",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
