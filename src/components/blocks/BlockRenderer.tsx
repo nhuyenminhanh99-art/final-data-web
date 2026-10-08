@@ -54,7 +54,12 @@ export const BlockRenderer: React.FC<BlockRendererProps> = ({
       {blocks.map((block, index) => {
         if (block.visible === false) return null;
         return (
-          <div key={block.id || index} className="relative group/block" id={block.anchorId}>
+          <div
+            key={block.id || index}
+            className={`chapter-block chapter-block--${block.type} relative group/block`}
+            id={block.anchorId}
+            data-block-type={block.type}
+          >
             {isEditable && (
               <div className="absolute -top-3 right-0 z-20 flex items-center space-x-2 bg-white border border-[#163C3A]/20 rounded-full px-3 py-1 text-xs opacity-0 group-hover/block:opacity-100 transition-opacity shadow-sm">
                 <span className="text-[#163C3A] uppercase tracking-wider text-[11px] font-medium font-sans">{block.type}</span>
@@ -998,3 +1003,4 @@ const RenderDivider: React.FC<{ block: DividerBlock }> = ({ block }) => {
     </div>
   );
 };
+
