@@ -92,7 +92,7 @@ const Ch7PedestalVisual: React.FC = () => {
   ];
 
   return (
-    <div className="editorial-elevated p-8 sm:p-11 md:p-14 my-16 sm:my-20 bg-white border border-[#163C3A]/14 shadow-[0_1px_3px_rgba(22,60,58,0.04),0_6px_18px_-2px_rgba(22,60,58,0.06),0_16px_32px_-4px_rgba(22,60,58,0.04)] relative overflow-hidden">
+    <section className="chapter-visual chapter-visual--foundations editorial-elevated p-8 sm:p-11 md:p-14 my-16 sm:my-20 bg-white border border-[#163C3A]/14 shadow-[0_1px_3px_rgba(22,60,58,0.04),0_6px_18px_-2px_rgba(22,60,58,0.06),0_16px_32px_-4px_rgba(22,60,58,0.04)] relative overflow-hidden">
       {/* Decorative top ambient bar */}
       <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#C99A4B] via-[#2F6F8F] to-[#163C3A]" />
 
@@ -175,7 +175,7 @@ const Ch7PedestalVisual: React.FC = () => {
           );
         })}
       </div>
-    </div>
+    </section>
   );
 };
 
@@ -212,7 +212,7 @@ const Ch8OrgChartVisual: React.FC = () => {
   };
 
   return (
-    <div className="p-8 sm:p-12 md:p-14 my-18 sm:my-24 bg-white border border-[#163C3A]/15 rounded-3xl shadow-[0_2px_8px_rgba(22,60,58,0.04),0_12px_28px_-4px_rgba(22,60,58,0.06)] relative overflow-hidden">
+    <section className="chapter-visual chapter-visual--organization p-8 sm:p-12 md:p-14 my-18 sm:my-24 bg-white border border-[#163C3A]/15 rounded-3xl shadow-[0_2px_8px_rgba(22,60,58,0.04),0_12px_28px_-4px_rgba(22,60,58,0.06)] relative overflow-hidden">
       <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#C99A4B] via-[#2F6F8F] to-[#163C3A]" />
 
       <div className="text-center max-w-2xl mx-auto mb-10">
@@ -343,7 +343,7 @@ const Ch8OrgChartVisual: React.FC = () => {
           </div>
         )}
       </div>
-    </div>
+    </section>
   );
 };
 
@@ -379,7 +379,7 @@ const Ch9PathVisual: React.FC = () => {
   ];
 
   return (
-    <div className="p-8 sm:p-12 md:p-14 my-18 sm:my-24 bg-white border border-[#163C3A]/15 rounded-3xl shadow-[0_2px_8px_rgba(22,60,58,0.04),0_12px_28px_-4px_rgba(22,60,58,0.06)] relative overflow-hidden">
+    <section className="chapter-visual chapter-visual--timeline p-8 sm:p-12 md:p-14 my-18 sm:my-24 bg-white border border-[#163C3A]/15 rounded-3xl shadow-[0_2px_8px_rgba(22,60,58,0.04),0_12px_28px_-4px_rgba(22,60,58,0.06)] relative overflow-hidden">
       <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#2F6F8F] via-[#C99A4B] to-[#163C3A]" />
 
       <div className="text-center max-w-2xl mx-auto mb-12">
@@ -448,14 +448,14 @@ const Ch9PathVisual: React.FC = () => {
           </p>
         </div>
       )}
-    </div>
+    </section>
   );
 };
 
 /* Chapter 10: 48 Stakeholders Node Network */
 const Ch10NetworkVisual: React.FC = () => {
   return (
-    <div className="p-8 sm:p-12 md:p-14 my-18 sm:my-24 bg-white border border-[#163C3A]/15 rounded-3xl text-center shadow-[0_2px_8px_rgba(22,60,58,0.04),0_12px_28px_-4px_rgba(22,60,58,0.06)] relative overflow-hidden">
+    <section className="chapter-visual chapter-visual--impact p-8 sm:p-12 md:p-14 my-18 sm:my-24 bg-white border border-[#163C3A]/15 rounded-3xl text-center shadow-[0_2px_8px_rgba(22,60,58,0.04),0_12px_28px_-4px_rgba(22,60,58,0.06)] relative overflow-hidden">
       <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#163C3A] via-[#C99A4B] to-[#2F6F8F]" />
 
       <span className="text-xs uppercase tracking-[0.2em] text-[#85590A] block mb-2 font-semibold font-sans">
@@ -498,7 +498,7 @@ const Ch10NetworkVisual: React.FC = () => {
           <span className="text-xs text-[#718096] block mt-1.5 font-sans">Passenger Throughput Kept</span>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 
@@ -542,7 +542,7 @@ const Ch11FrostedGridVisual: React.FC = () => {
   ];
 
   return (
-    <div className="p-8 sm:p-12 md:p-14 my-18 sm:my-24 bg-white border border-[#163C3A]/15 rounded-3xl shadow-[0_2px_8px_rgba(22,60,58,0.04),0_12px_28px_-4px_rgba(22,60,58,0.06)] relative overflow-hidden">
+    <section className="chapter-visual chapter-visual--pitfalls p-8 sm:p-12 md:p-14 my-18 sm:my-24 bg-white border border-[#163C3A]/15 rounded-3xl shadow-[0_2px_8px_rgba(22,60,58,0.04),0_12px_28px_-4px_rgba(22,60,58,0.06)] relative overflow-hidden">
       <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#A94A56] via-[#C99A4B] to-[#163C3A]" />
 
       <div className="text-center max-w-2xl mx-auto mb-12">
@@ -614,6 +614,7 @@ const Ch11FrostedGridVisual: React.FC = () => {
           </p>
         </div>
       )}
-    </div>
+    </section>
   );
 };
+
