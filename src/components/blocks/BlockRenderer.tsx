@@ -31,6 +31,7 @@ import {
   BookOpen,
   Award,
 } from 'lucide-react';
+import { EdHero, EdStory, EdDefinition, EdTabs, EdComparison, EdChecklist, EdQuote } from './EditorialBlocks';
 
 interface BlockRendererProps {
   blocks: ContentBlock[];
@@ -103,15 +104,15 @@ export const BlockRenderer: React.FC<BlockRendererProps> = ({
 export const SingleBlock: React.FC<{ block: ContentBlock; isEditable?: boolean }> = ({ block }) => {
   switch (block.type) {
     case 'hero':
-      return <RenderHero block={block} />;
+      return <EdHero block={block} />;
     case 'richText':
       return <RenderRichText block={block} />;
     case 'storyCard':
-      return <RenderStoryCard block={block} />;
+      return <EdStory block={block} />;
     case 'definitionBox':
-      return <RenderDefinitionBox block={block} />;
+      return <EdDefinition block={block} />;
     case 'tabs':
-      return <RenderTabs block={block} />;
+      return <EdTabs block={block} renderBlock={(b) => <SingleBlock block={b} />} />;
     case 'accordion':
       return <RenderAccordion block={block} />;
     case 'numberedCards':
@@ -119,7 +120,7 @@ export const SingleBlock: React.FC<{ block: ContentBlock; isEditable?: boolean }
     case 'twoColumn':
       return <RenderTwoColumn block={block} />;
     case 'comparisonTable':
-      return <RenderComparisonTable block={block} />;
+      return <EdComparison block={block} />;
     case 'timeline':
       return <RenderTimeline block={block} />;
     case 'flow':
@@ -127,9 +128,9 @@ export const SingleBlock: React.FC<{ block: ContentBlock; isEditable?: boolean }
     case 'bigNumber':
       return <RenderBigNumber block={block} />;
     case 'checklist':
-      return <RenderChecklist block={block} />;
+      return <EdChecklist block={block} />;
     case 'quote':
-      return <RenderQuote block={block} />;
+      return <EdQuote block={block} />;
     case 'cardGrid':
       return <RenderCardGrid block={block} />;
     case 'filterGrid':
