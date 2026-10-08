@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { ArrowRight, ChevronDown } from 'lucide-react';
 import { teamMembers, type TeamMember } from '../../data/teamData';
 
 const displayValue = (value: string) => value.trim() || 'Not provided yet';
@@ -127,6 +126,7 @@ export const TeamSection: React.FC = () => {
               return (
                 <li
                   key={member.id}
+                  data-member-id={member.id}
                   className={`group relative z-10 min-w-0 before:absolute before:-left-[25px] before:top-8 before:h-2 before:w-2 before:rounded-full before:bg-[#D8B777] before:ring-4 before:ring-[#16231F] sm:before:hidden ${memberPlacement[member.id]}`}
                 >
                   <article>
@@ -190,23 +190,24 @@ export const TeamSection: React.FC = () => {
                         onClick={() => toggleMember(member.id)}
                         className="mt-5 inline-flex min-h-11 items-center gap-3 border-b border-[#C99A4B]/55 pb-2 text-left text-[11px] font-semibold uppercase tracking-[0.15em] text-[#E8D6AD] transition-colors hover:border-[#FFFDF8] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D8B777] focus-visible:ring-offset-4 focus-visible:ring-offset-[#16231F]"
                       >
-                        <span>More Information</span>
-                        {isExpanded ? (
-                          <ChevronDown aria-hidden="true" className="h-4 w-4 rotate-180" />
-                        ) : (
-                          <ArrowRight aria-hidden="true" className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-                        )}
+                        <span>MORE INFORMATION →</span>
                       </button>
 
-                      {isExpanded && (
-                        <dl id={detailsId} className="mt-5 space-y-3 border-l border-[#C99A4B]/45 pl-4 text-sm leading-relaxed">
+                      <div
+                        id={detailsId}
+                        aria-hidden={!isExpanded}
+                        className={`grid overflow-hidden transition-[grid-template-rows,opacity,margin] duration-300 ease-out motion-reduce:transition-none ${isExpanded ? 'mt-5 grid-rows-[1fr] opacity-100' : 'mt-0 grid-rows-[0fr] opacity-0'}`}
+                      >
+                        <div className="min-h-0 overflow-hidden">
+                          <dl className="space-y-3 border-l border-[#C99A4B]/45 pl-4 text-sm leading-relaxed">
                           <div><dt className="text-[10px] font-semibold uppercase tracking-[0.13em] text-[#A9B8A6]">Full name</dt><dd className="break-words text-[#F1EBDD]">{displayValue(member.fullName)}</dd></div>
                           <div><dt className="text-[10px] font-semibold uppercase tracking-[0.13em] text-[#A9B8A6]">Student ID</dt><dd className="break-words text-[#F1EBDD]">{displayValue(member.studentId)}</dd></div>
                           <div><dt className="text-[10px] font-semibold uppercase tracking-[0.13em] text-[#A9B8A6]">Gmail</dt><dd className="break-words text-[#F1EBDD]">{displayValue(member.gmail)}</dd></div>
                           <div><dt className="text-[10px] font-semibold uppercase tracking-[0.13em] text-[#A9B8A6]">Role</dt><dd className="break-words text-[#F1EBDD]">{displayValue(member.role)}</dd></div>
                           <div><dt className="text-[10px] font-semibold uppercase tracking-[0.13em] text-[#A9B8A6]">Responsibility</dt><dd className="break-words text-[#F1EBDD]">{displayValue(member.responsibility)}</dd></div>
-                        </dl>
-                      )}
+                          </dl>
+                        </div>
+                      </div>
                     </div>
                   </article>
                 </li>
