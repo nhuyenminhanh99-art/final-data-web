@@ -1,5 +1,10 @@
 @import "tailwindcss";
 
+@theme {
+  --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+  --font-serif: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+}
+
 @layer base {
   :root {
     --ivory: #FFFDF8;
@@ -29,16 +34,71 @@
     --sky: #EEF3F1;
   }
 
+  html {
+    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    font-optical-sizing: auto;
+  }
+
   body {
-    background-color: var(--ivory);
+    background-color: #FFFDF8;
+    background-image:
+      /* 1. Subtle light variation: gentle zenith daylight radiance */
+      radial-gradient(ellipse 120% 55% at 50% -8%, rgba(255, 255, 255, 0.76) 0%, rgba(255, 254, 250, 0.25) 45%, rgba(255, 255, 255, 0) 70%),
+      /* 2. Soft distant haze: pale sky blue atmospheric wash */
+      radial-gradient(ellipse 85% 48% at 84% 14%, rgba(228, 239, 246, 0.58) 0%, rgba(228, 239, 246, 0) 66%),
+      /* 3. Soft distant haze & river horizon: diffused mid-distance wash */
+      radial-gradient(ellipse 135% 40% at 50% 32%, rgba(224, 237, 244, 0.44) 0%, rgba(224, 237, 244, 0) 72%),
+      /* 4. Restrained mist: calm horizontal diffusion layer */
+      radial-gradient(ellipse 115% 35% at 46% 54%, rgba(234, 243, 241, 0.40) 0%, rgba(234, 243, 241, 0) 68%),
+      /* 5. Gentle environmental depth: soft sage green landscape perspective */
+      radial-gradient(ellipse 88% 58% at 12% 64%, rgba(230, 240, 231, 0.52) 0%, rgba(230, 240, 231, 0) 70%),
+      /* 6. Subtle environmental warmth: gentle ivory-earth anchor */
+      radial-gradient(ellipse 90% 48% at 88% 82%, rgba(250, 246, 238, 0.42) 0%, rgba(250, 246, 238, 0) 68%),
+      /* 7. Gentle vertical cinematic gradient base */
+      linear-gradient(
+        180deg,
+        #FFFDF8 0%,
+        #F5F8FA 14%,
+        #EBF2F6 28%,
+        #E1EDF2 44%,
+        #E5EEE7 62%,
+        #EBF3EB 76%,
+        #F5F8F4 88%,
+        #FFFDF8 100%
+      );
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
     color: var(--charcoal);
-    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+    min-height: 100vh;
     overflow-x: hidden;
   }
 
-  h1, h2, h3, .font-serif {
-    font-family: 'Cormorant Garamond', Georgia, serif;
+  h1, h2, h3, h4, h5, h6, .font-serif {
+    font-family: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+    text-rendering: optimizeLegibility;
+    font-feature-settings: "kern", "liga", "clig";
   }
+
+  .font-sans {
+    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+  }
+
+  .font-mono {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+  }
+}
+
+/* Stable card layout and typography containment */
+.river-card {
+  contain: layout style;
+  overflow-wrap: break-word;
+  word-break: normal;
 }
 
 /* Custom scrollbar for Moodboard Ivory Theme */
@@ -99,7 +159,7 @@
   border-radius: 26px;
   background-color: var(--teal);
   color: var(--ivory);
-  font-family: 'Inter', sans-serif;
+  font-family: var(--font-sans);
   font-size: 13px;
   font-weight: 600;
   letter-spacing: 0.08em;
@@ -129,7 +189,7 @@
   background-color: transparent;
   border: 1.5px solid var(--teal);
   color: var(--teal);
-  font-family: 'Inter', sans-serif;
+  font-family: var(--font-sans);
   font-size: 13px;
   font-weight: 600;
   letter-spacing: 0.08em;
@@ -143,28 +203,104 @@
   transform: translateY(-1px);
 }
 
-/* River card styling matching Moodboard (Radius 16px, soft long low-contrast shadows) */
-.river-card {
-  background-color: rgba(255, 255, 255, 0.94);
-  border: 1px solid rgba(22, 60, 58, 0.10);
+/* =========================================================================
+   EDITORIAL SURFACE SYSTEM (Prompt E4 — Signature Art Direction)
+   ========================================================================= */
+
+/* Surface 01: Open Editorial Section */
+.editorial-open {
+  background: transparent;
+  padding: 0;
+  border: none;
+}
+
+/* Surface 02: Elevated Narrative Surface (Tactile Paper) */
+.editorial-elevated {
+  background-color: #FFFFFF;
+  border: 1px solid rgba(22, 60, 58, 0.12);
   border-radius: 16px;
-  box-shadow: 0 12px 40px rgba(22, 60, 58, 0.08);
-  backdrop-filter: blur(14px);
-  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow:
+    0 1px 3px rgba(22, 60, 58, 0.04),
+    0 6px 18px -2px rgba(22, 60, 58, 0.06),
+    0 16px 32px -4px rgba(22, 60, 58, 0.04);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  contain: layout style;
+  overflow-wrap: break-word;
+}
+
+.editorial-elevated:hover {
+  border-color: rgba(22, 60, 58, 0.22);
+  box-shadow:
+    0 2px 6px rgba(22, 60, 58, 0.05),
+    0 10px 24px -2px rgba(22, 60, 58, 0.08),
+    0 24px 44px -6px rgba(22, 60, 58, 0.06);
+}
+
+/* Surface 03: Key Insight / Executive Charter (Warm Amber Parchment) */
+.editorial-insight {
+  background-color: #FAF6EE;
+  border-left: 4px solid #C99A4B;
+  border-top: 1px solid rgba(201, 154, 75, 0.2);
+  border-right: 1px solid rgba(201, 154, 75, 0.2);
+  border-bottom: 1px solid rgba(201, 154, 75, 0.2);
+  border-radius: 0 16px 16px 0;
+  box-shadow:
+    0 2px 6px rgba(133, 89, 10, 0.04),
+    0 8px 24px -3px rgba(133, 89, 10, 0.06);
+  contain: layout style;
+  overflow-wrap: break-word;
+}
+
+/* Surface 04: Data Moment & Decision Matrix (Cool River Mist) */
+.editorial-data {
+  background-color: #F4F8F7;
+  border: 1px solid rgba(47, 111, 143, 0.18);
+  border-radius: 16px;
+  box-shadow:
+    0 1px 3px rgba(47, 111, 143, 0.04),
+    0 6px 18px -2px rgba(47, 111, 143, 0.06);
+  contain: layout style;
+  overflow-wrap: break-word;
+}
+
+/* Surface 05: Interactive Disclosure Container */
+.editorial-reveal {
+  background-color: #EEF4F2;
+  border: 1px solid rgba(22, 60, 58, 0.14);
+  border-radius: 14px;
+}
+
+/* River card styling: Editorial Surface (Elevated, pure paper contrast, crisp hairline border, multi-layer soft shadows) */
+.river-card {
+  background-color: #FFFFFF;
+  border: 1px solid rgba(22, 60, 58, 0.14);
+  border-radius: 16px;
+  box-shadow:
+    0 1px 3px rgba(22, 60, 58, 0.04),
+    0 6px 18px -2px rgba(22, 60, 58, 0.06),
+    0 16px 32px -4px rgba(22, 60, 58, 0.04);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .river-card:hover {
-  border-color: rgba(47, 111, 143, 0.3);
-  box-shadow: 0 18px 48px rgba(22, 60, 58, 0.13);
-  transform: translateY(-3px);
+  border-color: rgba(22, 60, 58, 0.22);
+  box-shadow:
+    0 2px 6px rgba(22, 60, 58, 0.05),
+    0 10px 24px -2px rgba(22, 60, 58, 0.08),
+    0 24px 44px -6px rgba(22, 60, 58, 0.06);
+  transform: translateY(-2px);
 }
 
-/* Frosted glass panel styling */
+/* Frosted glass panel styling with enhanced surface separation */
 .glass-panel {
-  background-color: rgba(255, 253, 248, 0.78);
-  border: 1px solid rgba(22, 60, 58, 0.10);
+  background-color: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(22, 60, 58, 0.14);
   backdrop-filter: blur(16px);
   border-radius: 16px;
+  box-shadow:
+    0 2px 6px rgba(22, 60, 58, 0.04),
+    0 8px 24px -2px rgba(22, 60, 58, 0.07),
+    0 20px 40px -4px rgba(22, 60, 58, 0.05);
 }
 
 /* Text gradient for hero headline "Insights" */
@@ -173,3 +309,51 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
+/* Editorial Drop-Cap for Lead Paragraphs */
+.editorial-lead-dropcap p:first-of-type::first-letter {
+  float: left;
+  font-family: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+  font-size: 4.25rem;
+  line-height: 0.85;
+  padding-top: 4px;
+  padding-right: 12px;
+  padding-bottom: 2px;
+  color: #163C3A;
+  font-weight: 400;
+}
+
+/* Deep Forest Editorial Anchor Surface */
+.editorial-deep {
+  background: linear-gradient(145deg, #163C3A 0%, #1A4643 60%, #162E2C 100%);
+  color: #FFFDF8;
+  border: 1px solid rgba(201, 154, 75, 0.28);
+  border-radius: 20px;
+  box-shadow:
+    0 4px 12px rgba(22, 60, 58, 0.12),
+    0 16px 36px -4px rgba(22, 60, 58, 0.22);
+}
+
+/* Warm Parchment Insight Surface */
+.editorial-parchment {
+  background-color: #FAF6EE;
+  border-left: 4px solid #C99A4B;
+  border-top: 1px solid rgba(201, 154, 75, 0.25);
+  border-right: 1px solid rgba(201, 154, 75, 0.25);
+  border-bottom: 1px solid rgba(201, 154, 75, 0.25);
+  border-radius: 0 18px 18px 0;
+  box-shadow:
+    0 2px 8px rgba(133, 89, 10, 0.05),
+    0 10px 28px -4px rgba(133, 89, 10, 0.07);
+}
+
+/* River Mist Analytical Surface */
+.editorial-mist {
+  background: linear-gradient(180deg, #F5F9F8 0%, #EDF4F2 100%);
+  border: 1px solid rgba(47, 111, 143, 0.22);
+  border-radius: 18px;
+  box-shadow:
+    0 2px 6px rgba(47, 111, 143, 0.04),
+    0 8px 24px -2px rgba(47, 111, 143, 0.07);
+}
+

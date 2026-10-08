@@ -9,7 +9,7 @@ export const chaptersData: Chapter[] = [
     tagline: 'Where the river remembers spring: vision, culture, and foundations.',
     regionPreset: 'peach_village',
     regionName: 'Peach Village',
-    stopPosition: 0.12,
+    stopPosition: 0.10,
     summary:
       'Analytics leadership is not about mastering mathematical models; it is about building the culture, literacy, and decision-making framework where data informs every significant strategic bet.',
     seo: {
@@ -30,7 +30,7 @@ export const chaptersData: Chapter[] = [
         id: 'c7-intro',
         type: 'richText',
         html:
-          '<p class="text-lg leading-relaxed text-[#EDE7D8]/90">In <em>Behind Every Good Decision</em>, authors Piyanka Jain and Puneet Sharma demonstrate that the bottleneck in modern analytics is almost never the algorithms—it is the leadership. True analytics leaders serve as the bridge between raw mathematical possibilities and commercial realities, turning passive reporting into proactive enterprise strategy.</p>',
+          '<p class="text-lg leading-relaxed text-[#2D3748]">In <em>Behind Every Good Decision</em>, authors Piyanka Jain and Puneet Sharma demonstrate that the bottleneck in modern analytics is almost never the algorithms—it is the leadership. True analytics leaders serve as the bridge between raw mathematical possibilities and commercial realities, turning passive reporting into proactive enterprise strategy.</p>',
       },
       {
         id: 'c7-story-capital-one',
@@ -151,7 +151,7 @@ export const chaptersData: Chapter[] = [
     tagline: 'Navigating the dense canopy: choosing what to do and who does it.',
     regionPreset: 'bamboo_forest',
     regionName: 'Bamboo Forest',
-    stopPosition: 0.3,
+    stopPosition: 0.15,
     summary:
       'Winning companies focus their scarce analytical talent on the "Big Rocks"—the high-stakes levers that move the profit needle—while establishing the right organizational structure to sustain momentum.',
     seo: {
@@ -258,7 +258,7 @@ export const chaptersData: Chapter[] = [
     tagline: 'The timed climb: 30 days to assess, 60 days to execute and scale.',
     regionPreset: 'mountain_valley',
     regionName: 'Mountain Valley',
-    stopPosition: 0.48,
+    stopPosition: 0.20,
     summary:
       'A structured, battle-tested roadmap for any incoming analytics leader to establish credibility, secure executive trust, deliver immediate value, and lay the foundation for long-term scalability.',
     seo: {
@@ -357,7 +357,7 @@ export const chaptersData: Chapter[] = [
     tagline: 'Bridging the divide: aligning 48 stakeholders and driving real execution.',
     regionPreset: 'lantern_bridge',
     regionName: 'Lantern Bridge',
-    stopPosition: 0.66,
+    stopPosition: 0.25,
     summary:
       'The definitive playbook on stakeholder alignment, navigating organizational politics, and turning complex quantitative insights into consensual executive decisions.',
     seo: {
@@ -457,7 +457,7 @@ export const chaptersData: Chapter[] = [
     tagline: 'Among the ancient ruins: 36 traps across four organizational roles.',
     regionPreset: 'forgotten_garden',
     regionName: 'Forgotten Garden',
-    stopPosition: 0.84,
+    stopPosition: 0.30,
     summary:
       'A candid, cautionary exploration of the recurring pitfalls that derail analytics initiatives across Executives, Analytics Managers, Business Partners, and Data Analysts.',
     seo: {

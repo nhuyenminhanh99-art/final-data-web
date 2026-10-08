@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { SceneSettings, BlockType } from '../../types';
+import { Base44LovableModal } from '../common/Base44LovableModal';
+import { ASSET_MANIFEST } from '../scene/RealisticAssetManager';
 import {
   Settings,
   Eye,
@@ -9,6 +11,12 @@ import {
   Plus,
   Palette,
   Compass,
+  FileImage,
+  Layers,
+  Upload,
+  Download,
+  AlertTriangle,
+  Check,
 } from 'lucide-react';
 
 interface AdminEditorProps {
@@ -23,8 +31,9 @@ export const AdminEditor: React.FC<AdminEditorProps> = ({
   onPublish,
 }) => {
   const [isEditMode, setIsEditMode] = useState(false);
-  const [activeTab, setActiveTab] = useState<'blocks' | 'theme' | 'scene'>('blocks');
+  const [activeTab, setActiveTab] = useState<'blocks' | 'theme' | 'scene' | 'slots' | 'audit'>('blocks');
   const [isPanelOpen, setIsPanelOpen] = useState(false);
+  const [isExportOpen, setIsExportOpen] = useState(false);
   const [statusMessage, setStatusMessage] = useState<string | null>(null);
 
   // Scene settings state
@@ -33,28 +42,47 @@ export const AdminEditor: React.FC<AdminEditorProps> = ({
     fogDensity: 0.0065,
     petalCount: 80,
     boatSpeed: 1.0,
-    waterTint: '#357872',
+    waterTint: '#2F6F8F',
     mistStrength: 0.7,
     volume: 0.7,
     qualityTier: 'high',
   });
 
-  // Light theme tokens
+  // Light theme tokens (v6)
   const [themeTokens, setThemeTokens] = useState<Record<string, string>>({
-    paper: '#F7F3EA',
-    mist: '#E8EFEA',
-    sky: '#CFE6EA',
+    ivory: '#FFFDF8',
+    mist: '#EEF3F1',
+    teal: '#163C3A',
+    river: '#2F6F8F',
+    gold: '#C99A4B',
+    charcoal: '#1F2933',
+    slate: '#667085',
+    peach: '#DDA6A0',
+    sage: '#A9B8A6',
     card: '#FFFFFF',
-    ink: '#1E2B26',
-    textMuted: '#4F5E57',
-    jade: '#2F6F6A',
-    jadeDeep: '#1F4F4B',
-    blossom: '#F3C1BE',
-    blossomDeep: '#A94A56',
     goldText: '#85590A',
-    goldLight: '#E3B65C',
-    wood: '#6B4A32',
+    night: '#16231F',
   });
+
+  // 16 Asset Slots from §19.2
+  const assetSlots = [
+    { id: 'slot-1', name: 'Hero Plate (3 layers: far, mid, near)', spec: '3840×2160 WebP/AVIF', status: 'Procedural Shader Active' },
+    { id: 'slot-2', name: 'Hero Depth Map', spec: '16-bit greyscale 1920×1080', status: 'Procedural Falloff' },
+    { id: 'slot-3', name: 'Hero Poster (LCP)', spec: '1920×1080 WebP ≤180KB', status: 'HTML Text + Canvas' },
+    { id: 'slot-4', name: 'Chapter Plates ×5', spec: '2400×1350 WebP', status: 'Integrated & Styled' },
+    { id: 'slot-5', name: 'Journey Region Plates ×6', spec: '1920×1080 WebP sequence', status: 'Procedural Landmarks Active' },
+    { id: 'slot-6', name: 'Boat PBR Model / Layer', spec: 'GLB ≤30k tris or WebP', status: 'Procedural PBR Hull + Oars' },
+    { id: 'slot-7', name: 'Lantern Model', spec: 'GLB or WebP (warm flame)', status: 'Active at 5 Stops' },
+    { id: 'slot-8', name: 'Ch7 Pedestal', spec: 'GLB marble/stone ≤40k tris', status: 'Interactive 3D Pedestal' },
+    { id: 'slot-9', name: 'Ch7 Medallions ×4', spec: 'GLB / normal map textures', status: 'Interactive Medallions' },
+    { id: 'slot-10', name: 'Ch8 Org-chart Plates', spec: 'Paper/stone texture 1K', status: 'Hub & Spoke Model' },
+    { id: 'slot-11', name: 'Ch9 Map / River Path', spec: 'Aerial river 2400px + pins', status: '90-Day Ribbon Active' },
+    { id: 'slot-12', name: 'Texture Sets (stone/wood/paper)', spec: '2K PBR CC0 sets', status: 'WebGL PBR Shaders' },
+    { id: 'slot-13', name: 'HDRI Morning-Sky', spec: '2K .hdr equirectangular', status: 'Hemisphere + Sun Lighting' },
+    { id: 'slot-14', name: 'Film Grain / Paper Noise', spec: 'Tileable 512px SVG noise', status: 'Subtle Paper Grain' },
+    { id: 'slot-15', name: 'OG Images ×9', spec: '1200×630 per route', status: 'Active in Meta' },
+    { id: 'slot-16', name: 'Licensing / Source Data', spec: 'CC0 record / attribution', status: 'Documented in Credits' },
+  ];
 
   // Calculate luminosity & contrast ratio
   const getContrastRatio = (hex1: string, hex2: string) => {
@@ -77,9 +105,10 @@ export const AdminEditor: React.FC<AdminEditorProps> = ({
     }
   };
 
-  const inkOnPaper = getContrastRatio(themeTokens.ink, themeTokens.paper).toFixed(1);
-  const jadeOnPaper = getContrastRatio(themeTokens.jade, themeTokens.paper).toFixed(1);
-  const goldTextOnPaper = getContrastRatio(themeTokens.goldText, themeTokens.paper).toFixed(1);
+  const charcoalOnIvory = getContrastRatio(themeTokens.charcoal, themeTokens.ivory).toFixed(1);
+  const tealOnIvory = getContrastRatio(themeTokens.teal, themeTokens.ivory).toFixed(1);
+  const slateOnIvory = getContrastRatio(themeTokens.slate, themeTokens.ivory).toFixed(1);
+  const goldTextOnIvory = getContrastRatio(themeTokens.goldText, themeTokens.ivory).toFixed(1);
 
   const handleSave = () => {
     if (onSaveDraft) onSaveDraft();
@@ -115,33 +144,33 @@ export const AdminEditor: React.FC<AdminEditorProps> = ({
 
   return (
     <>
-      {/* Floating Bottom Admin Pill - Styled for Bright Theme */}
-      <aside aria-label="CMS Visual Editor" className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 flex items-center gap-3 bg-white/95 border border-[#2F6F6A]/25 px-5 py-2.5 rounded-full shadow-2xl backdrop-blur-md text-xs font-mono text-[#1E2B26]">
+      {/* Floating Bottom Admin Pill */}
+      <aside aria-label="CMS Visual Editor" className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 flex items-center gap-3 bg-white/95 border border-[#163C3A]/20 px-5 py-2.5 rounded-full shadow-2xl backdrop-blur-md text-xs font-mono text-[#1F2933]">
         <button
           onClick={() => setIsEditMode(!isEditMode)}
           className={`flex items-center gap-1.5 px-3 py-1 rounded-full transition-colors cursor-pointer ${
-            isEditMode ? 'bg-[#1F4F4B] text-[#F7F3EA] font-semibold' : 'hover:text-[#1F4F4B]'
+            isEditMode ? 'bg-[#163C3A] text-white font-semibold' : 'hover:text-[#163C3A]'
           }`}
         >
           {isEditMode ? <Edit3 className="w-3.5 h-3.5" /> : <Eye className="w-3.5 h-3.5" />}
           <span>{isEditMode ? 'Editing' : 'Preview'}</span>
         </button>
 
-        <span className="text-[#D5E2DE]">|</span>
+        <span className="text-[#EEF3F1]">|</span>
 
         <button
           onClick={() => setIsPanelOpen(!isPanelOpen)}
-          className="flex items-center gap-1.5 hover:text-[#1F4F4B] transition-colors cursor-pointer"
+          className="flex items-center gap-1.5 hover:text-[#163C3A] transition-colors cursor-pointer"
         >
-          <Settings className="w-3.5 h-3.5 text-[#2F6F6A]" />
+          <Settings className="w-3.5 h-3.5 text-[#2F6F8F]" />
           <span>Settings</span>
         </button>
 
-        <span className="text-[#D5E2DE]">|</span>
+        <span className="text-[#EEF3F1]">|</span>
 
         <button
           onClick={handleSave}
-          className="flex items-center gap-1 hover:text-[#1F4F4B] transition-colors cursor-pointer"
+          className="flex items-center gap-1 hover:text-[#163C3A] transition-colors cursor-pointer"
           title="Save draft"
         >
           <Save className="w-3.5 h-3.5" />
@@ -150,13 +179,24 @@ export const AdminEditor: React.FC<AdminEditorProps> = ({
 
         <button
           onClick={handlePublish}
-          className="bg-[#1F4F4B] text-[#F7F3EA] px-3.5 py-1 rounded-full font-semibold hover:bg-[#2F6F6A] transition-all cursor-pointer shadow-md shadow-[#1F4F4B]/20"
+          className="bg-[#163C3A] text-white px-3.5 py-1 rounded-full font-semibold hover:bg-[#2F6F8F] transition-all cursor-pointer shadow-md shadow-[#163C3A]/20"
         >
           Publish
         </button>
 
+        <span className="text-[#EEF3F1]">|</span>
+
+        <button
+          onClick={() => setIsExportOpen(true)}
+          className="flex items-center gap-1 text-[#85590A] hover:text-[#163C3A] font-semibold transition-colors cursor-pointer"
+          title="Export source code and prompt for Base44 & Lovable"
+        >
+          <Download className="w-3.5 h-3.5 text-[#C99A4B]" />
+          <span>Base44/Lovable</span>
+        </button>
+
         {statusMessage && (
-          <div className="absolute -top-10 left-1/2 -translate-x-1/2 bg-[#E8EFEA] text-[#1F4F4B] border border-[#2F6F6A]/30 px-3 py-1 rounded-full text-[11px] whitespace-nowrap animate-memory font-semibold shadow-md">
+          <div className="absolute -top-10 left-1/2 -translate-x-1/2 bg-[#EEF3F1] text-[#163C3A] border border-[#163C3A]/25 px-3 py-1 rounded-full text-[11px] whitespace-nowrap animate-memory font-semibold shadow-md">
             {statusMessage}
           </div>
         )}
@@ -164,45 +204,65 @@ export const AdminEditor: React.FC<AdminEditorProps> = ({
 
       {/* Slide-out CMS Drawer Settings */}
       {isPanelOpen && (
-        <div className="fixed inset-y-0 right-0 z-50 w-full max-w-md bg-white border-l border-[#2F6F6A]/20 shadow-2xl p-6 overflow-y-auto animate-in slide-in-from-right duration-250 text-[#1E2B26]">
-          <div className="flex items-center justify-between pb-4 border-b border-[#D5E2DE] mb-6">
-            <h3 className="font-serif text-2xl text-[#1E2B26]">Page & Experience CMS</h3>
+        <div className="fixed inset-y-0 right-0 z-50 w-full max-w-lg bg-white border-l border-[#163C3A]/15 shadow-2xl p-6 overflow-y-auto animate-in slide-in-from-right duration-250 text-[#1F2933]">
+          <div className="flex items-center justify-between pb-4 border-b border-[#EEF3F1] mb-6">
+            <h3 className="font-serif text-2xl text-[#163C3A]">Page & Experience CMS</h3>
             <button
               onClick={() => setIsPanelOpen(false)}
-              className="text-[#8E9C96] hover:text-[#1E2B26] text-xl font-mono cursor-pointer"
+              className="text-[#667085] hover:text-[#1F2933] text-xl font-mono cursor-pointer"
             >
               ×
             </button>
           </div>
 
           {/* Sub Navigation */}
-          <div className="flex gap-2 border-b border-[#D5E2DE] pb-3 mb-6 text-xs font-mono">
+          <div className="flex gap-1.5 border-b border-[#EEF3F1] pb-3 mb-6 text-xs font-mono overflow-x-auto">
             <button
               onClick={() => setActiveTab('blocks')}
-              className={`px-3 py-1.5 rounded-lg transition-colors cursor-pointer ${
+              className={`px-3 py-1.5 rounded-lg transition-colors cursor-pointer whitespace-nowrap ${
                 activeTab === 'blocks'
-                  ? 'bg-[#1F4F4B] text-[#F7F3EA] font-semibold'
-                  : 'text-[#4F5E57] hover:bg-[#E8EFEA]'
+                  ? 'bg-[#163C3A] text-white font-semibold'
+                  : 'text-[#667085] hover:bg-[#EEF3F1]'
               }`}
             >
               <Plus className="w-3 h-3 inline mr-1" /> Add Blocks
             </button>
             <button
-              onClick={() => setActiveTab('theme')}
-              className={`px-3 py-1.5 rounded-lg transition-colors cursor-pointer ${
-                activeTab === 'theme'
-                  ? 'bg-[#1F4F4B] text-[#F7F3EA] font-semibold'
-                  : 'text-[#4F5E57] hover:bg-[#E8EFEA]'
+              onClick={() => setActiveTab('slots')}
+              className={`px-3 py-1.5 rounded-lg transition-colors cursor-pointer whitespace-nowrap ${
+                activeTab === 'slots'
+                  ? 'bg-[#163C3A] text-white font-semibold'
+                  : 'text-[#667085] hover:bg-[#EEF3F1]'
               }`}
             >
-              <Palette className="w-3 h-3 inline mr-1" /> Theme & Contrast
+              <FileImage className="w-3 h-3 inline mr-1" /> Asset Slots (§19.2)
+            </button>
+            <button
+              onClick={() => setActiveTab('audit')}
+              className={`px-3 py-1.5 rounded-lg transition-colors cursor-pointer whitespace-nowrap ${
+                activeTab === 'audit'
+                  ? 'bg-[#163C3A] text-white font-semibold'
+                  : 'text-[#667085] hover:bg-[#EEF3F1]'
+              }`}
+            >
+              <Layers className="w-3 h-3 inline mr-1" /> 3D Asset Audit
+            </button>
+            <button
+              onClick={() => setActiveTab('theme')}
+              className={`px-3 py-1.5 rounded-lg transition-colors cursor-pointer whitespace-nowrap ${
+                activeTab === 'theme'
+                  ? 'bg-[#163C3A] text-white font-semibold'
+                  : 'text-[#667085] hover:bg-[#EEF3F1]'
+              }`}
+            >
+              <Palette className="w-3 h-3 inline mr-1" /> Tokens
             </button>
             <button
               onClick={() => setActiveTab('scene')}
-              className={`px-3 py-1.5 rounded-lg transition-colors cursor-pointer ${
+              className={`px-3 py-1.5 rounded-lg transition-colors cursor-pointer whitespace-nowrap ${
                 activeTab === 'scene'
-                  ? 'bg-[#1F4F4B] text-[#F7F3EA] font-semibold'
-                  : 'text-[#4F5E57] hover:bg-[#E8EFEA]'
+                  ? 'bg-[#163C3A] text-white font-semibold'
+                  : 'text-[#667085] hover:bg-[#EEF3F1]'
               }`}
             >
               <Compass className="w-3 h-3 inline mr-1" /> 3D Scene
@@ -212,7 +272,7 @@ export const AdminEditor: React.FC<AdminEditorProps> = ({
           {/* Tab 1: Add Blocks */}
           {activeTab === 'blocks' && (
             <div className="space-y-4">
-              <p className="text-xs text-[#4F5E57]">
+              <p className="text-xs text-[#667085]">
                 Click any block type to append it to the current page. You can drag and reorder blocks
                 directly in Edit mode.
               </p>
@@ -225,42 +285,154 @@ export const AdminEditor: React.FC<AdminEditorProps> = ({
                       setStatusMessage(`Added block: ${type}`);
                       setTimeout(() => setStatusMessage(null), 2000);
                     }}
-                    className="p-3 bg-[#E8EFEA]/60 border border-[#D5E2DE] rounded-xl hover:border-[#2F6F6A] text-left transition-colors flex items-center justify-between group cursor-pointer"
+                    className="p-3 bg-[#EEF3F1]/60 border border-[#163C3A]/10 rounded-xl hover:border-[#163C3A] text-left transition-colors flex items-center justify-between group cursor-pointer"
                   >
                     <span>{type}</span>
-                    <Plus className="w-3.5 h-3.5 opacity-40 group-hover:opacity-100 text-[#1F4F4B]" />
+                    <Plus className="w-3.5 h-3.5 opacity-40 group-hover:opacity-100 text-[#163C3A]" />
                   </button>
                 ))}
               </div>
             </div>
           )}
 
-          {/* Tab 2: Theme & WCAG Contrast */}
+          {/* Tab 2: Asset Slots (§19.2 Realism Pipeline) */}
+          {activeTab === 'slots' && (
+            <div className="space-y-4 text-xs font-mono">
+              <div className="p-3 bg-[#EEF3F1] rounded-xl border border-[#163C3A]/15 text-[#163C3A]">
+                <span className="font-semibold block mb-0.5">§19.2 Explicit Asset Slots Manifest</span>
+                <span className="text-[#667085] text-[11px]">
+                  All slots are wired so replacing files requires zero code change.
+                </span>
+              </div>
+
+              <div className="space-y-2 max-h-[460px] overflow-y-auto pr-1">
+                {assetSlots.map((slot) => (
+                  <div
+                    key={slot.id}
+                    className="p-3 rounded-xl border border-[#163C3A]/10 bg-white hover:border-[#2F6F8F] transition-colors"
+                  >
+                    <div className="flex justify-between items-start mb-1">
+                      <span className="font-bold text-[#163C3A]">{slot.name}</span>
+                      <span className="text-[10px] px-2 py-0.5 rounded bg-[#EEF3F1] text-[#2F6F8F] font-semibold">
+                        {slot.status}
+                      </span>
+                    </div>
+                    <div className="flex justify-between items-center text-[11px] text-[#667085]">
+                      <span>Spec: {slot.spec}</span>
+                      <button className="text-[#85590A] hover:underline flex items-center gap-1 cursor-pointer">
+                        <Upload className="w-3 h-3" /> Replace
+                      </button>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Tab: 3D Asset Quality Audit Manifest */}
+          {activeTab === 'audit' && (
+            <div className="space-y-4 text-xs font-mono">
+              <div className="p-3 bg-[#EEF3F1] rounded-xl border border-[#163C3A]/15 text-[#163C3A]">
+                <div className="flex items-center justify-between mb-1">
+                  <span className="font-bold text-sm">3D Journey Asset Quality Audit</span>
+                  <span className="text-[10px] px-2 py-0.5 rounded bg-[#163C3A] text-white font-semibold">
+                    10 Categories Audited
+                  </span>
+                </div>
+                <p className="text-[#667085] text-[11px] leading-relaxed">
+                  Systematic audit evaluating primitive vs realistic asset representation across Hero boat, vegetation, geology, architecture, and props.
+                </p>
+              </div>
+
+              <div className="space-y-3 max-h-[500px] overflow-y-auto pr-1">
+                {ASSET_MANIFEST.map((record) => (
+                  <div
+                    key={record.id}
+                    className="p-3 rounded-xl border border-[#163C3A]/15 bg-white hover:border-[#2F6F8F] transition-all shadow-sm space-y-2"
+                  >
+                    <div className="flex justify-between items-center pb-1.5 border-b border-[#EEF3F1]">
+                      <div className="flex items-center gap-2">
+                        <span className="font-bold text-[#163C3A] uppercase tracking-wide text-xs">
+                          {record.asset}
+                        </span>
+                        {record.isAcceptable ? (
+                          <span className="flex items-center gap-1 text-[10px] px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 font-semibold">
+                            <Check className="w-3 h-3" /> PBR Active
+                          </span>
+                        ) : (
+                          <span className="flex items-center gap-1 text-[10px] px-2 py-0.5 rounded bg-amber-100 text-amber-900 font-semibold">
+                            <AlertTriangle className="w-3 h-3" /> Replaced / Hero Path
+                          </span>
+                        )}
+                      </div>
+                      <span className="text-[10px] font-mono text-[#667085]">
+                        Budget: {record.targetPolyCount}
+                      </span>
+                    </div>
+
+                    <div className="space-y-1 text-[11px]">
+                      <div>
+                        <span className="text-[#667085] font-semibold">Current Implementation: </span>
+                        <span className="text-[#1F2933]">{record.currentImplementation}</span>
+                      </div>
+                      <div>
+                        <span className="text-[#2F6F8F] font-semibold">Realistic Replacement: </span>
+                        <span className="text-[#163C3A]">{record.recommendedReplacement}</span>
+                      </div>
+                      <div className="pt-1">
+                        <span className="text-[#667085] font-semibold block mb-0.5">Required PBR Maps:</span>
+                        <div className="flex flex-wrap gap-1">
+                          {record.requiredPbrMaps.map((mapName, idx) => (
+                            <span
+                              key={idx}
+                              className="px-1.5 py-0.5 rounded bg-[#EEF3F1] text-[#163C3A] text-[10px]"
+                            >
+                              {mapName}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                      <div className="text-[10px] text-[#667085] pt-0.5">
+                        <span className="font-semibold">LOD Strategy: </span>
+                        <span>{record.lodRequirement}</span>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Tab 3: Theme Tokens & Contrast */}
           {activeTab === 'theme' && (
             <div className="space-y-6">
-              <div className="bg-[#E8EFEA] p-4 rounded-xl border border-[#2F6F6A]/20">
+              <div className="bg-[#EEF3F1] p-4 rounded-xl border border-[#163C3A]/15">
                 <h4 className="text-xs font-mono uppercase tracking-widest text-[#85590A] mb-2 flex items-center gap-1.5 font-semibold">
-                  <CheckCircle className="w-3.5 h-3.5 text-[#2F6F6A]" /> WCAG Contrast Health
+                  <CheckCircle className="w-3.5 h-3.5 text-[#163C3A]" /> WCAG Contrast Health (§2)
                 </h4>
                 <div className="space-y-2 text-xs">
                   <div className="flex justify-between items-center">
-                    <span>Ink text on Paper bg:</span>
-                    <span className="font-mono text-[#1F4F4B] font-bold">{inkOnPaper} : 1 (AAA)</span>
+                    <span>Charcoal text on Ivory bg:</span>
+                    <span className="font-mono text-[#163C3A] font-bold">{charcoalOnIvory} : 1 (AAA)</span>
                   </div>
                   <div className="flex justify-between items-center">
-                    <span>Jade links on Paper bg:</span>
-                    <span className="font-mono text-[#1F4F4B] font-bold">{jadeOnPaper} : 1 (AAA)</span>
+                    <span>Deep Teal on Ivory bg:</span>
+                    <span className="font-mono text-[#163C3A] font-bold">{tealOnIvory} : 1 (AAA)</span>
                   </div>
                   <div className="flex justify-between items-center">
-                    <span>Gold text on Paper bg:</span>
-                    <span className="font-mono text-[#1F4F4B] font-bold">{goldTextOnPaper} : 1 (AAA)</span>
+                    <span>Slate Gray on Ivory bg:</span>
+                    <span className="font-mono text-[#163C3A] font-bold">{slateOnIvory} : 1 (AA)</span>
+                  </div>
+                  <div className="flex justify-between items-center">
+                    <span>Gold Text on Ivory bg:</span>
+                    <span className="font-mono text-[#163C3A] font-bold">{goldTextOnIvory} : 1 (AA)</span>
                   </div>
                 </div>
               </div>
 
               <div className="space-y-3">
-                <span className="text-xs font-mono uppercase text-[#8E9C96] block font-semibold">
-                  Core Palette Tokens (Light Theme)
+                <span className="text-xs font-mono uppercase text-[#667085] block font-semibold">
+                  Core Palette Tokens (Moodboard v6)
                 </span>
                 {Object.entries(themeTokens).map(([key, val]) => (
                   <div key={key} className="flex items-center justify-between text-xs font-mono">
@@ -274,7 +446,7 @@ export const AdminEditor: React.FC<AdminEditorProps> = ({
                         }
                         className="w-6 h-6 rounded border-0 cursor-pointer bg-transparent"
                       />
-                      <span className="text-[#8E9C96] uppercase">{val}</span>
+                      <span className="text-[#667085] uppercase">{val}</span>
                     </div>
                   </div>
                 ))}
@@ -282,24 +454,19 @@ export const AdminEditor: React.FC<AdminEditorProps> = ({
             </div>
           )}
 
-          {/* Tab 3: 3D Scene Settings */}
+          {/* Tab 4: 3D Scene Settings */}
           {activeTab === 'scene' && (
             <div className="space-y-6 text-xs font-mono">
               <div>
-                <label className="block text-[#4F5E57] mb-1 font-semibold">Morning Daylight Preset</label>
-                <div className="grid grid-cols-2 gap-2">
-                  <div className="p-2.5 rounded-lg border border-[#2F6F6A] bg-[#E8EFEA] text-[#1F4F4B] font-bold text-center">
-                    Clear Spring Morning
-                  </div>
-                  <div className="p-2.5 rounded-lg border border-[#D5E2DE] text-[#8E9C96] text-center">
-                    Golden Hour Dusk
-                  </div>
+                <label className="block text-[#667085] mb-1 font-semibold">Daylight Preset</label>
+                <div className="p-2.5 rounded-lg border border-[#163C3A] bg-[#EEF3F1] text-[#163C3A] font-bold text-center">
+                  Clear Spring Morning (Luminous Academic Mood)
                 </div>
               </div>
 
               <div>
                 <div className="flex justify-between mb-1">
-                  <span className="text-[#4F5E57]">Air Petal Count:</span>
+                  <span className="text-[#667085]">Air Petal Count:</span>
                   <span className="font-bold">{sceneSettings.petalCount}</span>
                 </div>
                 <input
@@ -310,13 +477,13 @@ export const AdminEditor: React.FC<AdminEditorProps> = ({
                   onChange={(e) =>
                     setSceneSettings({ ...sceneSettings, petalCount: Number(e.target.value) })
                   }
-                  className="w-full accent-[#1F4F4B]"
+                  className="w-full accent-[#163C3A]"
                 />
               </div>
 
               <div>
                 <div className="flex justify-between mb-1">
-                  <span className="text-[#4F5E57]">Boat Rowing Speed:</span>
+                  <span className="text-[#667085]">Boat Rowing Speed:</span>
                   <span className="font-bold">{sceneSettings.boatSpeed}x</span>
                 </div>
                 <input
@@ -328,13 +495,13 @@ export const AdminEditor: React.FC<AdminEditorProps> = ({
                   onChange={(e) =>
                     setSceneSettings({ ...sceneSettings, boatSpeed: Number(e.target.value) })
                   }
-                  className="w-full accent-[#1F4F4B]"
+                  className="w-full accent-[#163C3A]"
                 />
               </div>
 
               <div>
                 <div className="flex justify-between mb-1">
-                  <span className="text-[#4F5E57]">Morning Mist Density:</span>
+                  <span className="text-[#667085]">Morning Mist Density:</span>
                   <span className="font-bold">{sceneSettings.fogDensity}</span>
                 </div>
                 <input
@@ -346,13 +513,19 @@ export const AdminEditor: React.FC<AdminEditorProps> = ({
                   onChange={(e) =>
                     setSceneSettings({ ...sceneSettings, fogDensity: Number(e.target.value) })
                   }
-                  className="w-full accent-[#1F4F4B]"
+                  className="w-full accent-[#163C3A]"
                 />
               </div>
             </div>
           )}
         </div>
       )}
+
+      {/* Base44 & Lovable Export Modal */}
+      <Base44LovableModal
+        isOpen={isExportOpen}
+        onClose={() => setIsExportOpen(false)}
+      />
     </>
   );
 };

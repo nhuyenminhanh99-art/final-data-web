@@ -115,7 +115,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#FFFDF8] text-[#1F2933] flex flex-col font-sans selection:bg-[#2F6F8F]/20 selection:text-[#163C3A]">
+    <div className="min-h-screen text-[#1F2933] flex flex-col font-sans selection:bg-[#2F6F8F]/20 selection:text-[#163C3A]">
       {/* Top Navbar (hidden on full-screen immersive /journey page, as journey has its own header) */}
       {!isJourney && <Navbar currentPath={currentPath} />}
 

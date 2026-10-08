@@ -17,7 +17,7 @@ export const Footer: React.FC = () => {
               A luminous spring morning river journey through the landscape of Analytics Leadership,
               distilling core frameworks from Chapters 7–11 of <em>Behind Every Good Decision</em>.
             </p>
-            <div className="inline-flex items-center gap-2 text-xs font-mono text-[#1F4F4B] bg-white px-3.5 py-1.5 rounded-full border border-[#2F6F6A]/20 shadow-sm">
+            <div className="inline-flex items-center gap-2 text-xs font-sans text-[#1F4F4B] bg-white px-3.5 py-1.5 rounded-full border border-[#2F6F6A]/20 shadow-sm">
               <Sparkles className="w-3.5 h-3.5 text-[#85590A]" />
               <span>"Stepping into a memory you have never lived"</span>
             </div>
@@ -25,10 +25,10 @@ export const Footer: React.FC = () => {
 
           {/* Chapter Lands */}
           <div>
-            <h4 className="text-xs uppercase font-mono tracking-widest text-[#85590A] mb-4 flex items-center gap-2 font-semibold">
+            <h4 className="text-xs uppercase font-sans tracking-[0.18em] text-[#85590A] mb-4 flex items-center gap-2 font-semibold">
               <Compass className="w-4 h-4 text-[#2F6F6A]" /> The Five Lands
             </h4>
-            <ul className="space-y-2.5 text-xs font-mono">
+            <ul className="space-y-2.5 text-xs font-sans">
               {chaptersData.map((ch) => (
                 <li key={ch.slug}>
                   <a
@@ -56,23 +56,23 @@ export const Footer: React.FC = () => {
 
           {/* Resources & Attribution */}
           <div>
-            <h4 className="text-xs uppercase font-mono tracking-widest text-[#85590A] mb-4 flex items-center gap-2 font-semibold">
+            <h4 className="text-xs uppercase font-sans tracking-[0.18em] text-[#85590A] mb-4 flex items-center gap-2 font-semibold">
               <BookOpen className="w-4 h-4 text-[#2F6F6A]" /> Source Work
             </h4>
-            <p className="text-xs text-[#4F5E57] leading-relaxed mb-4">
+            <p className="text-xs text-[#4F5E57] leading-relaxed mb-4 font-sans">
               Content and frameworks synthesized directly from:
               <br />
-              <strong className="text-[#1E2B26] block mt-1">
+              <strong className="text-[#1E2B26] block mt-1 font-semibold">
                 Behind Every Good Decision: How Anyone Can Use Business Analytics to Turn Data into
                 Profitable Insight
               </strong>
               by Piyanka Jain & Puneet Sharma.
             </p>
-            <div className="space-y-2 text-xs font-mono">
-              <a href="/about/" className="block text-[#4F5E57] hover:text-[#1F4F4B]">
+            <div className="space-y-2 text-xs font-sans">
+              <a href="/about/" className="block text-[#4F5E57] hover:text-[#1F4F4B] transition-colors">
                 About & Methodology →
               </a>
-              <a href="/admin" className="block text-[#4F5E57] hover:text-[#1F4F4B]">
+              <a href="/admin" className="block text-[#4F5E57] hover:text-[#1F4F4B] transition-colors">
                 Admin & Theme CMS →
               </a>
             </div>
@@ -80,13 +80,13 @@ export const Footer: React.FC = () => {
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-8 border-t border-[#2F6F6A]/10 flex flex-col sm:flex-row items-center justify-between text-xs text-[#8E9C96] gap-4">
+        <div className="pt-8 border-t border-[#2F6F6A]/10 flex flex-col sm:flex-row items-center justify-between text-xs text-[#8E9C96] gap-4 font-sans">
           <p>© {new Date().getFullYear()} The River of Insights. Dedicated to accessible, cinematic data leadership.</p>
-          <div className="flex items-center space-x-6 font-mono text-[11px]">
-            <a href="/" className="hover:text-[#1F4F4B]">Home</a>
-            <a href="/journey" className="hover:text-[#1F4F4B]">3D River</a>
-            <a href="/case-studies/" className="hover:text-[#1F4F4B]">Case Studies</a>
-            <a href="/about/" className="hover:text-[#1F4F4B]">About</a>
+          <div className="flex items-center space-x-6 text-xs uppercase tracking-wider font-medium">
+            <a href="/" className="hover:text-[#1F4F4B] transition-colors">Home</a>
+            <a href="/journey" className="hover:text-[#1F4F4B] transition-colors">3D River</a>
+            <a href="/case-studies/" className="hover:text-[#1F4F4B] transition-colors">Case Studies</a>
+            <a href="/about/" className="hover:text-[#1F4F4B] transition-colors">About</a>
           </div>
         </div>
       </div>

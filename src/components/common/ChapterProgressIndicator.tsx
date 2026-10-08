@@ -20,14 +20,14 @@ export const ChapterProgressIndicator: React.FC<ProgressIndicatorProps> = ({ cur
   return (
     <nav
       aria-label="Chapter Curriculum Progress"
-      className="my-10 p-6 rounded-2xl bg-white border border-[#163C3A]/15 shadow-sm max-w-4xl mx-auto"
+      className="my-10 p-6 rounded-2xl bg-white border border-[#163C3A]/12 shadow-sm max-w-4xl mx-auto"
     >
-      <div className="flex items-center justify-between mb-4 text-xs font-mono text-[#667085]">
-        <span className="uppercase tracking-[0.24em] text-[#85590A] font-semibold">
-          ✦ CURRICULUM PROGRESS ✦
+      <div className="flex items-center justify-between mb-4 text-xs text-[#718096]">
+        <span className="uppercase tracking-[0.16em] text-[#85590A] font-semibold">
+          Curriculum Progress
         </span>
-        <span>
-          STEP {Math.max(activeIndex + 1, 1)} OF {steps.length}
+        <span className="font-medium">
+          Step {Math.max(activeIndex + 1, 1)} of {steps.length}
         </span>
       </div>
 
@@ -53,12 +53,12 @@ export const ChapterProgressIndicator: React.FC<ProgressIndicatorProps> = ({ cur
                 className="flex flex-col items-center text-center group min-h-[44px] cursor-pointer"
               >
                 <div
-                  className={`w-9 h-9 rounded-full flex items-center justify-center font-mono text-xs font-bold transition-all shadow-sm ${
+                  className={`w-9 h-9 rounded-full flex items-center justify-center text-xs font-semibold transition-all shadow-sm ${
                     isCurrent
                       ? 'bg-[#163C3A] text-white ring-4 ring-[#C99A4B]/40 scale-110'
                       : isCompleted
                       ? 'bg-[#2F6F8F] text-white'
-                      : 'bg-[#EEF3F1] text-[#667085] border border-[#163C3A]/20 hover:border-[#163C3A]'
+                      : 'bg-[#EEF3F1] text-[#718096] border border-[#163C3A]/15 hover:border-[#163C3A]'
                   }`}
                 >
                   {st.num === 12 ? 'Σ' : `0${st.num}`}
@@ -66,14 +66,14 @@ export const ChapterProgressIndicator: React.FC<ProgressIndicatorProps> = ({ cur
 
                 <span
                   className={`text-[11px] font-sans mt-2 font-medium transition-colors ${
-                    isCurrent ? 'text-[#163C3A] font-bold' : 'text-[#667085] group-hover:text-[#163C3A]'
+                    isCurrent ? 'text-[#163C3A] font-bold' : 'text-[#718096] group-hover:text-[#163C3A]'
                   }`}
                 >
                   {st.label}
                 </span>
 
                 {isCurrent && (
-                  <span className="text-[9px] font-mono text-[#85590A] uppercase tracking-wider font-semibold">
+                  <span className="text-[10px] text-[#85590A] uppercase tracking-wider font-semibold mt-0.5">
                     Current
                   </span>
                 )}
