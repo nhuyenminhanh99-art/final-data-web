@@ -147,7 +147,11 @@ export const AdminEditor: React.FC<AdminEditorProps> = ({
       {/* Floating Bottom Admin Pill */}
       <aside aria-label="CMS Visual Editor" className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 flex items-center gap-3 bg-white/95 border border-[#163C3A]/20 px-5 py-2.5 rounded-full shadow-2xl backdrop-blur-md text-xs font-mono text-[#1F2933]">
         <button
-          onClick={() => setIsEditMode(!isEditMode)}
+          onClick={() => {
+            const enabled = !isEditMode;
+            setIsEditMode(enabled);
+            window.dispatchEvent(new CustomEvent('river:team-edit-mode', { detail: { enabled } }));
+          }}
           className={`flex items-center gap-1.5 px-3 py-1 rounded-full transition-colors cursor-pointer ${
             isEditMode ? 'bg-[#163C3A] text-white font-semibold' : 'hover:text-[#163C3A]'
           }`}
@@ -529,3 +533,4 @@ export const AdminEditor: React.FC<AdminEditorProps> = ({
     </>
   );
 };
+
