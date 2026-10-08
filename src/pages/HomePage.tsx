@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { RiverCanvas } from '../components/scene/RiverCanvas';
 import { chaptersData } from '../data/chaptersData';
 import { caseStudiesData } from '../data/caseStudiesData';
+import { TeamSection } from '../components/common/TeamSection';
 import { GuidedScrollRail, SceneItem } from '../components/common/GuidedScrollRail';
 import {
   Compass,
@@ -664,6 +665,8 @@ export const HomePage: React.FC = () => {
           </div>
         </div>
       </section>
+      {/* Team is the final Home section; App renders Footer after the page. */}
+      <TeamSection />
     </div>
   );
 };
