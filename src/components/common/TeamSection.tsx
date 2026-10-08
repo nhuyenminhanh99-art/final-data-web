@@ -78,7 +78,7 @@ export const TeamSection: React.FC = () => {
               Seven people. One journey. Different perspectives.
             </p>
             <p className="mt-5 text-[10px] font-medium uppercase tracking-[0.2em] text-[#A9B8A6]">
-              Seven portraits · One shared passage
+              Seven waypoints · One shared passage
             </p>
           </div>
           <div aria-hidden="true" className="absolute -bottom-px left-0 h-px w-24 bg-[#C99A4B]" />
@@ -118,7 +118,7 @@ export const TeamSection: React.FC = () => {
             ))}
           </svg>
 
-          <ul className="relative grid list-none grid-cols-1 gap-x-7 gap-y-14 p-0 pl-7 sm:grid-cols-2 sm:gap-x-8 sm:gap-y-16 sm:pl-0 lg:grid-cols-12 lg:gap-x-6 lg:gap-y-24">
+          <ul className="relative grid list-none grid-cols-1 gap-x-7 gap-y-14 p-0 pl-7 before:pointer-events-none before:absolute before:bottom-12 before:left-[7px] before:top-8 before:w-px before:bg-gradient-to-b before:from-[#C99A4B]/60 before:via-[#6F9A9B]/40 before:to-[#A9B8A6]/10 sm:grid-cols-2 sm:gap-x-8 sm:gap-y-16 sm:pl-0 sm:before:hidden lg:grid-cols-12 lg:gap-x-6 lg:gap-y-24">
             {teamMembers.map((member) => {
               const isExpanded = expandedMembers.has(member.id);
               const detailsId = `${member.id}-details`;
