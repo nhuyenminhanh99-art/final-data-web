@@ -1,0 +1,811 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+  --font-serif: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+  --font-mono: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+}
+
+@layer base {
+  :root {
+    --ivory: #FFFDF8;
+    --mist: #EEF3F1;
+    --teal: #163C3A;
+    --river: #2F6F8F;
+    --gold: #C99A4B;
+    --charcoal: #1F2933;
+    --slate: #667085;
+    --peach: #DDA6A0;
+    --sage: #A9B8A6;
+    --card: #FFFFFF;
+    --gold-text: #85590A;
+    --night: #16231F;
+
+    /* Legacy compatibility aliases mapped to v5 tokens */
+    --paper: #FFFDF8;
+    --ink: #1F2933;
+    --text-muted: #667085;
+    --jade: #2F6F8F;
+    --jade-deep: #163C3A;
+    --blossom: #DDA6A0;
+    --blossom-deep: #A94A56;
+    --bamboo: #A9B8A6;
+    --gold-light: #C99A4B;
+    --wood: #6B4A32;
+    --sky: #EEF3F1;
+  }
+
+  html {
+    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    font-optical-sizing: auto;
+  }
+
+  body {
+    background-color: #FFFDF8;
+    background-image:
+      /* 1. Subtle light variation: gentle zenith daylight radiance */
+      radial-gradient(ellipse 120% 55% at 50% -8%, rgba(255, 255, 255, 0.76) 0%, rgba(255, 254, 250, 0.25) 45%, rgba(255, 255, 255, 0) 70%),
+      /* 2. Soft distant haze: pale sky blue atmospheric wash */
+      radial-gradient(ellipse 85% 48% at 84% 14%, rgba(228, 239, 246, 0.58) 0%, rgba(228, 239, 246, 0) 66%),
+      /* 3. Soft distant haze & river horizon: diffused mid-distance wash */
+      radial-gradient(ellipse 135% 40% at 50% 32%, rgba(224, 237, 244, 0.44) 0%, rgba(224, 237, 244, 0) 72%),
+      /* 4. Restrained mist: calm horizontal diffusion layer */
+      radial-gradient(ellipse 115% 35% at 46% 54%, rgba(234, 243, 241, 0.40) 0%, rgba(234, 243, 241, 0) 68%),
+      /* 5. Gentle environmental depth: soft sage green landscape perspective */
+      radial-gradient(ellipse 88% 58% at 12% 64%, rgba(230, 240, 231, 0.52) 0%, rgba(230, 240, 231, 0) 70%),
+      /* 6. Subtle environmental warmth: gentle ivory-earth anchor */
+      radial-gradient(ellipse 90% 48% at 88% 82%, rgba(250, 246, 238, 0.42) 0%, rgba(250, 246, 238, 0) 68%),
+      /* 7. Gentle vertical cinematic gradient base */
+      linear-gradient(
+        180deg,
+        #FFFDF8 0%,
+        #F5F8FA 14%,
+        #EBF2F6 28%,
+        #E1EDF2 44%,
+        #E5EEE7 62%,
+        #EBF3EB 76%,
+        #F5F8F4 88%,
+        #FFFDF8 100%
+      );
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    color: var(--charcoal);
+    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6, .font-serif {
+    font-family: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+    text-rendering: optimizeLegibility;
+    font-feature-settings: "kern", "liga", "clig";
+  }
+
+  .font-sans {
+    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+  }
+
+  /* Only two families are allowed: 'font-mono' keeps its role as the data/label style but is drawn in Inter with tabular figures. */
+  .font-mono {
+    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+/* Stable card layout and typography containment */
+.river-card {
+  contain: layout style;
+  overflow-wrap: break-word;
+  word-break: normal;
+}
+
+/* Custom scrollbar for Moodboard Ivory Theme */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+::-webkit-scrollbar-track {
+  background: #FFFDF8;
+}
+::-webkit-scrollbar-thumb {
+  background: #D8E2DF;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #2F6F8F;
+}
+
+/* Soft memory fade in animation */
+@keyframes memoryFade {
+  0% {
+    opacity: 0;
+    filter: blur(8px);
+    transform: translateY(16px);
+  }
+  100% {
+    opacity: 1;
+    filter: blur(0px);
+    transform: translateY(0);
+  }
+}
+
+.animate-memory {
+  animation: memoryFade 1.1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Floating holographic data panel animation */
+@keyframes floatPanel {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(0.5deg);
+  }
+}
+
+.animate-float {
+  animation: floatPanel 6s ease-in-out infinite;
+}
+
+/* Primary Button with Moodboard 4px arrow slide hover */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 52px;
+  padding: 0 28px;
+  border-radius: 26px;
+  background-color: var(--teal);
+  color: var(--ivory);
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 14px rgba(22, 60, 58, 0.15);
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  background-color: var(--river);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 22px rgba(47, 111, 143, 0.22);
+}
+
+.btn-primary:hover .btn-arrow {
+  transform: translateX(4px);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 52px;
+  padding: 0 26px;
+  border-radius: 26px;
+  background-color: transparent;
+  border: 1.5px solid var(--teal);
+  color: var(--teal);
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: all 0.25s ease;
+  cursor: pointer;
+}
+
+.btn-secondary:hover {
+  background-color: var(--mist);
+  transform: translateY(-1px);
+}
+
+/* =========================================================================
+   EDITORIAL SURFACE SYSTEM (Prompt E4 — Signature Art Direction)
+   ========================================================================= */
+
+/* Surface 01: Open Editorial Section */
+.editorial-open {
+  background: transparent;
+  padding: 0;
+  border: none;
+}
+
+/* Surface 02: Elevated Narrative Surface (Tactile Paper) */
+.editorial-elevated {
+  background-color: #FFFFFF;
+  border: 1px solid rgba(22, 60, 58, 0.12);
+  border-radius: 16px;
+  box-shadow:
+    0 1px 3px rgba(22, 60, 58, 0.04),
+    0 6px 18px -2px rgba(22, 60, 58, 0.06),
+    0 16px 32px -4px rgba(22, 60, 58, 0.04);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  contain: layout style;
+  overflow-wrap: break-word;
+}
+
+.editorial-elevated:hover {
+  border-color: rgba(22, 60, 58, 0.22);
+  box-shadow:
+    0 2px 6px rgba(22, 60, 58, 0.05),
+    0 10px 24px -2px rgba(22, 60, 58, 0.08),
+    0 24px 44px -6px rgba(22, 60, 58, 0.06);
+}
+
+/* Surface 03: Key Insight / Executive Charter (Warm Amber Parchment) */
+.editorial-insight {
+  background-color: #FAF6EE;
+  border-left: 4px solid #C99A4B;
+  border-top: 1px solid rgba(201, 154, 75, 0.2);
+  border-right: 1px solid rgba(201, 154, 75, 0.2);
+  border-bottom: 1px solid rgba(201, 154, 75, 0.2);
+  border-radius: 0 16px 16px 0;
+  box-shadow:
+    0 2px 6px rgba(133, 89, 10, 0.04),
+    0 8px 24px -3px rgba(133, 89, 10, 0.06);
+  contain: layout style;
+  overflow-wrap: break-word;
+}
+
+/* Surface 04: Data Moment & Decision Matrix (Cool River Mist) */
+.editorial-data {
+  background-color: #F4F8F7;
+  border: 1px solid rgba(47, 111, 143, 0.18);
+  border-radius: 16px;
+  box-shadow:
+    0 1px 3px rgba(47, 111, 143, 0.04),
+    0 6px 18px -2px rgba(47, 111, 143, 0.06);
+  contain: layout style;
+  overflow-wrap: break-word;
+}
+
+/* Surface 05: Interactive Disclosure Container */
+.editorial-reveal {
+  background-color: #EEF4F2;
+  border: 1px solid rgba(22, 60, 58, 0.14);
+  border-radius: 14px;
+}
+
+/* River card styling: Editorial Surface (Elevated, pure paper contrast, crisp hairline border, multi-layer soft shadows) */
+.river-card {
+  background-color: #FFFFFF;
+  border: 1px solid rgba(22, 60, 58, 0.14);
+  border-radius: 16px;
+  box-shadow:
+    0 1px 3px rgba(22, 60, 58, 0.04),
+    0 6px 18px -2px rgba(22, 60, 58, 0.06),
+    0 16px 32px -4px rgba(22, 60, 58, 0.04);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.river-card:hover {
+  border-color: rgba(22, 60, 58, 0.22);
+  box-shadow:
+    0 2px 6px rgba(22, 60, 58, 0.05),
+    0 10px 24px -2px rgba(22, 60, 58, 0.08),
+    0 24px 44px -6px rgba(22, 60, 58, 0.06);
+  transform: translateY(-2px);
+}
+
+/* Frosted glass panel styling with enhanced surface separation */
+.glass-panel {
+  background-color: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(22, 60, 58, 0.14);
+  backdrop-filter: blur(16px);
+  border-radius: 16px;
+  box-shadow:
+    0 2px 6px rgba(22, 60, 58, 0.04),
+    0 8px 24px -2px rgba(22, 60, 58, 0.07),
+    0 20px 40px -4px rgba(22, 60, 58, 0.05);
+}
+
+/* Text gradient for hero headline "Insights" */
+.text-gradient-teal-river {
+  background: linear-gradient(135deg, #163C3A 20%, #2F6F8F 85%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Editorial Drop-Cap for Lead Paragraphs */
+.editorial-lead-dropcap p:first-of-type::first-letter {
+  float: left;
+  font-family: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+  font-size: 4.25rem;
+  line-height: 0.85;
+  padding-top: 4px;
+  padding-right: 12px;
+  padding-bottom: 2px;
+  color: #163C3A;
+  font-weight: 400;
+}
+
+/* Deep Forest Editorial Anchor Surface */
+.editorial-deep {
+  background: linear-gradient(145deg, #163C3A 0%, #1A4643 60%, #162E2C 100%);
+  color: #FFFDF8;
+  border: 1px solid rgba(201, 154, 75, 0.28);
+  border-radius: 20px;
+  box-shadow:
+    0 4px 12px rgba(22, 60, 58, 0.12),
+    0 16px 36px -4px rgba(22, 60, 58, 0.22);
+}
+
+/* Warm Parchment Insight Surface */
+.editorial-parchment {
+  background-color: #FAF6EE;
+  border-left: 4px solid #C99A4B;
+  border-top: 1px solid rgba(201, 154, 75, 0.25);
+  border-right: 1px solid rgba(201, 154, 75, 0.25);
+  border-bottom: 1px solid rgba(201, 154, 75, 0.25);
+  border-radius: 0 18px 18px 0;
+  box-shadow:
+    0 2px 8px rgba(133, 89, 10, 0.05),
+    0 10px 28px -4px rgba(133, 89, 10, 0.07);
+}
+
+/* River Mist Analytical Surface */
+.editorial-mist {
+  background: linear-gradient(180deg, #F5F9F8 0%, #EDF4F2 100%);
+  border: 1px solid rgba(47, 111, 143, 0.22);
+  border-radius: 18px;
+  box-shadow:
+    0 2px 6px rgba(47, 111, 143, 0.04),
+    0 8px 24px -2px rgba(47, 111, 143, 0.07);
+}
+
+/* =========================================================================
+   CHAPTER EDITORIAL SYSTEM — Chapters 7–11
+   Visual-only treatment: chapter copy, order and Journey hooks stay untouched.
+   ========================================================================= */
+
+.chapter-page {
+  position: relative;
+  isolation: isolate;
+  padding-bottom: clamp(5rem, 10vw, 9rem);
+}
+
+.chapter-page::before,
+.chapter-page::after {
+  content: "";
+  position: absolute;
+  inset: 4rem 0 auto;
+  height: min(68rem, 88vh);
+  z-index: -1;
+  pointer-events: none;
+}
+
+.chapter-page::before {
+  background:
+    radial-gradient(ellipse 46% 30% at 9% 13%, rgba(169, 184, 166, 0.2), transparent 72%),
+    radial-gradient(ellipse 46% 28% at 91% 4%, rgba(47, 111, 143, 0.12), transparent 74%),
+    radial-gradient(ellipse 56% 27% at 86% 72%, rgba(201, 154, 75, 0.1), transparent 75%);
+  filter: blur(8px);
+}
+
+.chapter-page::after {
+  inset: 0;
+  height: 100%;
+  background: linear-gradient(180deg, rgba(255, 253, 248, 0.08), rgba(238, 243, 241, 0.16) 56%, rgba(255, 253, 248, 0.04));
+}
+
+.chapter-article {
+  position: relative;
+}
+
+.chapter-article > nav {
+  min-height: 2.75rem;
+  padding-inline: 0.25rem;
+  letter-spacing: 0.025em;
+}
+
+.chapter-progress-shell {
+  position: relative;
+  padding: clamp(1rem, 2.8vw, 2rem);
+  border: 1px solid rgba(22, 60, 58, 0.1);
+  border-radius: 1.6rem;
+  background: linear-gradient(115deg, rgba(255, 255, 255, 0.82), rgba(238, 243, 241, 0.72) 58%, rgba(255, 253, 248, 0.84));
+  box-shadow: 0 16px 40px -30px rgba(22, 60, 58, 0.35), inset 0 1px rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(10px);
+}
+
+.chapter-sail-banner {
+  position: relative;
+  overflow: hidden;
+  border-radius: 1.25rem 1.25rem 3.25rem 1.25rem;
+  background: linear-gradient(108deg, rgba(255, 255, 255, 0.96), rgba(238, 243, 241, 0.9) 62%, rgba(255, 253, 248, 0.96));
+}
+
+.chapter-sail-banner::after {
+  content: "";
+  position: absolute;
+  width: 15rem;
+  height: 15rem;
+  right: 10%;
+  top: -12rem;
+  border: 1px solid rgba(201, 154, 75, 0.23);
+  border-radius: 50%;
+  box-shadow: 0 0 0 1.5rem rgba(201, 154, 75, 0.035), 0 0 0 3rem rgba(47, 111, 143, 0.025);
+  pointer-events: none;
+}
+
+.chapter-heading {
+  min-height: 30rem;
+  padding: clamp(2rem, 5.6vw, 5rem) clamp(1.25rem, 5vw, 4.75rem) clamp(2.25rem, 6vw, 5.25rem);
+  border: 1px solid rgba(22, 60, 58, 0.1);
+  border-bottom: 1px solid rgba(22, 60, 58, 0.16);
+  border-radius: 2rem 2rem 7rem 2rem;
+  background:
+    radial-gradient(ellipse 65% 52% at 91% 2%, rgba(201, 154, 75, 0.15), transparent 70%),
+    radial-gradient(ellipse 62% 76% at 0% 100%, rgba(47, 111, 143, 0.1), transparent 70%),
+    linear-gradient(130deg, rgba(255, 255, 255, 0.96) 0%, rgba(255, 253, 248, 0.92) 45%, rgba(238, 243, 241, 0.86) 100%);
+  box-shadow: 0 3px 8px rgba(22, 60, 58, 0.035), 0 26px 70px -48px rgba(22, 60, 58, 0.35), inset 0 1px rgba(255, 255, 255, 0.9);
+}
+
+.chapter-heading::before {
+  content: "";
+  position: absolute;
+  width: 34%;
+  height: 1px;
+  left: clamp(1.25rem, 5vw, 4.75rem);
+  bottom: 0;
+  background: linear-gradient(90deg, var(--gold), rgba(47, 111, 143, 0.4), transparent);
+}
+
+.chapter-heading::after {
+  content: "";
+  position: absolute;
+  width: clamp(11rem, 26vw, 23rem);
+  aspect-ratio: 1;
+  right: -3rem;
+  bottom: -12rem;
+  border: 1px solid rgba(47, 111, 143, 0.12);
+  border-radius: 50%;
+  box-shadow: 0 0 0 1.3rem rgba(47, 111, 143, 0.025), 0 0 0 2.6rem rgba(201, 154, 75, 0.025);
+  pointer-events: none;
+}
+
+.chapter-heading > * {
+  position: relative;
+  z-index: 1;
+}
+
+.chapter-number-watermark {
+  top: auto;
+  right: 1rem;
+  bottom: -3rem;
+  color: rgba(201, 154, 75, 0.13);
+  font-size: clamp(9rem, 24vw, 18rem);
+  line-height: 0.78;
+}
+
+.chapter-meta {
+  row-gap: 0.85rem;
+}
+
+.chapter-kicker {
+  letter-spacing: 0.18em;
+  background: rgba(255, 253, 248, 0.82);
+  box-shadow: inset 0 1px rgba(255, 255, 255, 0.9);
+}
+
+.chapter-title {
+  max-width: 13ch;
+  font-size: clamp(3.4rem, 8vw, 7rem);
+  line-height: 0.96;
+  letter-spacing: -0.035em;
+  text-wrap: balance;
+}
+
+.chapter-tagline {
+  border-left-width: 1px;
+  border-left-color: rgba(201, 154, 75, 0.65);
+  max-width: 42rem;
+}
+
+.chapter-summary {
+  max-width: 43rem;
+  color: #34434a;
+  line-height: 1.8;
+}
+
+.chapter-signature {
+  position: relative;
+  z-index: 0;
+}
+
+.chapter-visual {
+  --visual-accent: var(--river);
+  isolation: isolate;
+  border-radius: 2rem 2rem 5rem 2rem;
+  background:
+    radial-gradient(ellipse 70% 50% at 100% 0%, rgba(47, 111, 143, 0.1), transparent 68%),
+    radial-gradient(ellipse 65% 55% at 0% 100%, rgba(169, 184, 166, 0.16), transparent 70%),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.96), rgba(238, 243, 241, 0.94) 58%, rgba(255, 253, 248, 0.97));
+  box-shadow: 0 3px 9px rgba(22, 60, 58, 0.035), 0 26px 64px -42px rgba(22, 60, 58, 0.3), inset 0 1px rgba(255, 255, 255, 0.95);
+}
+
+.chapter-visual::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(115deg, transparent 28%, rgba(255, 255, 255, 0.52) 50%, transparent 72%);
+  opacity: 0.44;
+  pointer-events: none;
+}
+
+.chapter-visual > :first-child {
+  position: relative;
+}
+
+.chapter-visual > div:first-child {
+  height: 3px;
+  opacity: 0.78;
+}
+
+.chapter-visual h3 {
+  text-wrap: balance;
+}
+
+.chapter-visual--foundations {
+  --visual-accent: var(--gold);
+  border-radius: 2rem 2rem 6rem 2rem;
+}
+
+.chapter-visual--foundations .grid > div {
+  min-height: 18rem;
+  border-top-width: 2px;
+  border-radius: 0.8rem 1.2rem 2.25rem 1.2rem;
+  background: linear-gradient(150deg, rgba(255, 255, 255, 0.96), rgba(238, 243, 241, 0.7));
+  box-shadow: 0 10px 26px -22px rgba(22, 60, 58, 0.55), inset 0 1px rgba(255, 255, 255, 0.9);
+}
+
+.chapter-visual--foundations .grid > div:nth-child(2n) {
+  background: linear-gradient(155deg, rgba(255, 253, 248, 0.98), rgba(221, 166, 160, 0.12));
+}
+
+.chapter-visual--foundations .grid > div > div:first-child > span:first-child {
+  color: rgba(133, 89, 10, 0.72);
+  font-size: 2.6rem;
+}
+
+.chapter-visual--organization {
+  --visual-accent: var(--river);
+  background:
+    radial-gradient(ellipse 58% 45% at 50% 52%, rgba(47, 111, 143, 0.13), transparent 72%),
+    linear-gradient(155deg, rgba(255, 255, 255, 0.96), rgba(238, 243, 241, 0.92) 64%, rgba(255, 253, 248, 0.96));
+}
+
+.chapter-visual--organization > div:first-child {
+  background: linear-gradient(90deg, transparent, var(--river), var(--gold), var(--teal));
+}
+
+.chapter-visual--organization .max-w-2xl > div[class*="w-0.5"] {
+  height: 2.25rem;
+  background: linear-gradient(var(--river), var(--sage));
+}
+
+.chapter-visual--timeline {
+  --visual-accent: var(--gold);
+  background:
+    radial-gradient(ellipse 75% 45% at 50% 100%, rgba(201, 154, 75, 0.11), transparent 75%),
+    linear-gradient(145deg, rgba(255, 255, 255, 0.96), rgba(238, 243, 241, 0.94));
+}
+
+.chapter-visual--timeline > div:first-child {
+  background: linear-gradient(90deg, var(--river), var(--gold), var(--teal));
+}
+
+.chapter-visual--timeline .grid {
+  position: relative;
+}
+
+.chapter-visual--timeline .grid > div {
+  min-height: 17rem;
+  border-top-width: 2px;
+  border-radius: 0.85rem 1.25rem 2.3rem 1.25rem;
+  background: linear-gradient(160deg, rgba(255, 255, 255, 0.96), rgba(238, 243, 241, 0.72));
+  box-shadow: 0 12px 30px -25px rgba(22, 60, 58, 0.5);
+}
+
+.chapter-visual--timeline .grid > div:nth-child(2n) {
+  background: linear-gradient(160deg, rgba(255, 253, 248, 0.98), rgba(201, 154, 75, 0.1));
+}
+
+.chapter-visual--impact {
+  --visual-accent: var(--gold);
+  background:
+    radial-gradient(ellipse 54% 44% at 50% 38%, rgba(201, 154, 75, 0.13), transparent 72%),
+    linear-gradient(140deg, rgba(255, 255, 255, 0.97), rgba(238, 243, 241, 0.94));
+}
+
+.chapter-visual--impact > div:first-child {
+  background: linear-gradient(90deg, var(--teal), var(--gold), var(--river));
+}
+
+.chapter-visual--impact > div[class*="max-w-md"] {
+  min-height: 16rem;
+  border-radius: 50% 50% 1.5rem 1.5rem;
+  background: radial-gradient(circle at 50% 24%, #fff 0%, #fffdf8 52%, #eef3f1 100%);
+  box-shadow: 0 16px 44px -26px rgba(22, 60, 58, 0.4), inset 0 1px rgba(255, 255, 255, 0.95);
+}
+
+.chapter-visual--impact > .grid > div {
+  min-height: 7.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-radius: 0.8rem 0.8rem 1.8rem 0.8rem;
+}
+
+.chapter-visual--impact > .grid > div:nth-child(2) {
+  background: linear-gradient(150deg, #fff, rgba(47, 111, 143, 0.1));
+}
+
+.chapter-visual--impact > .grid > div:nth-child(3) {
+  background: linear-gradient(150deg, #fffdf8, rgba(201, 154, 75, 0.16));
+}
+
+.chapter-visual--pitfalls {
+  --visual-accent: var(--peach);
+  background:
+    radial-gradient(ellipse 55% 42% at 98% 0%, rgba(221, 166, 160, 0.22), transparent 72%),
+    linear-gradient(145deg, rgba(255, 255, 255, 0.96), rgba(238, 243, 241, 0.94));
+}
+
+.chapter-visual--pitfalls > div:first-child {
+  background: linear-gradient(90deg, var(--peach), var(--gold), var(--teal));
+}
+
+.chapter-visual--pitfalls .grid > div {
+  min-height: 15rem;
+  border-top-width: 2px;
+  border-radius: 0.8rem 1.3rem 2.2rem 1.3rem;
+  box-shadow: 0 12px 32px -26px rgba(22, 60, 58, 0.5), inset 0 1px rgba(255, 255, 255, 0.88);
+}
+
+.chapter-content {
+  position: relative;
+}
+
+.chapter-block--hero > header {
+  max-width: 52rem;
+  padding: clamp(1.5rem, 4vw, 3rem) clamp(1rem, 3vw, 2.5rem);
+  margin-block: 1rem 2rem;
+  text-align: left;
+  border-left: 1px solid rgba(201, 154, 75, 0.52);
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.48), transparent 90%);
+}
+
+.chapter-block--hero > header h1 {
+  font-size: clamp(2.7rem, 6.5vw, 5rem);
+  line-height: 0.98;
+}
+
+.chapter-block--hero > header > p {
+  margin-left: 0;
+  font-size: clamp(1.2rem, 2.3vw, 1.8rem);
+}
+
+.chapter-block--hero > header > div:last-child {
+  justify-content: flex-start;
+}
+
+.chapter-block--richText {
+  padding-inline: clamp(0rem, 4vw, 3rem);
+}
+
+.chapter-block--storyCard > article {
+  border-radius: 1.1rem 1.1rem 4rem 1.1rem;
+  box-shadow: 0 3px 10px rgba(22, 60, 58, 0.045), 0 28px 65px -42px rgba(22, 60, 58, 0.36);
+}
+
+.chapter-block--storyCard > article > div:first-child {
+  background: linear-gradient(112deg, rgba(201, 154, 75, 0.15), rgba(255, 255, 255, 0.95) 48%, rgba(47, 111, 143, 0.1));
+}
+
+.chapter-block--definitionBox > div {
+  border-radius: 0.9rem 1.25rem 3rem 0.9rem;
+  background: linear-gradient(130deg, rgba(255, 253, 248, 0.97), rgba(221, 166, 160, 0.1));
+  box-shadow: 0 12px 35px -28px rgba(22, 60, 58, 0.5);
+}
+
+.chapter-block--tabs > div,
+.chapter-block--accordion > div {
+  border-radius: 1.25rem 1.25rem 3rem 1.25rem;
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.96), rgba(238, 243, 241, 0.86));
+  box-shadow: 0 16px 42px -34px rgba(22, 60, 58, 0.42);
+}
+
+.chapter-block--comparisonTable > div > div {
+  border-radius: 0.75rem 0.75rem 2rem 0.75rem;
+}
+
+.chapter-block--bigNumber > div {
+  border-radius: 50% 50% 1.5rem 1.5rem;
+  background: radial-gradient(circle at 50% 18%, #fff 0%, rgba(238, 243, 241, 0.88) 62%, rgba(201, 154, 75, 0.1) 100%);
+}
+
+.chapter-block--checklist > div {
+  border-radius: 1rem 1rem 3rem 1rem;
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.98), rgba(238, 243, 241, 0.88));
+}
+
+.chapter-block--callout > div {
+  background: linear-gradient(120deg, rgba(221, 166, 160, 0.16), rgba(255, 253, 248, 0.98) 70%);
+}
+
+.chapter-reader-nav {
+  background: linear-gradient(110deg, rgba(255, 255, 255, 0.96), rgba(238, 243, 241, 0.86), rgba(255, 253, 248, 0.96));
+}
+
+.chapter-page :where(a, button, [tabindex="0"]):focus-visible {
+  outline: 3px solid var(--river);
+  outline-offset: 4px;
+  box-shadow: 0 0 0 2px var(--ivory);
+}
+
+@media (min-width: 1024px) {
+  .chapter-visual--timeline .grid::before {
+    content: "";
+    position: absolute;
+    left: 10%;
+    right: 10%;
+    top: 1.2rem;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(47, 111, 143, 0.12), rgba(201, 154, 75, 0.54), rgba(22, 60, 58, 0.16));
+  }
+}
+
+@media (max-width: 640px) {
+  .chapter-heading {
+    min-height: 0;
+    border-radius: 1.4rem 1.4rem 3.25rem 1.4rem;
+  }
+
+  .chapter-number-watermark {
+    right: 0.25rem;
+    bottom: -1.5rem;
+    font-size: 8rem;
+  }
+
+  .chapter-visual {
+    border-radius: 1.35rem 1.35rem 3rem 1.35rem;
+  }
+
+  .chapter-visual--foundations .grid > div,
+  .chapter-visual--timeline .grid > div {
+    min-height: 0;
+  }
+
+  .chapter-visual--impact > div[class*="max-w-md"] {
+    min-height: 13rem;
+    padding: 2rem;
+    border-radius: 45% 45% 1.25rem 1.25rem;
+  }
+
+  .chapter-visual--pitfalls .grid > div {
+    min-height: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .chapter-page *,
+  .chapter-page *::before,
+  .chapter-page *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+

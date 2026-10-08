@@ -12,6 +12,7 @@ import {
   ListTree,
   BookMarked,
 } from 'lucide-react';
+import { Spark } from '../components/common/Glyphs';
 
 interface ChapterPageProps {
   slug: string;
@@ -245,7 +246,7 @@ export const ChapterPage: React.FC<ChapterPageProps> = ({ slug }) => {
         <section className="mt-20 pt-16 border-t border-[#163C3A]/12 text-center max-w-2xl mx-auto space-y-6">
           <div className="w-12 h-0.5 bg-[#C99A4B] mx-auto mb-2" />
           <span className="text-xs uppercase tracking-[0.2em] text-[#85590A] font-semibold font-sans block">
-            ✦ CHAPTER {String(chapter.number).padStart(2, '0')} EXPLORATION COMPLETE ✦
+            <Spark /> CHAPTER {String(chapter.number).padStart(2, '0')} EXPLORATION COMPLETE <Spark />
           </span>
           <h3 className="text-3xl sm:text-4xl font-serif text-[#163C3A] font-normal">
             Ready to Continue the River Voyage?
