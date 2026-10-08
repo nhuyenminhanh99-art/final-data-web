@@ -458,7 +458,7 @@ export const JourneyPage: React.FC<JourneyPageProps> = ({ initialChapterSlug }) 
       {/* Mini-Map progress bar along river driven by authoritative chapter registry */}
       <MiniMap
         currentProgress={boatProgress}
-        activeChapterId={currentChapterId}
+        activeChapterId={currentChapterId ?? undefined}
         onJumpTo={navigateToChapter}
       />
 
