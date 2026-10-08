@@ -198,13 +198,13 @@ export const TeamSection: React.FC = () => {
                         aria-hidden={!isExpanded}
                         className={`grid overflow-hidden transition-[grid-template-rows,opacity,margin] duration-300 ease-out motion-reduce:transition-none ${isExpanded ? 'mt-5 grid-rows-[1fr] opacity-100' : 'mt-0 grid-rows-[0fr] opacity-0'}`}
                       >
-                        <div className="min-h-0 overflow-hidden">
+                        <div className={`min-h-0 overflow-hidden transition-transform duration-300 ease-out motion-reduce:transition-none ${isExpanded ? 'translate-y-0' : '-translate-y-1'}`}>
                           <dl className="space-y-3 border-l border-[#C99A4B]/45 pl-4 text-sm leading-relaxed">
-                          <div><dt className="text-[10px] font-semibold uppercase tracking-[0.13em] text-[#A9B8A6]">Full name</dt><dd className="break-words text-[#F1EBDD]">{displayValue(member.fullName)}</dd></div>
-                          <div><dt className="text-[10px] font-semibold uppercase tracking-[0.13em] text-[#A9B8A6]">Student ID</dt><dd className="break-words text-[#F1EBDD]">{displayValue(member.studentId)}</dd></div>
-                          <div><dt className="text-[10px] font-semibold uppercase tracking-[0.13em] text-[#A9B8A6]">Gmail</dt><dd className="break-words text-[#F1EBDD]">{displayValue(member.gmail)}</dd></div>
-                          <div><dt className="text-[10px] font-semibold uppercase tracking-[0.13em] text-[#A9B8A6]">Role</dt><dd className="break-words text-[#F1EBDD]">{displayValue(member.role)}</dd></div>
-                          <div><dt className="text-[10px] font-semibold uppercase tracking-[0.13em] text-[#A9B8A6]">Responsibility</dt><dd className="break-words text-[#F1EBDD]">{displayValue(member.responsibility)}</dd></div>
+                            <div><dt className="text-[10px] font-semibold uppercase tracking-[0.13em] text-[#A9B8A6]">Full name</dt><dd className="break-words text-[#F1EBDD]">{displayValue(member.fullName)}</dd></div>
+                            <div><dt className="text-[10px] font-semibold uppercase tracking-[0.13em] text-[#A9B8A6]">Student ID</dt><dd className="break-words text-[#F1EBDD]">{displayValue(member.studentId)}</dd></div>
+                            <div><dt className="text-[10px] font-semibold uppercase tracking-[0.13em] text-[#A9B8A6]">Gmail</dt><dd className="break-words text-[#F1EBDD]">{displayValue(member.gmail)}</dd></div>
+                            <div><dt className="text-[10px] font-semibold uppercase tracking-[0.13em] text-[#A9B8A6]">Role</dt><dd className="break-words text-[#F1EBDD]">{displayValue(member.role)}</dd></div>
+                            <div><dt className="text-[10px] font-semibold uppercase tracking-[0.13em] text-[#A9B8A6]">Responsibility</dt><dd className="break-words text-[#F1EBDD]">{displayValue(member.responsibility)}</dd></div>
                           </dl>
                         </div>
                       </div>
