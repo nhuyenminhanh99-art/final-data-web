@@ -31,7 +31,10 @@ import {
   BookOpen,
   Award,
 } from 'lucide-react';
-import { EdHero, EdStory, EdDefinition, EdTabs, EdComparison, EdChecklist, EdQuote } from './EditorialBlocks';
+import {
+  EdHero, EdStory, EdDefinition, EdTabs, EdComparison, EdChecklist, EdQuote,
+  EdDuo, EdQuestions, EdCallout, EdTimeline, EdFlow, EdBigNumber, EdAccordion,
+} from './EditorialBlocks';
 
 interface BlockRendererProps {
   blocks: ContentBlock[];
@@ -114,19 +117,19 @@ export const SingleBlock: React.FC<{ block: ContentBlock; isEditable?: boolean }
     case 'tabs':
       return <EdTabs block={block} renderBlock={(b) => <SingleBlock block={b} />} />;
     case 'accordion':
-      return <RenderAccordion block={block} />;
+      return <EdAccordion block={block} />;
     case 'numberedCards':
-      return <RenderNumberedCards block={block} />;
+      return <EdQuestions block={block} />;
     case 'twoColumn':
-      return <RenderTwoColumn block={block} />;
+      return <EdDuo block={block} renderBlock={(b) => <SingleBlock block={b} />} />;
     case 'comparisonTable':
       return <EdComparison block={block} />;
     case 'timeline':
-      return <RenderTimeline block={block} />;
+      return <EdTimeline block={block} />;
     case 'flow':
-      return <RenderFlow block={block} />;
+      return <EdFlow block={block} />;
     case 'bigNumber':
-      return <RenderBigNumber block={block} />;
+      return <EdBigNumber block={block} />;
     case 'checklist':
       return <EdChecklist block={block} />;
     case 'quote':
@@ -138,7 +141,7 @@ export const SingleBlock: React.FC<{ block: ContentBlock; isEditable?: boolean }
     case 'image':
       return <RenderImage block={block} />;
     case 'callout':
-      return <RenderCallout block={block} />;
+      return <EdCallout block={block} />;
     case 'divider':
       return <RenderDivider block={block} />;
     default:
