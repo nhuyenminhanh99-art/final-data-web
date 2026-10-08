@@ -39,11 +39,11 @@ export const JourneyPage: React.FC<JourneyPageProps> = ({ initialChapterSlug }) 
   // =========================================================================
   // 1. DETERMINISTIC AUTHORITATIVE NAVIGATION STATE (Requirements 3, 4, 7, 10)
   // =========================================================================
-  const [currentChapterId, setCurrentChapterId] = useState<CanonicalChapterId>('chapter-7');
-  const [targetChapterId, setTargetChapterId] = useState<CanonicalChapterId>('chapter-7');
-  const [currentU, setCurrentU] = useState<number>(0.10);
-  const [targetU, setTargetU] = useState<number>(0.10);
-  const [navigationState, setNavigationState] = useState<'idle' | 'navigating' | 'arriving' | 'stopped'>('stopped');
+  const [currentChapterId, setCurrentChapterId] = useState<CanonicalChapterId | null>(null);
+  const [targetChapterId, setTargetChapterId] = useState<CanonicalChapterId | null>(null);
+  const [currentU, setCurrentU] = useState<number>(0.01);
+  const [targetU, setTargetU] = useState<number>(0.01);
+  const [navigationState, setNavigationState] = useState<'idle' | 'navigating' | 'arriving' | 'stopped'>('idle');
   const [isNavigating, setIsNavigating] = useState<boolean>(false);
   const [forwardVelocity, setForwardVelocity] = useState<number>(0);
   const [distanceToTarget, setDistanceToTarget] = useState<number>(0);
@@ -52,18 +52,18 @@ export const JourneyPage: React.FC<JourneyPageProps> = ({ initialChapterSlug }) 
   const [actualTravelTime, setActualTravelTime] = useState<number>(3.0);
 
   // Synchronous refs to prevent race conditions and protect against rapid clicks
-  const currentChapterIdRef = useRef<CanonicalChapterId>('chapter-7');
-  const targetChapterIdRef = useRef<CanonicalChapterId>('chapter-7');
-  const targetURef = useRef<number>(0.10);
+  const currentChapterIdRef = useRef<CanonicalChapterId | null>(null);
+  const targetChapterIdRef = useRef<CanonicalChapterId | null>(null);
+  const targetURef = useRef<number>(0.01);
   const isNavigatingRef = useRef<boolean>(false);
   const scrollLockedRef = useRef<boolean>(false);
-  const navigationStateRef = useRef<'idle' | 'navigating' | 'arriving' | 'stopped'>('stopped');
+  const navigationStateRef = useRef<'idle' | 'navigating' | 'arriving' | 'stopped'>('idle');
   const navStartTimeRef = useRef<number>(0);
 
   // Application & Presentation State
-  const [scrollProgress, setScrollProgress] = useState(0.10);
-  const [boatProgress, setBoatProgress] = useState(0.10);
-  const boatProgressRef = useRef(0.10);
+  const [scrollProgress, setScrollProgress] = useState(0.01);
+  const [boatProgress, setBoatProgress] = useState(0.01);
+  const boatProgressRef = useRef(0.01);
   const [activeChapter, setActiveChapter] = useState<Chapter | null>(null);
   const [useLiteMode, setUseLiteMode] = useState(false);
   const [isMuted, setIsMuted] = useState(riverAudio.getMuted());
@@ -134,6 +134,8 @@ export const JourneyPage: React.FC<JourneyPageProps> = ({ initialChapterSlug }) 
         currentChapterIdRef.current = match.id;
         targetChapterIdRef.current = match.id;
         targetURef.current = match.targetU;
+        navigationStateRef.current = 'stopped';
+        setNavigationState('stopped');
         setCurrentChapterId(match.id);
         setTargetChapterId(match.id);
         setCurrentU(match.targetU);
@@ -200,14 +202,16 @@ export const JourneyPage: React.FC<JourneyPageProps> = ({ initialChapterSlug }) 
 
   // Reliable Next / Previous chapter navigation
   const sailNextStop = useCallback(() => {
-    const nextId = getNextChapterId(currentChapterIdRef.current);
+    const currentId = currentChapterIdRef.current;
+    const nextId = currentId ? getNextChapterId(currentId) : null;
     if (nextId) {
       navigateToChapter(nextId);
     }
   }, [navigateToChapter]);
 
   const sailPrevStop = useCallback(() => {
-    const prevId = getPrevChapterId(currentChapterIdRef.current);
+    const currentId = currentChapterIdRef.current;
+    const prevId = currentId ? getPrevChapterId(currentId) : null;
     if (prevId) {
       navigateToChapter(prevId);
     }
@@ -219,10 +223,18 @@ export const JourneyPage: React.FC<JourneyPageProps> = ({ initialChapterSlug }) 
   // forwardVelocity = 0, scrollLocked = false, activeChapterId = currentChapterId = arrived chapter
   // =========================================================================
   const handleReachStop = useCallback((chapterNumber: number) => {
-    const arrivedEntry =
-      CHAPTER_REGISTRY.find((e) => e.chapterNumber === chapterNumber) ||
-      getChapterById(targetChapterIdRef.current) ||
-      CHAPTER_REGISTRY[0];
+    const arrivedEntry = CHAPTER_REGISTRY.find((e) => e.chapterNumber === chapterNumber);
+    const isArrivingAtTarget =
+      Boolean(arrivedEntry) &&
+      isNavigatingRef.current &&
+      targetChapterIdRef.current === arrivedEntry.id;
+    const isReopeningSelectedStop =
+      Boolean(arrivedEntry) &&
+      navigationStateRef.current === 'stopped' &&
+      currentChapterIdRef.current === arrivedEntry.id;
+    if (!arrivedEntry || (!isArrivingAtTarget && !isReopeningSelectedStop)) {
+      return;
+    }
 
     const arrivedId = arrivedEntry.id;
     currentChapterIdRef.current = arrivedId;
@@ -304,14 +316,16 @@ export const JourneyPage: React.FC<JourneyPageProps> = ({ initialChapterSlug }) 
       if (wheelAccumRef.current >= THRESHOLD) {
         wheelAccumRef.current = 0;
         // Scroll DOWN: 7 -> 8 -> 9 -> 10 -> 11
-        const nextId = getNextChapterId(currentChapterIdRef.current);
+        const currentId = currentChapterIdRef.current;
+        const nextId = currentId ? getNextChapterId(currentId) : null;
         if (nextId) {
           navigateToChapter(nextId);
         }
       } else if (wheelAccumRef.current <= -THRESHOLD) {
         wheelAccumRef.current = 0;
         // Scroll UP: 11 -> 10 -> 9 -> 8 -> 7
-        const prevId = getPrevChapterId(currentChapterIdRef.current);
+        const currentId = currentChapterIdRef.current;
+        const prevId = currentId ? getPrevChapterId(currentId) : null;
         if (prevId) {
           navigateToChapter(prevId);
         }
@@ -390,8 +404,8 @@ export const JourneyPage: React.FC<JourneyPageProps> = ({ initialChapterSlug }) 
     });
   };
 
-  const currentEntry = getChapterById(currentChapterId) || CHAPTER_REGISTRY[0];
-  const targetEntry = getChapterById(targetChapterId) || CHAPTER_REGISTRY[0];
+  const currentEntry = currentChapterId ? getChapterById(currentChapterId) : undefined;
+  const targetEntry = targetChapterId ? getChapterById(targetChapterId) : undefined;
 
   return (
     <div className="relative w-screen h-screen overflow-hidden bg-[#FFFDF8] text-[#1F2933] select-none">
@@ -424,8 +438,10 @@ export const JourneyPage: React.FC<JourneyPageProps> = ({ initialChapterSlug }) 
               }
 
               if (isArrived && isNavigatingRef.current) {
-                const targetNumber = getChapterById(targetChapterIdRef.current)?.chapterNumber ?? 7;
-                handleReachStop(targetNumber);
+                const targetNumber = targetChapterIdRef.current
+                  ? getChapterById(targetChapterIdRef.current)?.chapterNumber
+                  : undefined;
+                if (targetNumber !== undefined) handleReachStop(targetNumber);
               }
             }}
           />
@@ -497,11 +513,11 @@ export const JourneyPage: React.FC<JourneyPageProps> = ({ initialChapterSlug }) 
           <div className="space-y-1.5">
             <div className="flex justify-between">
               <span className="text-slate-400">CURRENT CHAPTER ID:</span>
-              <span className="text-emerald-300 font-bold">{currentChapterId}</span>
+              <span className="text-emerald-300 font-bold">{currentChapterId ?? 'None'}</span>
             </div>
             <div className="flex justify-between">
               <span className="text-slate-400">TARGET CHAPTER ID:</span>
-              <span className="text-amber-300 font-bold">{targetChapterId}</span>
+              <span className="text-amber-300 font-bold">{targetChapterId ?? 'None'}</span>
             </div>
             <div className="flex justify-between">
               <span className="text-slate-400">CURRENT U:</span>
@@ -684,9 +700,15 @@ export const JourneyPage: React.FC<JourneyPageProps> = ({ initialChapterSlug }) 
       <footer className="fixed bottom-4 left-4 right-4 sm:left-8 sm:right-8 z-20 pointer-events-none flex items-center justify-between">
         <div className="bg-white/90 backdrop-blur-md border border-[#163C3A]/15 px-4 py-1.5 rounded-full text-xs text-[#163C3A] shadow-sm flex items-center gap-2">
           <span className="w-2 h-2 rounded-full bg-[#2F6F8F] animate-pulse" />
-          <span className="font-semibold text-[#85590A]">Ch. 0{currentEntry.chapterNumber}</span>
-          <span className="text-[#667085]">·</span>
-          <span className="truncate max-w-[140px] sm:max-w-[240px] font-sans font-medium">{currentEntry.title}</span>
+          {currentEntry ? (
+            <>
+              <span className="font-semibold text-[#85590A]">Ch. 0{currentEntry.chapterNumber}</span>
+              <span className="text-[#667085]">·</span>
+              <span className="truncate max-w-[140px] sm:max-w-[240px] font-sans font-medium">{currentEntry.title}</span>
+            </>
+          ) : (
+            <span className="font-medium">Choose a chapter to begin</span>
+          )}
         </div>
 
         <div className="bg-white/90 backdrop-blur-md border border-[#163C3A]/15 px-4 py-1.5 rounded-full text-xs text-[#667085] shadow-sm flex items-center gap-2">
@@ -721,7 +743,9 @@ export const JourneyPage: React.FC<JourneyPageProps> = ({ initialChapterSlug }) 
       {boatProgress < 0.12 && (
         <div className="fixed top-20 left-1/2 -translate-x-1/2 z-20 pointer-events-none animate-memory">
           <div className="bg-white/95 backdrop-blur-md border border-[#163C3A]/15 rounded-full px-6 py-2.5 text-center text-xs font-mono text-[#163C3A] shadow-xl">
-            {journeyCopy.instructions.heroBanner}
+            {currentChapterId
+              ? journeyCopy.instructions.heroBanner
+              : 'Choose a chapter to begin · Drag mouse to look around'}
           </div>
         </div>
       )}
