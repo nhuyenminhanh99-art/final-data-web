@@ -72,14 +72,14 @@ export const ChapterPage: React.FC<ChapterPageProps> = ({ slug }) => {
   };
 
   return (
-    <div className="min-h-screen text-[#1F2933] pt-32 pb-28">
+    <div className="chapter-page min-h-screen text-[#1F2933] pt-32 pb-28">
       {/* JSON-LD Script tag */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
 
-      <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-14">
+      <article className="chapter-article max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-14">
         {/* Breadcrumb Navigation */}
         <nav aria-label="Breadcrumbs" className="flex items-center space-x-2 text-xs text-[#718096] mb-10">
           <a href="/" className="hover:text-[#163C3A] transition-colors">Home</a>
@@ -90,12 +90,12 @@ export const ChapterPage: React.FC<ChapterPageProps> = ({ slug }) => {
         </nav>
 
         {/* 6-Node Curriculum Progress Indicator */}
-        <div className="mb-14 sm:mb-16">
+        <div className="chapter-progress-shell mb-14 sm:mb-16">
           <ChapterProgressIndicator currentChapter={chapter.number} />
         </div>
 
         {/* 3D River Sail CTA Banner */}
-        <div className="mb-16 sm:mb-20 p-6 sm:p-7 rounded-2xl bg-white border border-[#163C3A]/14 flex flex-col sm:flex-row items-center justify-between gap-5 shadow-[0_1px_3px_rgba(22,60,58,0.04),0_6px_18px_-2px_rgba(22,60,58,0.06),0_16px_32px_-4px_rgba(22,60,58,0.04)]">
+        <div className="chapter-sail-banner mb-16 sm:mb-20 p-6 sm:p-7 rounded-2xl bg-white border border-[#163C3A]/14 flex flex-col sm:flex-row items-center justify-between gap-5 shadow-[0_1px_3px_rgba(22,60,58,0.04),0_6px_18px_-2px_rgba(22,60,58,0.06),0_16px_32px_-4px_rgba(22,60,58,0.04)]">
           <div className="flex items-center gap-3.5">
             <span className="w-2.5 h-2.5 rounded-full bg-[#2F6F8F] animate-ping shrink-0" />
             <span className="text-xs sm:text-sm text-[#2D3748] leading-relaxed">
@@ -111,18 +111,18 @@ export const ChapterPage: React.FC<ChapterPageProps> = ({ slug }) => {
         </div>
 
         {/* Article Metadata bar */}
-        <header className="mb-18 sm:mb-24 border-b border-[#163C3A]/12 pb-14 sm:pb-16 relative overflow-hidden">
+        <header className="chapter-heading mb-18 sm:mb-24 border-b border-[#163C3A]/12 pb-14 sm:pb-16 relative overflow-hidden">
           {/* Monumental Chapter Number Watermark */}
           <span
             aria-hidden="true"
-            className="text-[10rem] sm:text-[14rem] font-serif text-[#C99A4B]/10 select-none absolute -top-10 sm:-top-16 -right-4 sm:-right-8 pointer-events-none leading-none font-light"
+            className="chapter-number-watermark text-[10rem] sm:text-[14rem] font-serif text-[#C99A4B]/10 select-none absolute -top-10 sm:-top-16 -right-4 sm:-right-8 pointer-events-none leading-none font-light"
           >
             0{chapter.number}
           </span>
 
-          <div className="flex items-center justify-between flex-wrap gap-4 text-xs text-[#718096] mb-8 relative z-10 font-sans">
+          <div className="chapter-meta flex items-center justify-between flex-wrap gap-4 text-xs text-[#718096] mb-8 relative z-10 font-sans">
             <div className="flex items-center gap-3">
-              <span className="px-3.5 py-1 rounded-full bg-[#FAF6EE] border border-[#C99A4B]/30 text-[#85590A] font-semibold uppercase tracking-[0.2em]">
+              <span className="chapter-kicker px-3.5 py-1 rounded-full bg-[#FAF6EE] border border-[#C99A4B]/30 text-[#85590A] font-semibold uppercase tracking-[0.2em]">
                 {chapter.kicker}
               </span>
               <span>·</span>
@@ -158,34 +158,34 @@ export const ChapterPage: React.FC<ChapterPageProps> = ({ slug }) => {
             </div>
           </div>
 
-          <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-serif text-[#163C3A] font-normal leading-[1.04] mb-8 tracking-tight relative z-10">
+          <h1 className="chapter-title text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-serif text-[#163C3A] font-normal leading-[1.04] mb-8 tracking-tight relative z-10">
             {chapter.title}
           </h1>
 
-          <p className="text-xl sm:text-2xl md:text-3xl font-serif italic text-[#4A5568] leading-relaxed max-w-3xl mb-9 border-l-2 border-[#C99A4B]/40 pl-6 relative z-10">
+          <p className="chapter-tagline text-xl sm:text-2xl md:text-3xl font-serif italic text-[#4A5568] leading-relaxed max-w-3xl mb-9 border-l-2 border-[#C99A4B]/40 pl-6 relative z-10">
             "{chapter.tagline}"
           </p>
 
-          <p className="text-base sm:text-lg md:text-xl text-[#2D3748] leading-relaxed font-sans max-w-3xl relative z-10">
+          <p className="chapter-summary text-base sm:text-lg md:text-xl text-[#2D3748] leading-relaxed font-sans max-w-3xl relative z-10">
             {chapter.summary}
           </p>
         </header>
 
         {/* Signature Storytelling Moment for this Chapter */}
-        <div className="my-16 sm:my-20">
+        <div className={`chapter-signature chapter-signature--${chapter.number} my-16 sm:my-20`}>
           <ChapterSignatureVisuals chapterNumber={chapter.number} />
         </div>
 
         {/* MAIN CONTENT AREA */}
         {readingMode === 'all' ? (
-          <main className="space-y-20 sm:space-y-24 pt-6">
+          <main className="chapter-content space-y-20 sm:space-y-24 pt-6">
             <BlockRenderer blocks={chapter.blocks} />
           </main>
         ) : (
           /* SECTION-BY-SECTION DRILL-IN READER MODE */
-          <main className="space-y-16 animate-memory pt-6">
+          <main className="chapter-reader space-y-16 animate-memory pt-6">
             {/* Table of Contents Section Nav */}
-            <div className="p-6 sm:p-7 rounded-2xl bg-white border border-[#163C3A]/14 shadow-[0_1px_3px_rgba(22,60,58,0.04),0_6px_18px_-2px_rgba(22,60,58,0.06),0_16px_32px_-4px_rgba(22,60,58,0.04)] mb-10 sm:mb-12">
+            <div className="chapter-reader-nav p-6 sm:p-7 rounded-2xl bg-white border border-[#163C3A]/14 shadow-[0_1px_3px_rgba(22,60,58,0.04),0_6px_18px_-2px_rgba(22,60,58,0.06),0_16px_32px_-4px_rgba(22,60,58,0.04)] mb-10 sm:mb-12">
               <div className="flex items-center justify-between text-xs text-[#718096] mb-4">
                 <span className="flex items-center gap-1.5 font-semibold text-[#85590A] uppercase tracking-wider">
                   <ListTree className="w-4 h-4 text-[#2F6F8F]" /> Section Contents
@@ -322,3 +322,4 @@ export const ChapterPage: React.FC<ChapterPageProps> = ({ slug }) => {
     </div>
   );
 };
+
