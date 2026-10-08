@@ -225,11 +225,11 @@ export const JourneyPage: React.FC<JourneyPageProps> = ({ initialChapterSlug }) 
   const handleReachStop = useCallback((chapterNumber: number) => {
     const arrivedEntry = CHAPTER_REGISTRY.find((e) => e.chapterNumber === chapterNumber);
     const isArrivingAtTarget =
-      Boolean(arrivedEntry) &&
+      arrivedEntry !== undefined &&
       isNavigatingRef.current &&
       targetChapterIdRef.current === arrivedEntry.id;
     const isReopeningSelectedStop =
-      Boolean(arrivedEntry) &&
+      arrivedEntry !== undefined &&
       navigationStateRef.current === 'stopped' &&
       currentChapterIdRef.current === arrivedEntry.id;
     if (!arrivedEntry || (!isArrivingAtTarget && !isReopeningSelectedStop)) {
