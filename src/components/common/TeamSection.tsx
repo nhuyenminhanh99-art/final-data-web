@@ -59,7 +59,7 @@ export const TeamSection: React.FC = () => {
       <div aria-hidden="true" className="pointer-events-none absolute -left-40 top-40 -z-10 h-96 w-96 rounded-full bg-[#2F6F8F]/10 blur-3xl" />
 
       <div className="mx-auto max-w-6xl">
-        <header className="relative mb-16 grid gap-8 border-b border-[#FFFDF8]/15 pb-10 md:mb-20 md:grid-cols-[1fr_auto] md:items-end md:pb-14 lg:mb-24">
+        <header className="relative mb-16 grid gap-8 border-b border-[#FFFDF8]/15 pb-10 md:mb-20 md:pb-14 lg:mb-24 xl:grid-cols-[1fr_auto] xl:items-end">
           <div className="max-w-4xl">
             <span className="mb-5 inline-flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.24em] text-[#D8B777]">
               <span aria-hidden="true" className="h-px w-9 bg-[#C99A4B]" />
@@ -67,7 +67,7 @@ export const TeamSection: React.FC = () => {
             </span>
             <h2
               id="team-section-title"
-              className="max-w-4xl font-serif text-4xl font-medium leading-[0.98] tracking-[-0.025em] text-[#FFFDF8] sm:text-6xl lg:text-7xl"
+              className="max-w-4xl font-serif text-4xl font-medium leading-[0.98] tracking-[-0.025em] text-[#FFFDF8] sm:text-6xl xl:text-7xl"
             >
               THE PEOPLE BEHIND
               <span className="mt-1 block italic font-normal text-[#D8C59D]">THE JOURNEY</span>
