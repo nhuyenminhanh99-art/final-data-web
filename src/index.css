@@ -3856,3 +3856,18 @@ html { scroll-padding-top: calc(var(--navbar-height) + 1rem); scroll-behavior: s
 .chapter-page[data-chapter-number] .chapter-number-watermark { position: absolute; }
 
 .chapter-page[data-chapter-number] .chapter-number-watermark { right: auto; bottom: auto; }
+
+/* Keep the Chapters trigger on the exact same typography track as the other primary nav items. */
+.river-desktop-nav .river-chapters-trigger {
+  font-family: var(--font-sans);
+  font-size: clamp(0.62rem, 0.68vw, 0.75rem);
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  line-height: 1;
+}
+@media (min-width: 1024px) and (max-width: 1130px) {
+  .river-desktop-nav .river-chapters-trigger {
+    font-size: 0.58rem;
+    letter-spacing: 0.1em;
+  }
+}

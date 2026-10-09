@@ -60,3 +60,8 @@ None identified. No user-visible copy was changed except the owner-approved chap
 - Entry flows passed: Chapters menu → Chapter 8 shows progress and survives refresh; Journey 2D Lite → Chapter 8 hides progress; Journey-origin canonical route hides progress and survives refresh.
 - Geometry checks passed for all chapter routes at 360×740, 390×844, 430×932, 768×1024, 1024×768, 1280×720, 1366×768, 1440×900, 1536×864, and 1920×1080: title and illustration do not intersect, ghost number remains within the hero and the hero does not clip overflow.
 - Screenshots are in `qa/chapter-hero/`.
+
+
+## Navbar typography follow-up
+
+The Chapters trigger was inheriting the browser button font shorthand, which overrode the shared nav size, weight, tracking, and line-height. The trigger now explicitly uses the same Inter typography tokens as HOME, JOURNEY, CASE STUDIES, GLOSSARY, and ABOUT, including the compact 1024px rule. Computed-style checks match at 1024px, 1280px, and 1440px; navbar overlap checks pass at 1024px, 1280px, 1366px, 1440px, and 1920px.
