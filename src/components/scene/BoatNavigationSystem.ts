@@ -56,7 +56,7 @@ export class BoatNavigationSystem {
   private trajectoryStartU: number = 0.0;
   private trajectoryTargetU: number = 0.0;
   private trajectoryElapsedSec: number = 0.0;
-  private trajectoryDurationSec: number = 7.5;
+  private trajectoryDurationSec: number = 5.0;
   private isTrajectoryActive: boolean = false;
   private navigationStartTimeMs: number = 0;
   private actualTravelTimeSec: number = 0.0;
@@ -92,7 +92,7 @@ export class BoatNavigationSystem {
 
   // Physical constants calibrated for a heavy handcrafted wooden river rowboat (~550kg displacement)
   private static readonly SPLINE_LENGTH = 335.0;         // River length (meters)
-  private static readonly NOMINAL_LEG_DURATION = 7.5;    // Calm chapter-to-chapter sailing duration in seconds
+  private static readonly NOMINAL_LEG_DURATION = 5.0;    // Chapter-to-chapter sailing duration in seconds
   private static readonly STROKE_CYCLE_PERIOD = 2.1;     // Relaxed rowing rhythm to match the slower passage
 
   private static readonly YAW_DAMPING_LAMBDA = 1.85;     // Slow yaw response (rad/s) for heavy boat pivoting through water
@@ -220,8 +220,8 @@ export class BoatNavigationSystem {
 
       const distM = Math.abs(this.trajectoryTargetU - this.trajectoryStartU) * BoatNavigationSystem.SPLINE_LENGTH;
       if (distM > 0.25) {
-        // Give each chapter passage room to accelerate and settle instead of rushing between stops.
-        this.trajectoryDurationSec = Math.max(7.0, Math.min(8.5, BoatNavigationSystem.NOMINAL_LEG_DURATION));
+        // Keep chapter passages smooth while targeting a five-second arrival.
+        this.trajectoryDurationSec = Math.max(4.8, Math.min(5.2, BoatNavigationSystem.NOMINAL_LEG_DURATION));
         this.isTrajectoryActive = true;
       } else {
         this.isTrajectoryActive = false;
