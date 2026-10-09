@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { Chapter } from '../../types';
 import { BlockRenderer } from '../blocks/BlockRenderer';
-import { ChapterSignatureVisuals } from '../storytelling/ChapterSignatureVisuals';
+import { ChapterArrivalScene, ChapterSignatureVisuals } from '../storytelling/ChapterSignatureVisuals';
 import {
   Compass,
   ArrowRight,
@@ -131,6 +131,10 @@ export const ChapterPanel: React.FC<ChapterPanelProps> = ({
               0{chapter.number}
             </span>
 
+            <ChapterArrivalScene chapterNumber={chapter.number} />
+
+            <div className="chapter-panel-hero-copy">
+
             {/* Metadata row */}
             <div className="flex flex-wrap items-center justify-between gap-3 text-xs text-[#718096] mb-8 font-sans relative z-10">
               <div className="flex items-center gap-2.5">
@@ -166,6 +170,7 @@ export const ChapterPanel: React.FC<ChapterPanelProps> = ({
             <p className="text-base sm:text-lg md:text-xl text-[#2D3748] leading-relaxed font-sans max-w-3xl relative z-10">
               {chapter.summary}
             </p>
+            </div>
           </header>
 
           {/* SIGNATURE VISUAL STORYTELLING MOMENT */}

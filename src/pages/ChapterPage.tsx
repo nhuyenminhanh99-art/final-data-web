@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { chaptersData } from '../data/chaptersData';
 import { BlockRenderer, SingleBlock } from '../components/blocks/BlockRenderer';
-import { ChapterSignatureVisuals } from '../components/storytelling/ChapterSignatureVisuals';
+import { ChapterArrivalScene, ChapterSignatureVisuals } from '../components/storytelling/ChapterSignatureVisuals';
 import { ChapterProgressIndicator } from '../components/common/ChapterProgressIndicator';
 import {
   Compass,
@@ -120,6 +120,10 @@ export const ChapterPage: React.FC<ChapterPageProps> = ({ slug }) => {
             0{chapter.number}
           </span>
 
+          <ChapterArrivalScene chapterNumber={chapter.number} />
+
+          <div className="chapter-heading-copy">
+
           <div className="chapter-meta flex items-center justify-between flex-wrap gap-4 text-xs text-[#718096] mb-8 relative z-10 font-sans">
             <div className="flex items-center gap-3">
               <span className="chapter-kicker px-3.5 py-1 rounded-full bg-[#FAF6EE] border border-[#C99A4B]/30 text-[#85590A] font-semibold uppercase tracking-[0.2em]">
@@ -169,6 +173,7 @@ export const ChapterPage: React.FC<ChapterPageProps> = ({ slug }) => {
           <p className="chapter-summary text-base sm:text-lg md:text-xl text-[#2D3748] leading-relaxed font-sans max-w-3xl relative z-10">
             {chapter.summary}
           </p>
+          </div>
         </header>
 
         {/* Signature Storytelling Moment for this Chapter */}

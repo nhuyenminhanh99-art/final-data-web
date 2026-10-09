@@ -21,6 +21,165 @@ interface SignatureProps {
   chapterNumber: number;
 }
 
+const arrivalPalettes: Record<number, { sky: string; haze: string; ridge: string; bank: string; water: string; waterLight: string; accent: string }> = {
+  7: { sky: '#F8E9DA', haze: '#E6C7AF', ridge: '#B6C9AD', bank: '#78927B', water: '#4D8FA0', waterLight: '#B6D8D3', accent: '#C77E62' },
+  8: { sky: '#E4EFEA', haze: '#C8DDD2', ridge: '#8FAA91', bank: '#52745E', water: '#437F86', waterLight: '#A7D0C9', accent: '#D1B278' },
+  9: { sky: '#E8EFF1', haze: '#C8D6D7', ridge: '#91A6A5', bank: '#657E75', water: '#4D8290', waterLight: '#B0D3D2', accent: '#D7B875' },
+  10: { sky: '#F4EADB', haze: '#DCC6A5', ridge: '#A9B8A7', bank: '#617E70', water: '#397C88', waterLight: '#A7D0CC', accent: '#D7A554' },
+  11: { sky: '#EAEDE2', haze: '#D4D9C4', ridge: '#A7B49B', bank: '#657D68', water: '#477F83', waterLight: '#B2D3C8', accent: '#C58D70' },
+};
+
+/** Lightweight, decorative chapter landscapes. All movement is CSS-only and
+ * deliberately slow so the scene feels alive without adding another render loop. */
+export const ChapterArrivalScene: React.FC<SignatureProps> = ({ chapterNumber }) => {
+  const palette = arrivalPalettes[chapterNumber] ?? arrivalPalettes[7];
+  const sceneId = `chapter-arrival-${chapterNumber}`;
+
+  return (
+    <div className="chapter-arrival-scene" data-scene-chapter={chapterNumber} aria-hidden="true">
+      <svg className="chapter-arrival-art" viewBox="0 0 760 480" preserveAspectRatio="xMidYMid slice" focusable="false">
+        <defs>
+          <linearGradient id={`${sceneId}-sky`} x1="0" y1="0" x2="0.85" y2="1">
+            <stop offset="0" stopColor={palette.sky} />
+            <stop offset="1" stopColor={palette.haze} />
+          </linearGradient>
+          <linearGradient id={`${sceneId}-water`} x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stopColor={palette.waterLight} />
+            <stop offset="1" stopColor={palette.water} />
+          </linearGradient>
+          <linearGradient id={`${sceneId}-mist`} x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0" stopColor="#FFFDF8" stopOpacity="0.72" />
+            <stop offset="0.46" stopColor="#FFFDF8" stopOpacity="0.04" />
+            <stop offset="1" stopColor="#FFFDF8" stopOpacity="0" />
+          </linearGradient>
+          <clipPath id={`${sceneId}-clip`}>
+            <rect width="760" height="480" rx="24" />
+          </clipPath>
+        </defs>
+
+        <g clipPath={`url(#${sceneId}-clip)`}>
+          <rect width="760" height="480" fill={`url(#${sceneId}-sky)`} />
+          <circle cx="590" cy="104" r="48" fill="#FFF8E9" opacity="0.58" />
+          <circle cx="590" cy="104" r="68" fill="#FFF8E9" opacity="0.16" />
+
+          <g className="chapter-scene-cloud chapter-scene-cloud--one" fill="#FFFDF8" opacity="0.46">
+            <path d="M425 94c8-19 35-22 47-6 14-12 37-4 39 14 19 2 25 24 10 34H426c-22-4-22-36-1-42Z" />
+          </g>
+          <g className="chapter-scene-cloud chapter-scene-cloud--two" fill="#FFFDF8" opacity="0.32">
+            <path d="M150 129c7-14 27-16 36-4 12-9 29-3 31 11 15 2 19 18 8 26H151c-17-3-17-27-1-33Z" />
+          </g>
+
+          {chapterNumber === 9 ? (
+            <g fill={palette.ridge} opacity="0.84">
+              <path d="m-30 259 122-139 46 54 72-105 124 190Z" />
+              <path d="m280 254 147-175 75 86 74-70 207 170Z" opacity="0.68" />
+              <path d="m72 120 20-1 18 22-25-8Zm138-51 22-1 30 45-34-26Z" fill="#F9F6EC" opacity="0.7" />
+            </g>
+          ) : (
+            <g fill={palette.ridge} opacity="0.78">
+              <path d="M-30 250c89-91 158-98 250-35 83-65 169-69 257-12 86-57 183-47 313 34v60H-30Z" />
+              <path d="M-10 242c93-52 156-56 235-17 78-43 164-46 250-6 79-41 159-38 270 10v42H-10Z" fill="#D9DFCD" opacity="0.56" />
+            </g>
+          )}
+
+          {/* Chapter 7: a quiet riverside village and its orchard. */}
+          {chapterNumber === 7 && (
+            <g className="chapter-scene-landmark" fill="#9B755E">
+              <path d="M504 222v-52l42-35 44 35v52Z" fill="#E7D3B8" />
+              <path d="m493 173 52-46 57 46-9 9-48-36-44 36Z" fill="#8D6B56" />
+              <path d="M534 222v-30q12-17 24 0v30Z" fill="#8B7660" />
+              <path d="M602 224v-36l31-25 32 25v36Z" fill="#F0DCC4" />
+              <path d="m595 192 38-32 40 32-7 7-33-25-31 25Z" fill="#9D755D" />
+              <g fill={palette.accent}>
+                <circle cx="471" cy="191" r="11" /><circle cx="489" cy="183" r="9" />
+                <circle cx="459" cy="207" r="8" /><circle cx="485" cy="210" r="7" />
+              </g>
+            </g>
+          )}
+
+          {/* Chapter 8: layered bamboo trunks and leaves along the bank. */}
+          {chapterNumber === 8 && (
+            <g className="chapter-scene-landmark" stroke={palette.bank} strokeLinecap="round" fill="none">
+              <path d="M522 266V74m0 65h18m-18 47h-16m67 80V49m0 83h17m-17 53h-18m62 77V96m0 52h16" strokeWidth="9" />
+              <path d="m522 108-31-29m31 50 31-28m-31 83-29-22m82-49 28-31m-28 64-32-21m94 50 27-30m-27 59-33-22" strokeWidth="4" />
+              <path d="M520 72h5m61-26h5m62 46h5" stroke="#D3B978" strokeWidth="5" />
+            </g>
+          )}
+
+          {/* Chapter 9: small trail markers echo the long valley passage. */}
+          {chapterNumber === 9 && (
+            <g className="chapter-scene-landmark">
+              {[0, 1, 2, 3].map((marker) => (
+                <g key={marker} transform={`translate(${418 + marker * 48} ${211 - marker * 12})`}>
+                  <path d="M0 0v55" stroke="#6D6550" strokeWidth="4" />
+                  <path d="M2 2h24l-8 10 8 10H2Z" fill={marker === 3 ? palette.accent : '#F6E7C8'} />
+                  <circle cx="1" cy="56" r="5" fill="#6D6550" />
+                </g>
+              ))}
+            </g>
+          )}
+
+          {/* Chapter 10: the lantern bridge marks the next river station. */}
+          {chapterNumber === 10 && (
+            <g className="chapter-scene-landmark" fill="none" strokeLinecap="round">
+              <path d="M420 242q128-126 272 0" stroke="#776550" strokeWidth="13" />
+              <path d="M435 243q113-103 245 0" stroke="#E8D7B9" strokeWidth="4" opacity="0.8" />
+              <path d="M446 217v41m69-74v60m74-54v57m72-37v45" stroke="#806B53" strokeWidth="7" />
+              {[458, 515, 574, 632].map((x, index) => (
+                <g key={x} className="chapter-scene-lantern" style={{ animationDelay: `${index * 260}ms` }} transform={`translate(${x} ${188 + Math.abs(545 - x) * 0.15})`}>
+                  <path d="M0-12v8m-8 0h16l-2 18H-6Z" fill="#D5A45D" stroke="#8C7452" strokeWidth="2" />
+                  <circle cy="2" r="13" fill="#F2CC83" opacity="0.18" stroke="none" />
+                </g>
+              ))}
+            </g>
+          )}
+
+          {/* Chapter 11: an old garden gate softened by climbing vines. */}
+          {chapterNumber === 11 && (
+            <g className="chapter-scene-landmark" fill="none" strokeLinecap="round">
+              <path d="M510 244v-56q5-77 77-77t77 77v56" stroke="#8C8170" strokeWidth="12" />
+              <path d="M531 242v-52q5-54 56-54t55 54v52" stroke="#D6D0BD" strokeWidth="5" />
+              <path d="M523 206q28-11 29-48m-17 58q39-5 47-44m65 31q-27-12-28-46m13 60q-37-7-43-43" stroke="#66816B" strokeWidth="5" />
+              <g fill={palette.accent} stroke="none">
+                <circle cx="529" cy="181" r="7" /><circle cx="565" cy="174" r="6" />
+                <circle cx="649" cy="179" r="7" /><circle cx="619" cy="191" r="6" />
+              </g>
+            </g>
+          )}
+
+          {/* Riverbanks and the winding water channel. */}
+          <path d="M-24 263c131 12 208 66 312 56 105-10 165-76 273-72 93 4 133 53 223 51v202H-24Z" fill={palette.bank} opacity="0.58" />
+          <path d="M-20 302c112-32 190 38 299 26 117-13 170-85 284-69 79 11 122 51 217 40v181H-20Z" fill={`url(#${sceneId}-water)`} />
+          <path d="M-20 335c121-35 189 23 303 13 111-10 175-69 283-55 77 10 128 40 214 32" fill="none" stroke="#E8F4EC" strokeWidth="3" opacity="0.54" strokeDasharray="45 22" className="chapter-scene-current" />
+          <path d="M-10 383c115-29 187 17 284 10 115-9 185-52 284-42 80 8 141 32 224 24" fill="none" stroke="#E8F4EC" strokeWidth="2" opacity="0.35" strokeDasharray="68 34" className="chapter-scene-current chapter-scene-current--slow" />
+
+          {/* Quiet shoreline plants frame the scene without competing with copy. */}
+          <g fill={palette.bank} opacity="0.94">
+            <path d="M0 330q11-46 23-56 7 32 3 59 18-41 38-44-2 32-26 55 29-23 48-17-14 29-53 39H0Z" />
+            <path d="M672 286q-3-39 12-59 14 27 9 51 18-30 36-30-1 27-27 48 28-17 48-10-17 27-52 34h-29Z" />
+          </g>
+
+          {/* A small boat, distant birds, and drifting blossoms animate slowly. */}
+          <g className="chapter-scene-sailboat">
+            <path d="m366 329 54 0-9 13h-39Z" fill="#74553C" />
+            <path d="M393 326v-32m2 2 21 23h-21Z" fill="#FFF7E7" opacity="0.92" />
+            <path d="M392 297v-7h6v7" fill={palette.accent} />
+            <path d="M374 340q19 7 39 0" fill="none" stroke="#E8F4EC" strokeWidth="2" opacity="0.7" />
+          </g>
+          <g className="chapter-scene-birds" fill="none" stroke="#546B67" strokeWidth="3" strokeLinecap="round" opacity="0.6">
+            <path d="m278 171 10-8 10 8m8-14 8-7 8 7" />
+            <path d="m348 184 7-6 8 6" />
+          </g>
+          <g transform="translate(520 286)" className="chapter-scene-petal chapter-scene-petal--one" fill={palette.accent} opacity="0.8"><path d="M0-7q8 3 0 9-8-6 0-9Z" /></g>
+          <g transform="translate(604 272)" className="chapter-scene-petal chapter-scene-petal--two" fill="#E6CBA6" opacity="0.75"><path d="M0-6q7 3 0 8-7-5 0-8Z" /></g>
+          <g transform="translate(446 295)" className="chapter-scene-petal chapter-scene-petal--three" fill="#FFF5E6" opacity="0.9"><path d="M0-5q6 3 0 7-6-4 0-7Z" /></g>
+          <rect width="760" height="480" fill={`url(#${sceneId}-mist)`} />
+        </g>
+      </svg>
+    </div>
+  );
+};
+
 export const ChapterSignatureVisuals: React.FC<SignatureProps> = ({ chapterNumber }) => {
   switch (chapterNumber) {
     case 7:

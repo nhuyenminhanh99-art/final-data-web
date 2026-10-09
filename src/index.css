@@ -2720,3 +2720,266 @@ section[aria-labelledby="team-section-title"] .font-serif:not(#team-section-titl
     radial-gradient(ellipse 50rem 32rem at 100% 0%, color-mix(in srgb, var(--chapter-accent) 7%, transparent), transparent 76%),
     linear-gradient(180deg, #F5F7F3 0, #FFFDF8 18rem, #FFFDF8 100%);
 }
+
+/* Chapter arrivals: calm, place-specific landscapes that give the editorial
+   opening a focal point without changing a single word of chapter copy. */
+.chapter-page[data-chapter-number] .chapter-heading {
+  min-height: clamp(30rem, 43vw, 36rem);
+  padding: clamp(2.4rem, 5vw, 4.5rem) clamp(1.35rem, 5vw, 4.5rem);
+  background:
+    radial-gradient(ellipse 58% 78% at 100% 0%, color-mix(in srgb, var(--chapter-accent) 11%, transparent), transparent 76%),
+    linear-gradient(120deg, rgba(255, 255, 255, 0.98), rgba(246, 249, 247, 0.96) 55%, rgba(232, 241, 239, 0.9));
+}
+
+.chapter-page[data-chapter-number] .chapter-heading-copy {
+  position: relative;
+  z-index: 2;
+  max-width: 58%;
+}
+
+.chapter-page[data-chapter-number] .chapter-heading .chapter-meta {
+  align-items: flex-start;
+  column-gap: 1rem;
+  row-gap: 0.8rem;
+  margin-bottom: clamp(1.4rem, 3vw, 2.2rem);
+}
+
+.chapter-page[data-chapter-number] .chapter-title {
+  max-width: 8.5ch;
+  margin-bottom: 1.3rem;
+  font-size: clamp(3.5rem, 6.4vw, 5.35rem);
+  font-weight: 500;
+  line-height: 0.97;
+  letter-spacing: -0.038em;
+  text-wrap: balance;
+}
+
+.chapter-page[data-chapter-number] .chapter-tagline {
+  max-width: 29rem;
+  margin-bottom: 1.2rem;
+  padding-left: 1.15rem;
+  border-left-width: 2px;
+  color: #40515B;
+  font-size: clamp(1.25rem, 2.2vw, 1.75rem);
+  line-height: 1.36;
+  letter-spacing: -0.012em;
+  text-wrap: pretty;
+}
+
+.chapter-page[data-chapter-number] .chapter-summary {
+  max-width: 31rem;
+  color: #34464C;
+  font-size: clamp(0.98rem, 1.15vw, 1.08rem);
+  line-height: 1.65;
+}
+
+.chapter-page[data-chapter-number] .chapter-heading > .chapter-arrival-scene {
+  position: absolute;
+  z-index: 0;
+  top: 4%;
+  right: 1%;
+  bottom: 4%;
+  width: 49%;
+  border-radius: 1rem 1rem 4rem 1rem;
+  opacity: 0.95;
+}
+
+.chapter-arrival-scene {
+  position: absolute;
+  overflow: hidden;
+  pointer-events: none;
+  isolation: isolate;
+  mask-image: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.7) 14%, #000 42%);
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.7) 14%, #000 42%);
+}
+
+.chapter-arrival-art {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.chapter-scene-cloud--one { translate: -12px 0; animation: chapter-cloud-drift 34s ease-in-out infinite alternate; }
+.chapter-scene-cloud--two { translate: 10px 0; animation: chapter-cloud-drift 27s ease-in-out -8s infinite alternate; }
+.chapter-scene-sailboat { animation: chapter-boat-sail 22s cubic-bezier(0.42, 0, 0.28, 1) infinite alternate; }
+.chapter-scene-birds { animation: chapter-bird-glide 16s ease-in-out infinite alternate; }
+.chapter-scene-petal--one { animation: chapter-petal-drift 13s ease-in-out infinite alternate; }
+.chapter-scene-petal--two { animation: chapter-petal-drift 16s ease-in-out -5s infinite alternate; }
+.chapter-scene-petal--three { animation: chapter-petal-drift 18s ease-in-out -9s infinite alternate; }
+.chapter-scene-current { animation: chapter-water-flow 24s linear infinite; }
+.chapter-scene-current--slow { animation-duration: 32s; animation-direction: reverse; }
+.chapter-scene-lantern { transform-box: fill-box; transform-origin: center; animation: chapter-lantern-breathe 5.6s ease-in-out infinite alternate; }
+
+@keyframes chapter-cloud-drift {
+  from { translate: -10px 1px; }
+  to { translate: 18px -4px; }
+}
+
+@keyframes chapter-boat-sail {
+  from { translate: 16px 1px; }
+  to { translate: -188px -5px; }
+}
+
+@keyframes chapter-bird-glide {
+  from { translate: -10px 4px; }
+  to { translate: 38px -9px; }
+}
+
+@keyframes chapter-petal-drift {
+  from { translate: -2px -2px; rotate: -12deg; }
+  to { translate: 16px 13px; rotate: 18deg; }
+}
+
+@keyframes chapter-water-flow {
+  to { stroke-dashoffset: -170; }
+}
+
+@keyframes chapter-lantern-breathe {
+  from { opacity: 0.68; }
+  to { opacity: 1; }
+}
+
+.chapter-arrival-scene[data-scene-chapter="8"] .chapter-scene-landmark {
+  animation: chapter-bamboo-sway 12s ease-in-out infinite alternate;
+  transform-box: fill-box;
+  transform-origin: center bottom;
+}
+
+.chapter-arrival-scene[data-scene-chapter="10"] .chapter-scene-landmark {
+  animation: chapter-bridge-sway 18s ease-in-out infinite alternate;
+}
+
+.chapter-arrival-scene[data-scene-chapter="11"] .chapter-scene-landmark {
+  animation: chapter-garden-sway 14s ease-in-out infinite alternate;
+  transform-box: fill-box;
+  transform-origin: center bottom;
+}
+
+@keyframes chapter-bamboo-sway {
+  from { rotate: -0.35deg; }
+  to { rotate: 0.35deg; }
+}
+
+@keyframes chapter-bridge-sway {
+  from { translate: 0 1px; }
+  to { translate: 0 -2px; }
+}
+
+@keyframes chapter-garden-sway {
+  from { rotate: -0.3deg; }
+  to { rotate: 0.3deg; }
+}
+
+.chapter-arrival-scene--reader {
+  top: 5%;
+  right: -2%;
+  bottom: 4%;
+  width: 44%;
+  opacity: 0.6;
+}
+
+.chapter-panel-hero-copy {
+  position: relative;
+  z-index: 2;
+  max-width: 61%;
+}
+
+.chapter-reading-panel[data-chapter-number] > main > article > header {
+  min-height: 31rem;
+  padding-bottom: clamp(2.5rem, 5vw, 4rem);
+}
+
+.chapter-reading-panel[data-chapter-number] #chapter-fullpage-title {
+  max-width: 8.5ch;
+  margin-bottom: 1.35rem;
+  font-size: clamp(3.4rem, 6.2vw, 5.2rem);
+  line-height: 0.98;
+  letter-spacing: -0.038em;
+}
+
+.chapter-reading-panel[data-chapter-number] > main > article > header > p:first-of-type {
+  max-width: 29rem;
+  margin-bottom: 1.2rem;
+  font-size: clamp(1.25rem, 2.2vw, 1.75rem);
+  line-height: 1.36;
+  text-wrap: pretty;
+}
+
+.chapter-reading-panel[data-chapter-number] > main > article > header > p:last-child {
+  max-width: 31rem;
+  line-height: 1.65;
+}
+
+.chapter-article > header.chapter-heading {
+  margin-bottom: 0;
+}
+
+.chapter-article > .chapter-signature {
+  margin-top: clamp(2rem, 4vw, 3rem);
+  margin-bottom: clamp(3rem, 5vw, 4.5rem);
+}
+
+@media (max-width: 900px) {
+  .chapter-page[data-chapter-number] .chapter-heading-copy { max-width: 61%; }
+  .chapter-page[data-chapter-number] .chapter-heading > .chapter-arrival-scene { width: 46%; opacity: 0.82; }
+  .chapter-panel-hero-copy { max-width: 64%; }
+  .chapter-arrival-scene--reader { width: 40%; opacity: 0.46; }
+}
+
+@media (max-width: 700px) {
+  .chapter-page[data-chapter-number] .chapter-heading {
+    min-height: 38rem;
+    padding: 2rem 1.2rem 13rem;
+  }
+
+  .chapter-page[data-chapter-number] .chapter-heading-copy,
+  .chapter-panel-hero-copy {
+    max-width: 100%;
+  }
+
+  .chapter-page[data-chapter-number] .chapter-title {
+    max-width: 9ch;
+    font-size: clamp(3.35rem, 13vw, 4.6rem);
+  }
+
+  .chapter-page[data-chapter-number] .chapter-tagline,
+  .chapter-page[data-chapter-number] .chapter-summary {
+    max-width: 38rem;
+  }
+
+  .chapter-page[data-chapter-number] .chapter-heading > .chapter-arrival-scene {
+    top: auto;
+    right: -5%;
+    bottom: 0;
+    width: 100%;
+    height: 47%;
+    opacity: 0.56;
+    mask-image: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.68) 20%, #000 65%);
+    -webkit-mask-image: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.68) 20%, #000 65%);
+  }
+
+  .chapter-reading-panel[data-chapter-number] > main > article > header {
+    min-height: 38rem;
+    padding-bottom: 12rem;
+  }
+
+  .chapter-arrival-scene--reader {
+    top: auto;
+    right: -8%;
+    bottom: 0;
+    width: 100%;
+    height: 44%;
+    opacity: 0.4;
+    mask-image: linear-gradient(180deg, transparent, #000 48%);
+    -webkit-mask-image: linear-gradient(180deg, transparent, #000 48%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .chapter-arrival-scene *,
+  .chapter-arrival-scene *::before,
+  .chapter-arrival-scene *::after {
+    animation: none !important;
+    scroll-behavior: auto !important;
+  }
+}
