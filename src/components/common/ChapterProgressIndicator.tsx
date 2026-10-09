@@ -6,12 +6,12 @@ interface ProgressIndicatorProps {
 
 export const ChapterProgressIndicator: React.FC<ProgressIndicatorProps> = ({ currentChapter }) => {
   const steps = [
-    { num: 7, label: 'Leadership', href: '/analytics-leadership/' },
-    { num: 8, label: 'Competing', href: '/competing-on-analytics/' },
-    { num: 9, label: 'Playbook', href: '/analytics-leaders-playbook/' },
-    { num: 10, label: 'Making It Happen', href: '/making-it-happen/' },
-    { num: 11, label: 'Pitfalls', href: '/common-pitfalls/' },
-    { num: 12, label: 'Summary', href: '/case-studies/' },
+    { num: 7, label: 'Leadership', href: '/analytics-leadership/?from=chapters' },
+    { num: 8, label: 'Competing', href: '/competing-on-analytics/?from=chapters' },
+    { num: 9, label: 'Playbook', href: '/analytics-leaders-playbook/?from=chapters' },
+    { num: 10, label: 'Making It Happen', href: '/making-it-happen/?from=chapters' },
+    { num: 11, label: 'Pitfalls', href: '/common-pitfalls/?from=chapters' },
+    { num: 12, label: 'Summary', href: '/case-studies/?from=chapters' },
   ];
 
   const activeIndex = steps.findIndex((s) => s.num === currentChapter);
@@ -20,7 +20,7 @@ export const ChapterProgressIndicator: React.FC<ProgressIndicatorProps> = ({ cur
   return (
     <nav
       aria-label="Chapter Curriculum Progress"
-      className="my-10 p-6 rounded-2xl bg-white border border-[#163C3A]/12 shadow-sm max-w-4xl mx-auto"
+      className="chapter-progress-card max-w-4xl mx-auto"
     >
       <div className="flex items-center justify-between mb-4 text-xs text-[#718096]">
         <span className="uppercase tracking-[0.16em] text-[#85590A] font-semibold">
@@ -31,7 +31,7 @@ export const ChapterProgressIndicator: React.FC<ProgressIndicatorProps> = ({ cur
         </span>
       </div>
 
-      <div className="relative py-4">
+      <div className="chapter-progress-track-wrap relative">
         {/* Background track line */}
         <div className="absolute top-1/2 left-4 right-4 -translate-y-1/2 h-1 bg-[#EEF3F1] rounded-full z-0 hidden sm:block" />
 
@@ -42,7 +42,7 @@ export const ChapterProgressIndicator: React.FC<ProgressIndicatorProps> = ({ cur
         />
 
         {/* Nodes */}
-        <div className="grid grid-cols-2 sm:grid-cols-6 gap-3 relative z-10">
+        <div className="chapter-progress-steps grid grid-cols-2 sm:grid-cols-6 gap-3 relative z-10">
           {steps.map((st, idx) => {
             const isCompleted = idx < activeIndex;
             const isCurrent = idx === activeIndex;
@@ -50,10 +50,10 @@ export const ChapterProgressIndicator: React.FC<ProgressIndicatorProps> = ({ cur
               <a
                 key={st.num}
                 href={st.href}
-                className="flex flex-col items-center text-center group min-h-[44px] cursor-pointer"
+                    className="chapter-progress-step flex flex-col items-center text-center group min-h-[44px] cursor-pointer"
               >
                 <div
-                  className={`w-9 h-9 rounded-full flex items-center justify-center text-xs font-semibold transition-all shadow-sm ${
+                    className={`chapter-progress-node w-9 h-9 rounded-full flex items-center justify-center text-xs font-semibold transition-all shadow-sm ${
                     isCurrent
                       ? 'bg-[#163C3A] text-white ring-4 ring-[#C99A4B]/40 scale-110'
                       : isCompleted

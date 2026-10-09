@@ -17,6 +17,19 @@ interface ChapterPageProps {
   slug: string;
 }
 
+const CHAPTER_ENTRY_STORAGE_KEY = 'river.chapter-entry.';
+
+const resolveCurriculumVisibility = (slug: string): boolean => {
+  if (typeof window === 'undefined') return false;
+  const from = new URLSearchParams(window.location.search).get('from');
+  if (from === 'chapters' || from === 'journey') {
+    const visible = from === 'chapters';
+    window.sessionStorage.setItem(`${CHAPTER_ENTRY_STORAGE_KEY}${slug}`, visible ? 'visible' : 'hidden');
+    return visible;
+  }
+  return window.sessionStorage.getItem(`${CHAPTER_ENTRY_STORAGE_KEY}${slug}`) === 'visible';
+};
+
 export const ChapterPage: React.FC<ChapterPageProps> = ({ slug }) => {
   const chapterIdx = chaptersData.findIndex((c) => c.slug === slug);
   const chapter = chaptersData[chapterIdx] || chaptersData[0];
@@ -27,6 +40,11 @@ export const ChapterPage: React.FC<ChapterPageProps> = ({ slug }) => {
   // Reading modes: 'all' (continuous scroll) or 'drilldown' (section-by-section reader)
   const [readingMode, setReadingMode] = useState<'all' | 'drilldown'>('all');
   const [currentSectionIndex, setCurrentSectionIndex] = useState(0);
+  const [showCurriculumProgress, setShowCurriculumProgress] = useState(false);
+
+  React.useEffect(() => {
+    setShowCurriculumProgress(resolveCurriculumVisibility(slug));
+  }, [slug]);
 
   // Structured Data Schema for Article and Breadcrumbs
   const structuredData = {
@@ -79,20 +97,23 @@ export const ChapterPage: React.FC<ChapterPageProps> = ({ slug }) => {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
 
-      <article className="chapter-article max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-14">
-        {/* Breadcrumb Navigation */}
-        <nav aria-label="Breadcrumbs" className="flex items-center space-x-2 text-xs text-[#718096] mb-10">
-          <a href="/" className="hover:text-[#163C3A] transition-colors">Home</a>
-          <ChevronRight className="w-3.5 h-3.5" />
-          <a href="/journey" className="hover:text-[#163C3A] transition-colors">Journey</a>
-          <ChevronRight className="w-3.5 h-3.5" />
-          <span className="text-[#163C3A] font-medium">Chapter {chapter.number}</span>
-        </nav>
+      <article className={`chapter-article ${showCurriculumProgress ? 'chapter-article--progress' : 'chapter-article--hero-first'} max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-14`}>
+        {/* Curriculum context appears only for chapter-menu and chapter-to-chapter entry. */}
+        {showCurriculumProgress && (
+          <>
+            <nav aria-label="Breadcrumbs" className="chapter-breadcrumb flex items-center space-x-2 text-xs text-[#718096] mb-10">
+              <a href="/" className="hover:text-[#163C3A] transition-colors">Home</a>
+              <ChevronRight className="w-3.5 h-3.5" />
+              <a href="/journey" className="hover:text-[#163C3A] transition-colors">Journey</a>
+              <ChevronRight className="w-3.5 h-3.5" />
+              <span className="text-[#163C3A] font-medium">Chapter {chapter.number}</span>
+            </nav>
 
-        {/* 6-Node Curriculum Progress Indicator */}
-        <div className="chapter-progress-shell mb-14 sm:mb-16">
-          <ChapterProgressIndicator currentChapter={chapter.number} />
-        </div>
+            <div className="chapter-progress-shell mb-14 sm:mb-16">
+              <ChapterProgressIndicator currentChapter={chapter.number} />
+            </div>
+          </>
+        )}
 
         {/* 3D River Sail CTA Banner */}
         <div className="chapter-sail-banner mb-16 sm:mb-20 p-6 sm:p-7 rounded-2xl bg-white border border-[#163C3A]/14 flex flex-col sm:flex-row items-center justify-between gap-5 shadow-[0_1px_3px_rgba(22,60,58,0.04),0_6px_18px_-2px_rgba(22,60,58,0.06),0_16px_32px_-4px_rgba(22,60,58,0.04)]">
@@ -110,12 +131,11 @@ export const ChapterPage: React.FC<ChapterPageProps> = ({ slug }) => {
           </a>
         </div>
 
-        {/* Article Metadata bar */}
-        <header className="chapter-heading mb-18 sm:mb-24 border-b border-[#163C3A]/12 pb-14 sm:pb-16 relative overflow-hidden">
-          {/* Monumental Chapter Number Watermark */}
+        {/* Unified chapter hero: ghost number, metadata, mode switcher, title, quote, and scenic illustration. */}
+        <header className="chapter-heading mb-18 sm:mb-24 relative">
           <span
             aria-hidden="true"
-            className="chapter-number-watermark text-[10rem] sm:text-[14rem] font-serif text-[#C99A4B]/10 select-none absolute -top-10 sm:-top-16 -right-4 sm:-right-8 pointer-events-none leading-none font-light"
+            className="chapter-number-watermark select-none pointer-events-none"
           >
             {chapter.number}
           </span>
@@ -123,9 +143,7 @@ export const ChapterPage: React.FC<ChapterPageProps> = ({ slug }) => {
           <ChapterArrivalScene chapterNumber={chapter.number} />
 
           <div className="chapter-heading-copy">
-
-          <div className="chapter-meta flex items-center justify-between flex-wrap gap-4 text-xs text-[#718096] mb-8 relative z-10 font-sans">
-            <div className="flex items-center gap-3">
+            <div className="chapter-meta flex items-center flex-wrap gap-3 text-xs text-[#718096] relative z-10 font-sans">
               <span className="chapter-kicker px-3.5 py-1 rounded-full bg-[#FAF6EE] border border-[#C99A4B]/30 text-[#85590A] font-semibold uppercase tracking-[0.2em]">
                 {chapter.kicker}
               </span>
@@ -138,7 +156,7 @@ export const ChapterPage: React.FC<ChapterPageProps> = ({ slug }) => {
             </div>
 
             {/* Reading Mode Switcher */}
-            <div className="flex bg-white/95 p-1.5 rounded-full border border-[#163C3A]/14 text-xs shadow-xs gap-1">
+            <div className="chapter-mode-switcher flex bg-white/95 p-1.5 rounded-full border border-[#163C3A]/14 text-xs shadow-xs gap-1">
               <button
                 onClick={() => setReadingMode('all')}
                 className={`px-4 py-1.5 rounded-full transition-all cursor-pointer flex items-center gap-1.5 font-sans ${
@@ -160,19 +178,18 @@ export const ChapterPage: React.FC<ChapterPageProps> = ({ slug }) => {
                 <BookMarked className="w-3.5 h-3.5" /> Section Reader
               </button>
             </div>
-          </div>
 
-          <h1 className="chapter-title text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-serif text-[#163C3A] font-normal leading-[1.04] mb-8 tracking-tight relative z-10">
-            {chapter.title}
-          </h1>
+            <h1 className="chapter-title text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-serif text-[#163C3A] font-normal leading-[1.04] mb-8 tracking-tight relative z-10">
+              {chapter.title}
+            </h1>
 
-          <p className="chapter-tagline text-xl sm:text-2xl md:text-3xl font-serif italic text-[#4A5568] leading-relaxed max-w-3xl mb-9 border-l-2 border-[#C99A4B]/40 pl-6 relative z-10">
-            "{chapter.tagline}"
-          </p>
+            <p className="chapter-tagline text-xl sm:text-2xl md:text-3xl font-serif italic text-[#4A5568] leading-relaxed max-w-3xl mb-9 border-l-2 border-[#C99A4B]/40 pl-6 relative z-10">
+              "{chapter.tagline}"
+            </p>
 
-          <p className="chapter-summary text-base sm:text-lg md:text-xl text-[#2D3748] leading-relaxed font-sans max-w-3xl relative z-10">
-            {chapter.summary}
-          </p>
+            <p className="chapter-summary text-base sm:text-lg md:text-xl text-[#2D3748] leading-relaxed font-sans max-w-3xl relative z-10">
+              {chapter.summary}
+            </p>
           </div>
         </header>
 
@@ -280,7 +297,7 @@ export const ChapterPage: React.FC<ChapterPageProps> = ({ slug }) => {
         <div className="mt-20 pt-12 border-t border-[#163C3A]/10 grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8">
           {prevChapter ? (
             <a
-              href={`/${prevChapter.slug}/`}
+              href={`/${prevChapter.slug}/?from=chapters`}
               className="river-card p-6 md:p-7 flex flex-col justify-between group hover:border-[#163C3A]"
             >
               <span className="text-xs text-[#718096] flex items-center gap-1 mb-2 font-medium">
@@ -297,7 +314,7 @@ export const ChapterPage: React.FC<ChapterPageProps> = ({ slug }) => {
 
           {nextChapter ? (
             <a
-              href={`/${nextChapter.slug}/`}
+              href={`/${nextChapter.slug}/?from=chapters`}
               className="river-card p-6 md:p-7 flex flex-col justify-between group text-right hover:border-[#163C3A]"
             >
               <span className="text-xs text-[#718096] flex items-center justify-end gap-1 mb-2 font-medium">

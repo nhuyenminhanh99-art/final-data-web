@@ -135,7 +135,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath }) => {
                   {chaptersData.map((ch, index) => (
                     <a
                       key={ch.slug}
-                      href={`/${ch.slug}/`}
+                      href={`/${ch.slug}/?from=chapters`}
                       role="menuitem"
                       className="river-chapter-menu-item block px-3 py-2.5 rounded-xl transition-colors focus-visible:ring-2 focus-visible:ring-[#C8A66A]"
                       onKeyDown={(event) => {
@@ -191,7 +191,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath }) => {
             <details className="river-mobile-chapters group">
               <summary className="river-mobile-nav-link list-none cursor-pointer flex items-center justify-between"><span className="river-nav-label">{journeyCopy.navigation.chapters}</span><ChevronDown aria-hidden="true" className="w-5 h-5 transition-transform group-open:rotate-180" /></summary>
               <div className="pl-3 pt-2 space-y-1">
-                {chaptersData.map((ch) => <a key={ch.slug} href={`/${ch.slug}/`} onClick={() => setIsMobileMenuOpen(false)} className="river-mobile-chapter-link"><span className="river-chapter-dot" style={{ backgroundColor: chapterThemeDots[ch.regionPreset] || '#C8A66A' }} aria-hidden="true" /> Ch. {ch.number} · {ch.title}</a>)}
+                {chaptersData.map((ch) => <a key={ch.slug} href={`/${ch.slug}/?from=chapters`} onClick={() => setIsMobileMenuOpen(false)} className="river-mobile-chapter-link"><span className="river-chapter-dot" style={{ backgroundColor: chapterThemeDots[ch.regionPreset] || '#C8A66A' }} aria-hidden="true" /> Ch. {ch.number} · {ch.title}</a>)}
               </div>
             </details>
             {navLinks.slice(2).map((link) => <a key={link.href} href={link.href} onClick={() => setIsMobileMenuOpen(false)} className="river-mobile-nav-link"><span className="river-nav-label">{link.label}</span></a>)}

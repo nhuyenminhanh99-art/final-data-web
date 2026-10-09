@@ -1,0 +1,1869 @@
+{
+  "passed": true,
+  "results": [
+    {
+      "flow": "chapters-menu-to-chapter-8",
+      "progress": "visible",
+      "refresh": "visible"
+    },
+    {
+      "flow": "journey-2d-lite-to-chapter-8",
+      "progress": "hidden"
+    },
+    {
+      "flow": "journey-origin-canonical-route",
+      "progress": "hidden",
+      "refresh": "hidden"
+    },
+    {
+      "chapter": "analytics-leadership",
+      "width": 360,
+      "height": 740,
+      "geometry": {
+        "title": {
+          "left": 36.1875,
+          "right": 323.8125,
+          "top": 614.09375,
+          "bottom": 708.15625
+        },
+        "scene": {
+          "left": 36.1875,
+          "right": 323.8125,
+          "top": 253,
+          "bottom": 415.734375
+        },
+        "ghost": {
+          "left": 33,
+          "right": 72.09375,
+          "top": 204.1875,
+          "bottom": 284.8125
+        },
+        "heading": {
+          "left": 16,
+          "right": 344,
+          "top": 196,
+          "bottom": 1019.5625
+        },
+        "overflow": "visible"
+      },
+      "checks": [
+        "title/illustration non-intersection",
+        "ghost visible",
+        "hero text matches baseline"
+      ]
+    },
+    {
+      "chapter": "analytics-leadership",
+      "width": 390,
+      "height": 844,
+      "geometry": {
+        "title": {
+          "left": 36.1875,
+          "right": 353.8125,
+          "top": 604.671875,
+          "bottom": 704.046875
+        },
+        "scene": {
+          "left": 36.1875,
+          "right": 353.8125,
+          "top": 253,
+          "bottom": 432.703125
+        },
+        "ghost": {
+          "left": 33,
+          "right": 72.09375,
+          "top": 204.1875,
+          "bottom": 284.8125
+        },
+        "heading": {
+          "left": 16,
+          "right": 374,
+          "top": 196,
+          "bottom": 989.578125
+        },
+        "overflow": "visible"
+      },
+      "checks": [
+        "title/illustration non-intersection",
+        "ghost visible",
+        "hero text matches baseline"
+      ]
+    },
+    {
+      "chapter": "analytics-leadership",
+      "width": 430,
+      "height": 932,
+      "geometry": {
+        "title": {
+          "left": 36.1875,
+          "right": 393.8125,
+          "top": 627.296875,
+          "bottom": 736.859375
+        },
+        "scene": {
+          "left": 36.1875,
+          "right": 393.8125,
+          "top": 253,
+          "bottom": 455.328125
+        },
+        "ghost": {
+          "left": 33,
+          "right": 72.09375,
+          "top": 204.1875,
+          "bottom": 284.8125
+        },
+        "heading": {
+          "left": 16,
+          "right": 414,
+          "top": 196,
+          "bottom": 995.203125
+        },
+        "overflow": "visible"
+      },
+      "checks": [
+        "title/illustration non-intersection",
+        "ghost visible",
+        "hero text matches baseline"
+      ]
+    },
+    {
+      "chapter": "analytics-leadership",
+      "width": 768,
+      "height": 1024,
+      "geometry": {
+        "title": {
+          "left": 44.1875,
+          "right": 538.65625,
+          "top": 791.09375,
+          "bottom": 926.5625
+        },
+        "scene": {
+          "left": 44.1875,
+          "right": 723.8125,
+          "top": 261,
+          "bottom": 645.515625
+        },
+        "ghost": {
+          "left": 41,
+          "right": 102.4375,
+          "top": 204.1875,
+          "bottom": 330.90625
+        },
+        "heading": {
+          "left": 24,
+          "right": 744,
+          "top": 196,
+          "bottom": 1133.15625
+        },
+        "overflow": "visible"
+      },
+      "checks": [
+        "title/illustration non-intersection",
+        "ghost visible",
+        "hero text matches baseline"
+      ]
+    },
+    {
+      "chapter": "analytics-leadership",
+      "width": 1024,
+      "height": 768,
+      "geometry": {
+        "title": {
+          "left": 73.953125,
+          "right": 467.515625,
+          "top": 424.5,
+          "bottom": 548.90625
+        },
+        "scene": {
+          "left": 555.796875,
+          "right": 950.03125,
+          "top": 387.640625,
+          "bottom": 636.625
+        },
+        "ghost": {
+          "left": 63.71875,
+          "right": 124.484375,
+          "top": 210.296875,
+          "bottom": 335.625
+        },
+        "heading": {
+          "left": 32,
+          "right": 992,
+          "top": 196,
+          "bottom": 807.46875
+        },
+        "overflow": "visible"
+      },
+      "checks": [
+        "title/illustration non-intersection",
+        "ghost visible",
+        "hero text matches baseline"
+      ]
+    },
+    {
+      "chapter": "analytics-leadership",
+      "width": 1280,
+      "height": 720,
+      "geometry": {
+        "title": {
+          "left": 212.1875,
+          "right": 682.78125,
+          "top": 449.765625,
+          "bottom": 605.296875
+        },
+        "scene": {
+          "left": 682.78125,
+          "right": 1067.8125,
+          "top": 454.015625,
+          "bottom": 697.1875
+        },
+        "ghost": {
+          "left": 199.390625,
+          "right": 275.34375,
+          "top": 213.625,
+          "bottom": 370.28125
+        },
+        "heading": {
+          "left": 160,
+          "right": 1120,
+          "top": 196,
+          "bottom": 929.625
+        },
+        "overflow": "visible"
+      },
+      "checks": [
+        "title/illustration non-intersection",
+        "ghost visible",
+        "hero text matches baseline"
+      ]
+    },
+    {
+      "chapter": "analytics-leadership",
+      "width": 1366,
+      "height": 768,
+      "geometry": {
+        "title": {
+          "left": 258.625,
+          "right": 725.4375,
+          "top": 456.078125,
+          "bottom": 622.046875
+        },
+        "scene": {
+          "left": 725.4375,
+          "right": 1107.375,
+          "top": 466.59375,
+          "bottom": 707.8125
+        },
+        "ghost": {
+          "left": 244.96875,
+          "right": 326.015625,
+          "top": 215.046875,
+          "bottom": 382.234375
+        },
+        "heading": {
+          "left": 203,
+          "right": 1163,
+          "top": 196.296875,
+          "bottom": 946.5
+        },
+        "overflow": "visible"
+      },
+      "checks": [
+        "title/illustration non-intersection",
+        "ghost visible",
+        "hero text matches baseline"
+      ]
+    },
+    {
+      "chapter": "analytics-leadership",
+      "width": 1440,
+      "height": 900,
+      "geometry": {
+        "title": {
+          "left": 298.59375,
+          "right": 762.140625,
+          "top": 460.171875,
+          "bottom": 635.140625
+        },
+        "scene": {
+          "left": 762.140625,
+          "right": 1141.40625,
+          "top": 478.875,
+          "bottom": 718.40625
+        },
+        "ghost": {
+          "left": 284.1875,
+          "right": 369.625,
+          "top": 219.71875,
+          "bottom": 395.96875
+        },
+        "heading": {
+          "left": 240,
+          "right": 1200,
+          "top": 200,
+          "bottom": 965.28125
+        },
+        "overflow": "visible"
+      },
+      "checks": [
+        "title/illustration non-intersection",
+        "ghost visible",
+        "hero text matches baseline"
+      ]
+    },
+    {
+      "chapter": "analytics-leadership",
+      "width": 1536,
+      "height": 864,
+      "geometry": {
+        "title": {
+          "left": 350.4375,
+          "right": 809.75,
+          "top": 464.96875,
+          "bottom": 640.5625
+        },
+        "scene": {
+          "left": 809.75,
+          "right": 1185.546875,
+          "top": 487.421875,
+          "bottom": 724.765625
+        },
+        "ghost": {
+          "left": 335.078125,
+          "right": 426.21875,
+          "top": 225.75,
+          "bottom": 413.75
+        },
+        "heading": {
+          "left": 288,
+          "right": 1248,
+          "top": 204.796875,
+          "bottom": 975.390625
+        },
+        "overflow": "visible"
+      },
+      "checks": [
+        "title/illustration non-intersection",
+        "ghost visible",
+        "hero text matches baseline"
+      ]
+    },
+    {
+      "chapter": "analytics-leadership",
+      "width": 1920,
+      "height": 1080,
+      "geometry": {
+        "title": {
+          "left": 553,
+          "right": 1000.6875,
+          "top": 472.171875,
+          "bottom": 647.765625
+        },
+        "scene": {
+          "left": 1000.6875,
+          "right": 1366.984375,
+          "top": 497.625,
+          "bottom": 728.96875
+        },
+        "ghost": {
+          "left": 533,
+          "right": 633.515625,
+          "top": 233,
+          "bottom": 440.359375
+        },
+        "heading": {
+          "left": 480,
+          "right": 1440,
+          "top": 212,
+          "bottom": 982.59375
+        },
+        "overflow": "visible"
+      },
+      "checks": [
+        "title/illustration non-intersection",
+        "ghost visible",
+        "hero text matches baseline"
+      ]
+    },
+    {
+      "chapter": "competing-on-analytics",
+      "width": 360,
+      "height": 740,
+      "geometry": {
+        "title": {
+          "left": 36.1875,
+          "right": 323.8125,
+          "top": 614.09375,
+          "bottom": 708.15625
+        },
+        "scene": {
+          "left": 36.1875,
+          "right": 323.8125,
+          "top": 253,
+          "bottom": 415.734375
+        },
+        "ghost": {
+          "left": 33,
+          "right": 78.8125,
+          "top": 204.1875,
+          "bottom": 284.8125
+        },
+        "heading": {
+          "left": 16,
+          "right": 344,
+          "top": 196,
+          "bottom": 1019.5625
+        },
+        "overflow": "visible"
+      },
+      "checks": [
+        "title/illustration non-intersection",
+        "ghost visible",
+        "hero text matches baseline"
+      ]
+    },
+    {
+      "chapter": "competing-on-analytics",
+      "width": 390,
+      "height": 844,
+      "geometry": {
+        "title": {
+          "left": 36.1875,
+          "right": 353.8125,
+          "top": 604.671875,
+          "bottom": 704.046875
+        },
+        "scene": {
+          "left": 36.1875,
+          "right": 353.8125,
+          "top": 253,
+          "bottom": 432.703125
+        },
+        "ghost": {
+          "left": 33,
+          "right": 78.8125,
+          "top": 204.1875,
+          "bottom": 284.8125
+        },
+        "heading": {
+          "left": 16,
+          "right": 374,
+          "top": 196,
+          "bottom": 1015.453125
+        },
+        "overflow": "visible"
+      },
+      "checks": [
+        "title/illustration non-intersection",
+        "ghost visible",
+        "hero text matches baseline"
+      ]
+    },
+    {
+      "chapter": "competing-on-analytics",
+      "width": 430,
+      "height": 932,
+      "geometry": {
+        "title": {
+          "left": 36.1875,
+          "right": 393.8125,
+          "top": 627.296875,
+          "bottom": 736.859375
+        },
+        "scene": {
+          "left": 36.1875,
+          "right": 393.8125,
+          "top": 253,
+          "bottom": 455.328125
+        },
+        "ghost": {
+          "left": 33,
+          "right": 78.8125,
+          "top": 204.1875,
+          "bottom": 284.8125
+        },
+        "heading": {
+          "left": 16,
+          "right": 414,
+          "top": 196,
+          "bottom": 1022.390625
+        },
+        "overflow": "visible"
+      },
+      "checks": [
+        "title/illustration non-intersection",
+        "ghost visible",
+        "hero text matches baseline"
+      ]
+    },
+    {
+      "chapter": "competing-on-analytics",
+      "width": 768,
+      "height": 1024,
+      "geometry": {
+        "title": {
+          "left": 44.1875,
+          "right": 538.65625,
+          "top": 791.09375,
+          "bottom": 926.5625
+        },
+        "scene": {
+          "left": 44.1875,
+          "right": 723.8125,
+          "top": 261,
+          "bottom": 645.515625
+        },
+        "ghost": {
+          "left": 41,
+          "right": 112.984375,
+          "top": 204.1875,
+          "bottom": 330.90625
+        },
+        "heading": {
+          "left": 24,
+          "right": 744,
+          "top": 196,
+          "bottom": 1133.15625
+        },
+        "overflow": "visible"
+      },
+      "checks": [
+        "title/illustration non-intersection",
+        "ghost visible",
+        "hero text matches baseline"
+      ]
+    },
+    {
+      "chapter": "competing-on-analytics",
+      "width": 1024,
+      "height": 768,
+      "geometry": {
+        "title": {
+          "left": 73.953125,
+          "right": 467.515625,
+          "top": 424.5,
+          "bottom": 548.90625
+        },
+        "scene": {
+          "left": 555.796875,
+          "right": 950.03125,
+          "top": 387.640625,
+          "bottom": 636.625
+        },
+        "ghost": {
+          "left": 63.71875,
+          "right": 134.921875,
+          "top": 210.296875,
+          "bottom": 335.625
+        },
+        "heading": {
+          "left": 32,
+          "right": 992,
+          "top": 196,
+          "bottom": 807.46875
+        },
+        "overflow": "visible"
+      },
+      "checks": [
+        "title/illustration non-intersection",
+        "ghost visible",
+        "hero text matches baseline"
+      ]
+    },
+    {
+      "chapter": "competing-on-analytics",
+      "width": 1280,
+      "height": 720,
+      "geometry": {
+        "title": {
+          "left": 212.1875,
+          "right": 682.78125,
+          "top": 449.765625,
+          "bottom": 605.296875
+        },
+        "scene": {
+          "left": 682.78125,
+          "right": 1067.8125,
+          "top": 454.015625,
+          "bottom": 697.1875
+        },
+        "ghost": {
+          "left": 199.390625,
+          "right": 288.390625,
+          "top": 213.625,
+          "bottom": 370.28125
+        },
+        "heading": {
+          "left": 160,
+          "right": 1120,
+          "top": 196,
+          "bottom": 929.625
+        },
+        "overflow": "visible"
+      },
+      "checks": [
+        "title/illustration non-intersection",
+        "ghost visible",
+        "hero text matches baseline"
+      ]
+    },
+    {
+      "chapter": "competing-on-analytics",
+      "width": 1366,
+      "height": 768,
+      "geometry": {
+        "title": {
+          "left": 258.625,
+          "right": 725.4375,
+          "top": 456.078125,
+          "bottom": 622.046875
+        },
+        "scene": {
+          "left": 725.4375,
+          "right": 1107.375,
+          "top": 466.59375,
+          "bottom": 707.8125
+        },
+        "ghost": {
+          "left": 244.96875,
+          "right": 339.953125,
+          "top": 215.046875,
+          "bottom": 382.234375
+        },
+        "heading": {
+          "left": 203,
+          "right": 1163,
+          "top": 196.296875,
+          "bottom": 946.5
+        },
+        "overflow": "visible"
+      },
+      "checks": [
+        "title/illustration non-intersection",
+        "ghost visible",
+        "hero text matches baseline"
+      ]
+    },
+    {
+      "chapter": "competing-on-analytics",
+      "width": 1440,
+      "height": 900,
+      "geometry": {
+        "title": {
+          "left": 298.59375,
+          "right": 762.140625,
+          "top": 460.171875,
+          "bottom": 635.140625
+        },
+        "scene": {
+          "left": 762.140625,
+          "right": 1141.40625,
+          "top": 478.875,
+          "bottom": 718.40625
+        },
+        "ghost": {
+          "left": 284.1875,
+          "right": 384.3125,
+          "top": 219.71875,
+          "bottom": 395.96875
+        },
+        "heading": {
+          "left": 240,
+          "right": 1200,
+          "top": 200,
+          "bottom": 965.28125
+        },
+        "overflow": "visible"
+      },
+      "checks": [
+        "title/illustration non-intersection",
+        "ghost visible",
+        "hero text matches baseline"
+      ]
+    },
+    {
+      "chapter": "competing-on-analytics",
+      "width": 1536,
+      "height": 864,
+      "geometry": {
+        "title": {
+          "left": 350.4375,
+          "right": 809.75,
+          "top": 464.96875,
+          "bottom": 640.5625
+        },
+        "scene": {
+          "left": 809.75,
+          "right": 1185.546875,
+          "top": 487.421875,
+          "bottom": 724.765625
+        },
+        "ghost": {
+          "left": 335.078125,
+          "right": 441.890625,
+          "top": 225.75,
+          "bottom": 413.75
+        },
+        "heading": {
+          "left": 288,
+          "right": 1248,
+          "top": 204.796875,
+          "bottom": 975.390625
+        },
+        "overflow": "visible"
+      },
+      "checks": [
+        "title/illustration non-intersection",
+        "ghost visible",
+        "hero text matches baseline"
+      ]
+    },
+    {
+      "chapter": "competing-on-analytics",
+      "width": 1920,
+      "height": 1080,
+      "geometry": {
+        "title": {
+          "left": 553,
+          "right": 1000.6875,
+          "top": 472.171875,
+          "bottom": 647.765625
+        },
+        "scene": {
+          "left": 1000.6875,
+          "right": 1366.984375,
+          "top": 497.625,
+          "bottom": 728.96875
+        },
+        "ghost": {
+          "left": 533,
+          "right": 650.796875,
+          "top": 233,
+          "bottom": 440.359375
+        },
+        "heading": {
+          "left": 480,
+          "right": 1440,
+          "top": 212,
+          "bottom": 982.59375
+        },
+        "overflow": "visible"
+      },
+      "checks": [
+        "title/illustration non-intersection",
+        "ghost visible",
+        "hero text matches baseline"
+      ]
+    },
+    {
+      "chapter": "analytics-leaders-playbook",
+      "width": 360,
+      "height": 740,
+      "geometry": {
+        "title": {
+          "left": 36.1875,
+          "right": 323.8125,
+          "top": 630.09375,
+          "bottom": 771.1875
+        },
+        "scene": {
+          "left": 36.1875,
+          "right": 323.8125,
+          "top": 253,
+          "bottom": 415.734375
+        },
+        "ghost": {
+          "left": 33,
+          "right": 76.125,
+          "top": 204.1875,
+          "bottom": 284.8125
+        },
+        "heading": {
+          "left": 16,
+          "right": 344,
+          "top": 196,
+          "bottom": 1082.59375
+        },
+        "overflow": "visible"
+      },
+      "checks": [
+        "title/illustration non-intersection",
+        "ghost visible",
+        "hero text matches baseline"
+      ]
+    },
+    {
+      "chapter": "analytics-leaders-playbook",
+      "width": 390,
+      "height": 844,
+      "geometry": {
+        "title": {
+          "left": 36.1875,
+          "right": 353.8125,
+          "top": 604.671875,
+          "bottom": 753.734375
+        },
+        "scene": {
+          "left": 36.1875,
+          "right": 353.8125,
+          "top": 253,
+          "bottom": 432.703125
+        },
+        "ghost": {
+          "left": 33,
+          "right": 76.125,
+          "top": 204.1875,
+          "bottom": 284.8125
+        },
+        "heading": {
+          "left": 16,
+          "right": 374,
+          "top": 196,
+          "bottom": 1039.265625
+        },
+        "overflow": "visible"
+      },
+      "checks": [
+        "title/illustration non-intersection",
+        "ghost visible",
+        "hero text matches baseline"
+      ]
+    },
+    {
+      "chapter": "analytics-leaders-playbook",
+      "width": 430,
+      "height": 932,
+      "geometry": {
+        "title": {
+          "left": 36.1875,
+          "right": 393.8125,
+          "top": 627.296875,
+          "bottom": 791.640625
+        },
+        "scene": {
+          "left": 36.1875,
+          "right": 393.8125,
+          "top": 253,
+          "bottom": 455.328125
+        },
+        "ghost": {
+          "left": 33,
+          "right": 76.125,
+          "top": 204.1875,
+          "bottom": 284.8125
+        },
+        "heading": {
+          "left": 16,
+          "right": 414,
+          "top": 196,
+          "bottom": 1077.171875
+        },
+        "overflow": "visible"
+      },
+      "checks": [
+        "title/illustration non-intersection",
+        "ghost visible",
+        "hero text matches baseline"
+      ]
+    },
+    {
+      "chapter": "analytics-leaders-playbook",
+      "width": 768,
+      "height": 1024,
+      "geometry": {
+        "title": {
+          "left": 44.1875,
+          "right": 538.65625,
+          "top": 791.09375,
+          "bottom": 994.296875
+        },
+        "scene": {
+          "left": 44.1875,
+          "right": 723.8125,
+          "top": 261,
+          "bottom": 645.515625
+        },
+        "ghost": {
+          "left": 41,
+          "right": 108.765625,
+          "top": 204.1875,
+          "bottom": 330.90625
+        },
+        "heading": {
+          "left": 24,
+          "right": 744,
+          "top": 196,
+          "bottom": 1200.890625
+        },
+        "overflow": "visible"
+      },
+      "checks": [
+        "title/illustration non-intersection",
+        "ghost visible",
+        "hero text matches baseline"
+      ]
+    },
+    {
+      "chapter": "analytics-leaders-playbook",
+      "width": 1024,
+      "height": 768,
+      "geometry": {
+        "title": {
+          "left": 73.953125,
+          "right": 467.515625,
+          "top": 424.5,
+          "bottom": 611.109375
+        },
+        "scene": {
+          "left": 555.796875,
+          "right": 950.03125,
+          "top": 405.8125,
+          "bottom": 654.796875
+        },
+        "ghost": {
+          "left": 63.71875,
+          "right": 130.75,
+          "top": 210.296875,
+          "bottom": 335.625
+        },
+        "heading": {
+          "left": 32,
+          "right": 992,
+          "top": 196,
+          "bottom": 843.796875
+        },
+        "overflow": "visible"
+      },
+      "checks": [
+        "title/illustration non-intersection",
+        "ghost visible",
+        "hero text matches baseline"
+      ]
+    },
+    {
+      "chapter": "analytics-leaders-playbook",
+      "width": 1280,
+      "height": 720,
+      "geometry": {
+        "title": {
+          "left": 212.1875,
+          "right": 682.78125,
+          "top": 449.765625,
+          "bottom": 683.0625
+        },
+        "scene": {
+          "left": 682.78125,
+          "right": 1067.8125,
+          "top": 492.90625,
+          "bottom": 736.078125
+        },
+        "ghost": {
+          "left": 199.390625,
+          "right": 283.171875,
+          "top": 213.625,
+          "bottom": 370.28125
+        },
+        "heading": {
+          "left": 160,
+          "right": 1120,
+          "top": 196,
+          "bottom": 1007.390625
+        },
+        "overflow": "visible"
+      },
+      "checks": [
+        "title/illustration non-intersection",
+        "ghost visible",
+        "hero text matches baseline"
+      ]
+    },
+    {
+      "chapter": "analytics-leaders-playbook",
+      "width": 1366,
+      "height": 768,
+      "geometry": {
+        "title": {
+          "left": 258.625,
+          "right": 725.4375,
+          "top": 456.078125,
+          "bottom": 705.03125
+        },
+        "scene": {
+          "left": 725.4375,
+          "right": 1107.375,
+          "top": 508.078125,
+          "bottom": 749.296875
+        },
+        "ghost": {
+          "left": 244.96875,
+          "right": 334.375,
+          "top": 215.046875,
+          "bottom": 382.234375
+        },
+        "heading": {
+          "left": 203,
+          "right": 1163,
+          "top": 196.296875,
+          "bottom": 1029.484375
+        },
+        "overflow": "visible"
+      },
+      "checks": [
+        "title/illustration non-intersection",
+        "ghost visible",
+        "hero text matches baseline"
+      ]
+    },
+    {
+      "chapter": "analytics-leaders-playbook",
+      "width": 1440,
+      "height": 900,
+      "geometry": {
+        "title": {
+          "left": 298.59375,
+          "right": 762.140625,
+          "top": 460.171875,
+          "bottom": 722.625
+        },
+        "scene": {
+          "left": 762.140625,
+          "right": 1141.40625,
+          "top": 522.609375,
+          "bottom": 762.140625
+        },
+        "ghost": {
+          "left": 284.1875,
+          "right": 378.4375,
+          "top": 219.71875,
+          "bottom": 395.96875
+        },
+        "heading": {
+          "left": 240,
+          "right": 1200,
+          "top": 200,
+          "bottom": 1052.765625
+        },
+        "overflow": "visible"
+      },
+      "checks": [
+        "title/illustration non-intersection",
+        "ghost visible",
+        "hero text matches baseline"
+      ]
+    },
+    {
+      "chapter": "analytics-leaders-playbook",
+      "width": 1536,
+      "height": 864,
+      "geometry": {
+        "title": {
+          "left": 350.4375,
+          "right": 809.75,
+          "top": 464.96875,
+          "bottom": 728.359375
+        },
+        "scene": {
+          "left": 809.75,
+          "right": 1185.546875,
+          "top": 531.3125,
+          "bottom": 768.65625
+        },
+        "ghost": {
+          "left": 335.078125,
+          "right": 435.609375,
+          "top": 225.75,
+          "bottom": 413.75
+        },
+        "heading": {
+          "left": 288,
+          "right": 1248,
+          "top": 204.796875,
+          "bottom": 1063.1875
+        },
+        "overflow": "visible"
+      },
+      "checks": [
+        "title/illustration non-intersection",
+        "ghost visible",
+        "hero text matches baseline"
+      ]
+    },
+    {
+      "chapter": "analytics-leaders-playbook",
+      "width": 1920,
+      "height": 1080,
+      "geometry": {
+        "title": {
+          "left": 553,
+          "right": 1000.6875,
+          "top": 472.171875,
+          "bottom": 735.5625
+        },
+        "scene": {
+          "left": 1000.6875,
+          "right": 1366.984375,
+          "top": 541.515625,
+          "bottom": 772.859375
+        },
+        "ghost": {
+          "left": 533,
+          "right": 643.890625,
+          "top": 233,
+          "bottom": 440.359375
+        },
+        "heading": {
+          "left": 480,
+          "right": 1440,
+          "top": 212,
+          "bottom": 1070.390625
+        },
+        "overflow": "visible"
+      },
+      "checks": [
+        "title/illustration non-intersection",
+        "ghost visible",
+        "hero text matches baseline"
+      ]
+    },
+    {
+      "chapter": "making-it-happen",
+      "width": 360,
+      "height": 740,
+      "geometry": {
+        "title": {
+          "left": 36.1875,
+          "right": 323.8125,
+          "top": 614.09375,
+          "bottom": 708.15625
+        },
+        "scene": {
+          "left": 36.1875,
+          "right": 323.8125,
+          "top": 253,
+          "bottom": 415.734375
+        },
+        "ghost": {
+          "left": 33,
+          "right": 105.703125,
+          "top": 204.1875,
+          "bottom": 284.8125
+        },
+        "heading": {
+          "left": 16,
+          "right": 344,
+          "top": 196,
+          "bottom": 993.6875
+        },
+        "overflow": "visible"
+      },
+      "checks": [
+        "title/illustration non-intersection",
+        "ghost visible",
+        "hero text matches baseline"
+      ]
+    },
+    {
+      "chapter": "making-it-happen",
+      "width": 390,
+      "height": 844,
+      "geometry": {
+        "title": {
+          "left": 36.1875,
+          "right": 353.8125,
+          "top": 604.671875,
+          "bottom": 704.046875
+        },
+        "scene": {
+          "left": 36.1875,
+          "right": 353.8125,
+          "top": 253,
+          "bottom": 432.703125
+        },
+        "ghost": {
+          "left": 33,
+          "right": 105.703125,
+          "top": 204.1875,
+          "bottom": 284.8125
+        },
+        "heading": {
+          "left": 16,
+          "right": 374,
+          "top": 196,
+          "bottom": 989.578125
+        },
+        "overflow": "visible"
+      },
+      "checks": [
+        "title/illustration non-intersection",
+        "ghost visible",
+        "hero text matches baseline"
+      ]
+    },
+    {
+      "chapter": "making-it-happen",
+      "width": 430,
+      "height": 932,
+      "geometry": {
+        "title": {
+          "left": 36.1875,
+          "right": 393.8125,
+          "top": 627.296875,
+          "bottom": 736.859375
+        },
+        "scene": {
+          "left": 36.1875,
+          "right": 393.8125,
+          "top": 253,
+          "bottom": 455.328125
+        },
+        "ghost": {
+          "left": 33,
+          "right": 105.703125,
+          "top": 204.1875,
+          "bottom": 284.8125
+        },
+        "heading": {
+          "left": 16,
+          "right": 414,
+          "top": 196,
+          "bottom": 996.515625
+        },
+        "overflow": "visible"
+      },
+      "checks": [
+        "title/illustration non-intersection",
+        "ghost visible",
+        "hero text matches baseline"
+      ]
+    },
+    {
+      "chapter": "making-it-happen",
+      "width": 768,
+      "height": 1024,
+      "geometry": {
+        "title": {
+          "left": 44.1875,
+          "right": 538.65625,
+          "top": 791.09375,
+          "bottom": 858.828125
+        },
+        "scene": {
+          "left": 44.1875,
+          "right": 723.8125,
+          "top": 261,
+          "bottom": 645.515625
+        },
+        "ghost": {
+          "left": 41,
+          "right": 155.234375,
+          "top": 204.1875,
+          "bottom": 330.90625
+        },
+        "heading": {
+          "left": 24,
+          "right": 744,
+          "top": 196,
+          "bottom": 1065.421875
+        },
+        "overflow": "visible"
+      },
+      "checks": [
+        "title/illustration non-intersection",
+        "ghost visible",
+        "hero text matches baseline"
+      ]
+    },
+    {
+      "chapter": "making-it-happen",
+      "width": 1024,
+      "height": 768,
+      "geometry": {
+        "title": {
+          "left": 73.953125,
+          "right": 467.515625,
+          "top": 424.5,
+          "bottom": 548.90625
+        },
+        "scene": {
+          "left": 555.796875,
+          "right": 950.03125,
+          "top": 374.703125,
+          "bottom": 623.6875
+        },
+        "ghost": {
+          "left": 63.71875,
+          "right": 176.703125,
+          "top": 210.296875,
+          "bottom": 335.625
+        },
+        "heading": {
+          "left": 32,
+          "right": 992,
+          "top": 196,
+          "bottom": 781.59375
+        },
+        "overflow": "visible"
+      },
+      "checks": [
+        "title/illustration non-intersection",
+        "ghost visible",
+        "hero text matches baseline"
+      ]
+    },
+    {
+      "chapter": "making-it-happen",
+      "width": 1280,
+      "height": 720,
+      "geometry": {
+        "title": {
+          "left": 212.1875,
+          "right": 682.78125,
+          "top": 449.765625,
+          "bottom": 605.296875
+        },
+        "scene": {
+          "left": 682.78125,
+          "right": 1067.8125,
+          "top": 441.078125,
+          "bottom": 684.25
+        },
+        "ghost": {
+          "left": 199.390625,
+          "right": 340.609375,
+          "top": 213.625,
+          "bottom": 370.28125
+        },
+        "heading": {
+          "left": 160,
+          "right": 1120,
+          "top": 196,
+          "bottom": 903.75
+        },
+        "overflow": "visible"
+      },
+      "checks": [
+        "title/illustration non-intersection",
+        "ghost visible",
+        "hero text matches baseline"
+      ]
+    },
+    {
+      "chapter": "making-it-happen",
+      "width": 1366,
+      "height": 768,
+      "geometry": {
+        "title": {
+          "left": 258.625,
+          "right": 725.4375,
+          "top": 456.078125,
+          "bottom": 622.046875
+        },
+        "scene": {
+          "left": 725.4375,
+          "right": 1107.375,
+          "top": 453.640625,
+          "bottom": 694.859375
+        },
+        "ghost": {
+          "left": 244.96875,
+          "right": 395.6875,
+          "top": 215.046875,
+          "bottom": 382.234375
+        },
+        "heading": {
+          "left": 203,
+          "right": 1163,
+          "top": 196.296875,
+          "bottom": 920.59375
+        },
+        "overflow": "visible"
+      },
+      "checks": [
+        "title/illustration non-intersection",
+        "ghost visible",
+        "hero text matches baseline"
+      ]
+    },
+    {
+      "chapter": "making-it-happen",
+      "width": 1440,
+      "height": 900,
+      "geometry": {
+        "title": {
+          "left": 298.59375,
+          "right": 762.140625,
+          "top": 460.171875,
+          "bottom": 635.140625
+        },
+        "scene": {
+          "left": 762.140625,
+          "right": 1141.40625,
+          "top": 465.203125,
+          "bottom": 704.734375
+        },
+        "ghost": {
+          "left": 284.1875,
+          "right": 443.0625,
+          "top": 219.71875,
+          "bottom": 395.96875
+        },
+        "heading": {
+          "left": 240,
+          "right": 1200,
+          "top": 200,
+          "bottom": 937.953125
+        },
+        "overflow": "visible"
+      },
+      "checks": [
+        "title/illustration non-intersection",
+        "ghost visible",
+        "hero text matches baseline"
+      ]
+    },
+    {
+      "chapter": "making-it-happen",
+      "width": 1536,
+      "height": 864,
+      "geometry": {
+        "title": {
+          "left": 350.4375,
+          "right": 809.75,
+          "top": 464.96875,
+          "bottom": 640.5625
+        },
+        "scene": {
+          "left": 809.75,
+          "right": 1185.546875,
+          "top": 487.421875,
+          "bottom": 724.765625
+        },
+        "ghost": {
+          "left": 335.078125,
+          "right": 504.546875,
+          "top": 225.75,
+          "bottom": 413.75
+        },
+        "heading": {
+          "left": 288,
+          "right": 1248,
+          "top": 204.796875,
+          "bottom": 975.390625
+        },
+        "overflow": "visible"
+      },
+      "checks": [
+        "title/illustration non-intersection",
+        "ghost visible",
+        "hero text matches baseline"
+      ]
+    },
+    {
+      "chapter": "making-it-happen",
+      "width": 1920,
+      "height": 1080,
+      "geometry": {
+        "title": {
+          "left": 553,
+          "right": 1000.6875,
+          "top": 472.171875,
+          "bottom": 647.765625
+        },
+        "scene": {
+          "left": 1000.6875,
+          "right": 1366.984375,
+          "top": 497.625,
+          "bottom": 728.96875
+        },
+        "ghost": {
+          "left": 533,
+          "right": 719.921875,
+          "top": 233,
+          "bottom": 440.359375
+        },
+        "heading": {
+          "left": 480,
+          "right": 1440,
+          "top": 212,
+          "bottom": 982.59375
+        },
+        "overflow": "visible"
+      },
+      "checks": [
+        "title/illustration non-intersection",
+        "ghost visible",
+        "hero text matches baseline"
+      ]
+    },
+    {
+      "chapter": "common-pitfalls",
+      "width": 360,
+      "height": 740,
+      "geometry": {
+        "title": {
+          "left": 36.1875,
+          "right": 323.8125,
+          "top": 630.09375,
+          "bottom": 724.15625
+        },
+        "scene": {
+          "left": 36.1875,
+          "right": 323.8125,
+          "top": 253,
+          "bottom": 415.734375
+        },
+        "ghost": {
+          "left": 33,
+          "right": 89.453125,
+          "top": 204.1875,
+          "bottom": 284.8125
+        },
+        "heading": {
+          "left": 16,
+          "right": 344,
+          "top": 196,
+          "bottom": 1009.6875
+        },
+        "overflow": "visible"
+      },
+      "checks": [
+        "title/illustration non-intersection",
+        "ghost visible",
+        "hero text matches baseline"
+      ]
+    },
+    {
+      "chapter": "common-pitfalls",
+      "width": 390,
+      "height": 844,
+      "geometry": {
+        "title": {
+          "left": 36.1875,
+          "right": 353.8125,
+          "top": 604.671875,
+          "bottom": 654.359375
+        },
+        "scene": {
+          "left": 36.1875,
+          "right": 353.8125,
+          "top": 253,
+          "bottom": 432.703125
+        },
+        "ghost": {
+          "left": 33,
+          "right": 89.453125,
+          "top": 204.1875,
+          "bottom": 284.8125
+        },
+        "heading": {
+          "left": 16,
+          "right": 374,
+          "top": 196,
+          "bottom": 939.890625
+        },
+        "overflow": "visible"
+      },
+      "checks": [
+        "title/illustration non-intersection",
+        "ghost visible",
+        "hero text matches baseline"
+      ]
+    },
+    {
+      "chapter": "common-pitfalls",
+      "width": 430,
+      "height": 932,
+      "geometry": {
+        "title": {
+          "left": 36.1875,
+          "right": 393.8125,
+          "top": 627.296875,
+          "bottom": 682.078125
+        },
+        "scene": {
+          "left": 36.1875,
+          "right": 393.8125,
+          "top": 253,
+          "bottom": 455.328125
+        },
+        "ghost": {
+          "left": 33,
+          "right": 89.453125,
+          "top": 204.1875,
+          "bottom": 284.8125
+        },
+        "heading": {
+          "left": 16,
+          "right": 414,
+          "top": 196,
+          "bottom": 914.546875
+        },
+        "overflow": "visible"
+      },
+      "checks": [
+        "title/illustration non-intersection",
+        "ghost visible",
+        "hero text matches baseline"
+      ]
+    },
+    {
+      "chapter": "common-pitfalls",
+      "width": 768,
+      "height": 1024,
+      "geometry": {
+        "title": {
+          "left": 44.1875,
+          "right": 538.65625,
+          "top": 791.09375,
+          "bottom": 858.828125
+        },
+        "scene": {
+          "left": 44.1875,
+          "right": 723.8125,
+          "top": 261,
+          "bottom": 645.515625
+        },
+        "ghost": {
+          "left": 41,
+          "right": 129.71875,
+          "top": 204.1875,
+          "bottom": 330.90625
+        },
+        "heading": {
+          "left": 24,
+          "right": 744,
+          "top": 196,
+          "bottom": 1065.421875
+        },
+        "overflow": "visible"
+      },
+      "checks": [
+        "title/illustration non-intersection",
+        "ghost visible",
+        "hero text matches baseline"
+      ]
+    },
+    {
+      "chapter": "common-pitfalls",
+      "width": 1024,
+      "height": 768,
+      "geometry": {
+        "title": {
+          "left": 73.953125,
+          "right": 467.515625,
+          "top": 434.796875,
+          "bottom": 497
+        },
+        "scene": {
+          "left": 555.796875,
+          "right": 950.03125,
+          "top": 353.90625,
+          "bottom": 602.890625
+        },
+        "ghost": {
+          "left": 63.71875,
+          "right": 151.46875,
+          "top": 210.296875,
+          "bottom": 335.625
+        },
+        "heading": {
+          "left": 32,
+          "right": 992,
+          "top": 196,
+          "bottom": 740
+        },
+        "overflow": "visible"
+      },
+      "checks": [
+        "title/illustration non-intersection",
+        "ghost visible",
+        "hero text matches baseline"
+      ]
+    },
+    {
+      "chapter": "common-pitfalls",
+      "width": 1280,
+      "height": 720,
+      "geometry": {
+        "title": {
+          "left": 212.1875,
+          "right": 682.78125,
+          "top": 449.765625,
+          "bottom": 605.296875
+        },
+        "scene": {
+          "left": 682.78125,
+          "right": 1067.8125,
+          "top": 422.046875,
+          "bottom": 665.21875
+        },
+        "ghost": {
+          "left": 199.390625,
+          "right": 309.0625,
+          "top": 213.625,
+          "bottom": 370.28125
+        },
+        "heading": {
+          "left": 160,
+          "right": 1120,
+          "top": 196,
+          "bottom": 865.671875
+        },
+        "overflow": "visible"
+      },
+      "checks": [
+        "title/illustration non-intersection",
+        "ghost visible",
+        "hero text matches baseline"
+      ]
+    },
+    {
+      "chapter": "common-pitfalls",
+      "width": 1366,
+      "height": 768,
+      "geometry": {
+        "title": {
+          "left": 258.625,
+          "right": 725.4375,
+          "top": 456.078125,
+          "bottom": 622.046875
+        },
+        "scene": {
+          "left": 725.4375,
+          "right": 1107.375,
+          "top": 453.640625,
+          "bottom": 694.859375
+        },
+        "ghost": {
+          "left": 244.96875,
+          "right": 362.015625,
+          "top": 215.046875,
+          "bottom": 382.234375
+        },
+        "heading": {
+          "left": 203,
+          "right": 1163,
+          "top": 196.296875,
+          "bottom": 920.59375
+        },
+        "overflow": "visible"
+      },
+      "checks": [
+        "title/illustration non-intersection",
+        "ghost visible",
+        "hero text matches baseline"
+      ]
+    },
+    {
+      "chapter": "common-pitfalls",
+      "width": 1440,
+      "height": 900,
+      "geometry": {
+        "title": {
+          "left": 298.59375,
+          "right": 762.140625,
+          "top": 460.171875,
+          "bottom": 635.140625
+        },
+        "scene": {
+          "left": 762.140625,
+          "right": 1141.40625,
+          "top": 465.203125,
+          "bottom": 704.734375
+        },
+        "ghost": {
+          "left": 284.1875,
+          "right": 407.578125,
+          "top": 219.71875,
+          "bottom": 395.96875
+        },
+        "heading": {
+          "left": 240,
+          "right": 1200,
+          "top": 200,
+          "bottom": 937.953125
+        },
+        "overflow": "visible"
+      },
+      "checks": [
+        "title/illustration non-intersection",
+        "ghost visible",
+        "hero text matches baseline"
+      ]
+    },
+    {
+      "chapter": "common-pitfalls",
+      "width": 1536,
+      "height": 864,
+      "geometry": {
+        "title": {
+          "left": 350.4375,
+          "right": 809.75,
+          "top": 464.96875,
+          "bottom": 640.5625
+        },
+        "scene": {
+          "left": 809.75,
+          "right": 1185.546875,
+          "top": 487.421875,
+          "bottom": 724.765625
+        },
+        "ghost": {
+          "left": 335.078125,
+          "right": 466.6875,
+          "top": 225.75,
+          "bottom": 413.75
+        },
+        "heading": {
+          "left": 288,
+          "right": 1248,
+          "top": 204.796875,
+          "bottom": 975.390625
+        },
+        "overflow": "visible"
+      },
+      "checks": [
+        "title/illustration non-intersection",
+        "ghost visible",
+        "hero text matches baseline"
+      ]
+    },
+    {
+      "chapter": "common-pitfalls",
+      "width": 1920,
+      "height": 1080,
+      "geometry": {
+        "title": {
+          "left": 553,
+          "right": 1000.6875,
+          "top": 472.171875,
+          "bottom": 647.765625
+        },
+        "scene": {
+          "left": 1000.6875,
+          "right": 1366.984375,
+          "top": 497.625,
+          "bottom": 728.96875
+        },
+        "ghost": {
+          "left": 533,
+          "right": 678.15625,
+          "top": 233,
+          "bottom": 440.359375
+        },
+        "heading": {
+          "left": 480,
+          "right": 1440,
+          "top": 212,
+          "bottom": 982.59375
+        },
+        "overflow": "visible"
+      },
+      "checks": [
+        "title/illustration non-intersection",
+        "ghost visible",
+        "hero text matches baseline"
+      ]
+    }
+  ]
+}

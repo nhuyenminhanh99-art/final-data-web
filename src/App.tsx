@@ -138,7 +138,7 @@ export default function App() {
       {!isJourney && <Navbar currentPath={currentPath} />}
 
       {/* Main Page View */}
-      <div className="flex-1">
+      <div key={currentPath} className="route-view flex-1">
         <Suspense fallback={<div className={`route-loading-surface${isJourney ? ' route-loading-surface--journey' : ''}`} aria-busy="true" />}>
           {renderRoute()}
         </Suspense>

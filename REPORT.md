@@ -42,3 +42,21 @@ The sparkle pill in the footer is **not an empty input or button**. It is a non-
 ## Content issues for the owner
 
 None identified. No user-visible copy was changed except the owner-approved chapter-number normalization from `010`/`011` to `10`/`11`.
+
+
+## Chapter template and routing update
+
+- Consolidated all chapter hero variants into one responsive hero: ghost chapter number, chapter pill/meta, reading-mode toggle, balanced serif title, quote/summary, and the scenic illustration in a masked right column.
+- Removed the pale/missing-illustration failure mode by keeping `ChapterArrivalScene` in the shared hero layout; desktop uses a 55/45 grid and mobile promotes the scene above the title as a rounded E3 card.
+- Curriculum progress and breadcrumbs are now entry-aware: `from=chapters` (Chapters menu or chapter-to-chapter controls) shows them and persists that state for refresh; `from=journey` and Journey panel entry hide them. Unknown/default entry is hidden.
+- Added a 360ms route fade/slide transition and fixed 2D Lite Journey station clicks to open the existing chapter panel directly instead of entering an unresolvable 3D navigation state.
+- Kept chapter copy unchanged; the hero-text check compares extracted hero text against the corresponding baseline after the approved `010`/`011` normalization.
+
+## Chapter verification
+
+- `npm run build` — passed.
+- `npm run lint` — passed.
+- `qa/chapter-hero/run.mjs` — passed with `qa/chapter-hero/results.json`.
+- Entry flows passed: Chapters menu → Chapter 8 shows progress and survives refresh; Journey 2D Lite → Chapter 8 hides progress; Journey-origin canonical route hides progress and survives refresh.
+- Geometry checks passed for all chapter routes at 360×740, 390×844, 430×932, 768×1024, 1024×768, 1280×720, 1366×768, 1440×900, 1536×864, and 1920×1080: title and illustration do not intersect, ghost number remains within the hero and the hero does not clip overflow.
+- Screenshots are in `qa/chapter-hero/`.

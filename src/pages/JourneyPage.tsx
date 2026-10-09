@@ -386,6 +386,16 @@ export const JourneyPage: React.FC<JourneyPageProps> = ({ initialChapterSlug }) 
   const handleOpenChapterByNumber = (chapterNumber: number) => {
     const entry = CHAPTER_REGISTRY.find((e) => e.chapterNumber === chapterNumber);
     if (entry) {
+      if (useLiteMode) {
+        const content = chaptersData.find((c) => c.number === chapterNumber);
+        if (content) {
+          currentChapterIdRef.current = entry.id;
+          navigationStateRef.current = 'stopped';
+          setCurrentChapterId(entry.id);
+          setActiveChapter(content);
+        }
+        return;
+      }
       navigateToChapter(entry.id);
     }
   };
