@@ -17,12 +17,28 @@ import { AdminPage } from './pages/AdminPage';
 import { DevBlocksPage } from './pages/DevBlocksPage';
 import { NotFoundPage } from './pages/NotFoundPage';
 
+const APP_BASE_PATH = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+const getAppPath = (pathname: string) => {
+  const isBasePath =
+    APP_BASE_PATH &&
+    APP_BASE_PATH !== '/' &&
+    (pathname === APP_BASE_PATH || pathname.startsWith(`${APP_BASE_PATH}/`));
+
+  if (isBasePath) {
+    const appPath = pathname.slice(APP_BASE_PATH.length);
+    return appPath || '/';
+  }
+
+  return pathname || '/';
+};
+
 export default function App() {
-  const [currentPath, setCurrentPath] = useState(window.location.pathname);
+  const [currentPath, setCurrentPath] = useState(getAppPath(window.location.pathname));
 
   useEffect(() => {
     const handleLocationChange = () => {
-      setCurrentPath(window.location.pathname);
+      setCurrentPath(getAppPath(window.location.pathname));
     };
 
     window.addEventListener('popstate', handleLocationChange);
@@ -46,8 +62,9 @@ export default function App() {
         const url = new URL(target.href);
         if (url.pathname !== window.location.pathname || url.search !== window.location.search) {
           e.preventDefault();
-          window.history.pushState(null, '', url.pathname + url.search + url.hash);
-          setCurrentPath(url.pathname);
+          const nextPath = `${APP_BASE_PATH}${url.pathname === '/' ? '/' : url.pathname}`;
+          window.history.pushState(null, '', nextPath + url.search + url.hash);
+          setCurrentPath(getAppPath(nextPath));
           window.scrollTo({ top: 0, behavior: 'instant' });
         }
       }

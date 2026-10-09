@@ -3,9 +3,11 @@ import react from '@vitejs/plugin-react';
 import path from 'path';
 import {defineConfig} from 'vite';
 
-export default defineConfig(() => {
+export default defineConfig(({ command }) => {
   return {
-    base: '/final-data-web/',
+    // GitHub Pages serves this repository from /final-data-web/, while local
+    // development should remain available at the domain root.
+    base: command === 'build' ? '/final-data-web/' : '/',
     plugins: [react(), tailwindcss()],
     resolve: {
       alias: {
