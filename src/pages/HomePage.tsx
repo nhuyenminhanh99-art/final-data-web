@@ -20,7 +20,8 @@ export const HomePage: React.FC = () => {
   const [isOutcomeRevealed, setIsOutcomeRevealed] = useState(false);
   const [expandedDilemma, setExpandedDilemma] = useState<number | null>(null);
   const [currentSceneIdx, setCurrentSceneIdx] = useState(0);
-  const [isGuidedMode, setIsGuidedMode] = useState(true);
+  // Keep continuous native scrolling as the default; guided snapping remains optional.
+  const [isGuidedMode, setIsGuidedMode] = useState(false);
   const isTransitioningRef = useRef(false);
 
   const currentCase = caseStudiesData[activeCaseIdx];
@@ -181,6 +182,8 @@ export const HomePage: React.FC = () => {
 
   // Keyboard navigation matching §21.3 (PageDown, ArrowDown, PageUp, ArrowUp)
   useEffect(() => {
+    if (!isGuidedMode) return;
+
     const handleKeyDown = (e: KeyboardEvent) => {
       if (
         e.target instanceof HTMLInputElement ||
@@ -204,7 +207,7 @@ export const HomePage: React.FC = () => {
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [currentSceneIdx, scenes.length, scrollToScene]);
+  }, [currentSceneIdx, isGuidedMode, scenes.length, scrollToScene]);
 
   // Debug overlay hook if ?scrolldebug=1
   useEffect(() => {
@@ -235,7 +238,7 @@ export const HomePage: React.FC = () => {
       >
         {/* 3D River & Landscape Canvas (Hero Mode) */}
         <div className="absolute inset-0 z-0">
-          <RiverCanvas progress={0.01} isHeroMode={true} qualityTier="high" />
+          <RiverCanvas progress={0.01} isHeroMode={true} qualityTier="high" pauseWhenOffscreen />
         </div>
 
         {/* Soft mist wash overlay ensuring text readability */}

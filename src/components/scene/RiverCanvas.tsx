@@ -20,6 +20,7 @@ interface RiverCanvasProps {
   cameraMode?: CameraViewMode;
   isAutoCruise?: boolean;
   isPaused?: boolean;
+  pauseWhenOffscreen?: boolean;
   onProgressUpdate?: (
     newProgress: number,
     isArrived?: boolean,
@@ -202,6 +203,7 @@ export const RiverCanvas: React.FC<RiverCanvasProps> = ({
   cameraMode = 'rider',
   isAutoCruise = false,
   isPaused = false,
+  pauseWhenOffscreen = false,
   onProgressUpdate,
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -210,6 +212,7 @@ export const RiverCanvas: React.FC<RiverCanvasProps> = ({
   const cameraModeRef = useRef(cameraMode);
   const isAutoCruiseRef = useRef(isAutoCruise);
   const isPausedRef = useRef(isPaused);
+  const isCanvasVisibleRef = useRef(true);
   const animationLoopRef = useRef<{ start?: () => void; stop?: () => void }>({});
 
   const [activeStopNotice, setActiveStopNotice] = useState<{
@@ -1176,7 +1179,7 @@ export const RiverCanvas: React.FC<RiverCanvasProps> = ({
     const animate = () => {
       // Keep the canvas mounted behind the chapter reader, but stop its costly
       // simulation and WebGL draw calls while the scene is fully covered.
-      if (isPausedRef.current || document.visibilityState === 'hidden') {
+      if (isPausedRef.current || !isCanvasVisibleRef.current || document.visibilityState === 'hidden') {
         isLoopRunning = false;
         animationFrameId = null;
         return;
@@ -1541,7 +1544,7 @@ export const RiverCanvas: React.FC<RiverCanvasProps> = ({
     };
 
     const startAnimationLoop = () => {
-      if (isLoopRunning || isPausedRef.current || document.visibilityState === 'hidden') return;
+      if (isLoopRunning || isPausedRef.current || !isCanvasVisibleRef.current || document.visibilityState === 'hidden') return;
       isLoopRunning = true;
       animationFrameId = requestAnimationFrame(animate);
     };
@@ -1555,12 +1558,22 @@ export const RiverCanvas: React.FC<RiverCanvasProps> = ({
       else startAnimationLoop();
     };
 
+    const visibilityObserver = pauseWhenOffscreen && 'IntersectionObserver' in window
+      ? new IntersectionObserver(([entry]) => {
+          isCanvasVisibleRef.current = entry.isIntersecting;
+          if (entry.isIntersecting) startAnimationLoop();
+          else stopAnimationLoop();
+        }, { rootMargin: '120px 0px', threshold: 0.01 })
+      : null;
+    if (visibilityObserver) visibilityObserver.observe(container);
+
     animationLoopRef.current = { start: startAnimationLoop, stop: stopAnimationLoop };
     document.addEventListener('visibilitychange', handleVisibilityChange);
     startAnimationLoop();
 
     return () => {
       stopAnimationLoop();
+      visibilityObserver?.disconnect();
       document.removeEventListener('visibilitychange', handleVisibilityChange);
       animationLoopRef.current = {};
       canvasDom.removeEventListener('mousedown', handlePointerDown);
@@ -1577,7 +1590,7 @@ export const RiverCanvas: React.FC<RiverCanvasProps> = ({
         container.removeChild(renderer.domElement);
       }
     };
-  }, [qualityTier, isDebugEnabled]);
+  }, [qualityTier, isDebugEnabled, pauseWhenOffscreen]);
 
   return (
     <div className="relative w-full h-full select-none">
