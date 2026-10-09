@@ -32,3 +32,6 @@ Keep it and its behaviour. But it must never cover content: reserve bottom paddi
 
 ## R9. Workflow
 Small, focused commits. Before finishing any task run: npm run build, npm run lint (if present), and a Playwright (or equivalent headless-browser) check at the R6 viewports, saving screenshots to /qa/<task-name>/. Fix any problem you find before reporting. End each task with a short summary: files changed, what was tested, what remains. Never leave the build broken.
+
+## R10. Auto-push to GitHub
+After EVERY task, once npm run build passes and the checks above are green, commit and push to GitHub yourself without asking: git push origin HEAD (current branch, normally main). If the push is rejected, run git pull --rebase, resolve conflicts keeping existing work, rerun the build, then push again. Never force-push, never rewrite history. Never push a broken build (the site is deployed from this repo through GitHub Pages). If the push still fails (authentication, permissions), stop and tell the owner exactly what is needed. End every task report with the pushed commit hash.
