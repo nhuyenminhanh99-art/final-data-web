@@ -210,7 +210,7 @@ export const HomePage: React.FC = () => {
   }, [currentSceneIdx, isGuidedMode]);
 
   return (
-    <div className="relative min-h-screen text-[#1F2933]">
+    <div className="home-page relative min-h-screen text-[#1F2933]">
       {/* Guided Scene Rail on Right Edge */}
       <GuidedScrollRail
         scenes={scenes}
@@ -231,7 +231,7 @@ export const HomePage: React.FC = () => {
         </div>
 
         {/* Soft mist wash overlay ensuring text readability */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#FFFDF8]/95 via-[#FFFDF8]/60 to-transparent pointer-events-none z-10 w-full sm:w-[65%]" />
+        <div className="hero-editorial-scrim absolute inset-0 pointer-events-none z-10" />
 
         {/* Top-Right Floating Quote Card matching Moodboard */}
         <div className="hidden xl:block absolute top-28 right-12 z-20 max-w-sm pointer-events-auto">
@@ -303,8 +303,8 @@ export const HomePage: React.FC = () => {
             </div>
 
             {/* Two Action Buttons matching Moodboard */}
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-4">
-              <a href="/journey" className="btn-primary">
+            <div className="home-hero-actions flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-4">
+              <a href="/journey" className="btn-primary home-entry-cta">
                 <span>Start with Leadership</span>
                 <ArrowRight className="w-4 h-4 ml-2 btn-arrow transition-transform" />
               </a>
@@ -315,7 +315,7 @@ export const HomePage: React.FC = () => {
             </div>
 
             {/* Four Line-Icons Row matching Moodboard */}
-            <div className="pt-8 border-t border-[#163C3A]/15 grid grid-cols-2 sm:grid-cols-4 gap-4">
+            <div className="home-hero-pillars pt-8 border-t border-[#163C3A]/15 grid grid-cols-2 sm:grid-cols-4 gap-4">
               {pillarIcons.map((p, idx) => (
                 <div key={idx} className="flex flex-col space-y-1">
                   <div className="flex items-center gap-1.5">
@@ -333,7 +333,7 @@ export const HomePage: React.FC = () => {
 
       {/* SCENE 2: WHAT IS THIS SITE ABOUT? (5 Questions) */}
       <section id="about" className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-32 md:py-40">
-        <div className="text-center max-w-3xl mx-auto mb-20">
+        <div className="home-section-intro text-center max-w-3xl mx-auto mb-20">
           <span className="text-xs uppercase font-sans tracking-[0.2em] text-[#85590A] font-semibold block mb-3">
             ✦ STRATEGIC DILEMMAS ✦
           </span>
@@ -346,17 +346,17 @@ export const HomePage: React.FC = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 sm:gap-10">
+        <div className="home-question-list grid grid-cols-1 md:grid-cols-3 gap-x-8 sm:gap-x-10 gap-y-5">
           {dilemmas.map((d, idx) => {
             const isExpanded = expandedDilemma === idx;
             const panelId = `dilemma-resolution-${d.num}`;
             return (
               <div
                 key={d.num}
-                className={`river-card p-8 sm:p-10 flex flex-col justify-between ${d.colSpan || ''}`}
+                className={`home-question flex flex-col justify-between ${d.colSpan || ''}`}
               >
                 <div>
-                  <span className="text-4xl font-serif text-[#C99A4B] block mb-4 font-light">{d.num}</span>
+                  <span className="home-question-number text-4xl font-serif text-[#C99A4B] block mb-4 font-light">{d.num}</span>
                   <h3 className="text-xl sm:text-2xl font-serif text-[#163C3A] mb-3.5 font-normal leading-snug">
                     {d.question}
                   </h3>
@@ -385,7 +385,7 @@ export const HomePage: React.FC = () => {
                       id={panelId}
                       role="region"
                       aria-label={`Strategic Resolution for ${d.question}`}
-                      className="mt-4 p-5 rounded-xl bg-[#EEF3F1]/80 border border-[#163C3A]/12 text-xs sm:text-sm text-[#2D3748] leading-relaxed font-sans space-y-3 animate-memory"
+                      className="home-question-reveal mt-4 p-5 text-xs sm:text-sm text-[#2D3748] leading-relaxed font-sans space-y-3 animate-memory"
                     >
                       <div>
                         <span className="text-[11px] font-semibold uppercase tracking-wider text-[#85590A] block mb-1">
@@ -413,7 +413,7 @@ export const HomePage: React.FC = () => {
       {/* SCENE 3: THE 5 LANDS TOPIC CARDS */}
       <section id="lands" className="bg-[#EEF3F1] border-y border-[#163C3A]/15 py-32 md:py-40">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-20">
+          <div className="home-section-intro text-center max-w-3xl mx-auto mb-20">
             <span className="text-xs uppercase font-sans tracking-[0.2em] text-[#85590A] font-semibold block mb-3">
               ✦ THE RIVER OF INSIGHTS JOURNEY ✦
             </span>
@@ -665,7 +665,8 @@ export const HomePage: React.FC = () => {
           </div>
         </div>
       </section>
-      {/* Team is the final Home section; App renders Footer after the page. */}
+
+      {/* Final Home section. App renders the shared Footer after this page. */}
       <TeamSection />
     </div>
   );

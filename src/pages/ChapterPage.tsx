@@ -72,7 +72,7 @@ export const ChapterPage: React.FC<ChapterPageProps> = ({ slug }) => {
   };
 
   return (
-    <div className="chapter-page min-h-screen text-[#1F2933] pt-32 pb-28">
+    <div className="chapter-page min-h-screen text-[#1F2933] pt-32 pb-28" data-chapter-number={chapter.number}>
       {/* JSON-LD Script tag */}
       <script
         type="application/ld+json"
@@ -178,7 +178,7 @@ export const ChapterPage: React.FC<ChapterPageProps> = ({ slug }) => {
 
         {/* MAIN CONTENT AREA */}
         {readingMode === 'all' ? (
-          <main className="chapter-content space-y-20 sm:space-y-24 pt-6">
+          <main className={`chapter-content chapter-content--${chapter.number} space-y-20 sm:space-y-24 pt-6`} data-chapter-number={chapter.number}>
             <BlockRenderer blocks={chapter.blocks} />
           </main>
         ) : (
@@ -322,4 +322,3 @@ export const ChapterPage: React.FC<ChapterPageProps> = ({ slug }) => {
     </div>
   );
 };
-

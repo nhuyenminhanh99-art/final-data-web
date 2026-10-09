@@ -75,10 +75,10 @@ export const GlossaryPage: React.FC = () => {
   const bookmarkedCount = Object.values(bookmarkedIds).filter(Boolean).length;
 
   return (
-    <div className="min-h-screen text-[#1F2933] pt-32 pb-28">
+    <div className="site-editorial-page glossary-page min-h-screen text-[#1F2933] pt-32 pb-28">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <header className="text-center max-w-3xl mx-auto mb-14">
+        <header className="site-page-intro max-w-3xl mb-14">
           <span className="text-xs uppercase font-sans tracking-[0.2em] text-[#85590A] font-semibold block mb-2">
             ✦ LEADERSHIP & ANALYTICS GLOSSARY ✦
           </span>

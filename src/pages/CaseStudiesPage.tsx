@@ -47,7 +47,7 @@ export const CaseStudiesPage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen text-[#1F2933] pt-32 pb-28">
+    <div className="site-editorial-page case-studies-page min-h-screen text-[#1F2933] pt-32 pb-28">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
@@ -55,7 +55,7 @@ export const CaseStudiesPage: React.FC = () => {
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <header className="text-center max-w-3xl mx-auto mb-14">
+        <header className="site-page-intro max-w-3xl mb-14">
           <span className="text-xs uppercase tracking-[0.18em] text-[#85590A] font-semibold block mb-3">
             The Harbour · Empirical Case Evidence
           </span>
@@ -122,7 +122,7 @@ export const CaseStudiesPage: React.FC = () => {
               <article
                 key={cs.id}
                 onClick={() => setSelectedCase(cs)}
-                className="river-card p-8 sm:p-10 md:p-12 flex flex-col justify-between group cursor-pointer hover:border-[#2F6F8F] transition-all"
+                className="case-study-card river-card p-8 sm:p-10 md:p-12 flex flex-col justify-between group cursor-pointer hover:border-[#2F6F8F] transition-all"
               >
                 <div>
                   <div className="flex items-center justify-between flex-wrap gap-2 mb-4">

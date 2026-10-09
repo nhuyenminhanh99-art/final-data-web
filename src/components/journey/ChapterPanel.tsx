@@ -61,7 +61,8 @@ export const ChapterPanel: React.FC<ChapterPanelProps> = ({
       aria-modal="true"
       aria-labelledby="chapter-fullpage-title"
       ref={containerRef}
-      className="fixed inset-0 z-50 overflow-y-auto bg-[#FFFDF8]/96 sm:bg-[#FFFDF8]/95 backdrop-blur-md text-[#1F2933] transition-opacity duration-300 ease-out animate-memory"
+      className="chapter-reading-panel fixed inset-0 z-50 overflow-y-auto bg-[#FFFDF8]/96 sm:bg-[#FFFDF8]/95 backdrop-blur-md text-[#1F2933] transition-opacity duration-300 ease-out animate-memory"
+      data-chapter-number={chapter.number}
     >
       {/* Subtle Environmental Water Ambient Layer behind content */}
       <div className="fixed inset-0 pointer-events-none z-0 opacity-40 bg-radial-gradient from-transparent via-[#E1EDF2]/30 to-[#EEF3F1]/50" />
@@ -182,7 +183,8 @@ export const ChapterPanel: React.FC<ChapterPanelProps> = ({
           {/* MAIN CURRICULUM CONTENT BLOCKS */}
           <section
             aria-label={`Curriculum Content for Chapter ${chapter.number}`}
-            className="chapter-reader-body space-y-20 sm:space-y-24"
+            className={`chapter-reader-body chapter-content chapter-content--${chapter.number} space-y-20 sm:space-y-24`}
+            data-chapter-number={chapter.number}
           >
             <BlockRenderer blocks={chapter.blocks} />
           </section>

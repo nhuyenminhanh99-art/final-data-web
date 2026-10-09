@@ -145,7 +145,7 @@ export const AdminEditor: React.FC<AdminEditorProps> = ({
   return (
     <>
       {/* Floating Bottom Admin Pill */}
-      <aside aria-label="CMS Visual Editor" className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 flex items-center gap-3 bg-white/95 border border-[#163C3A]/20 px-5 py-2.5 rounded-full shadow-2xl backdrop-blur-md text-xs font-mono text-[#1F2933]">
+      <aside aria-label="CMS Visual Editor" className="river-cms-toolbar fixed bottom-6 left-1/2 -translate-x-1/2 z-50 flex items-center gap-3 bg-white/95 border border-[#163C3A]/20 px-5 py-2.5 rounded-full shadow-2xl backdrop-blur-md text-xs font-mono text-[#1F2933]">
         <button
           onClick={() => {
             const enabled = !isEditMode;
@@ -155,6 +155,8 @@ export const AdminEditor: React.FC<AdminEditorProps> = ({
           className={`flex items-center gap-1.5 px-3 py-1 rounded-full transition-colors cursor-pointer ${
             isEditMode ? 'bg-[#163C3A] text-white font-semibold' : 'hover:text-[#163C3A]'
           }`}
+          aria-label={isEditMode ? 'Switch to preview mode' : 'Enable editing mode'}
+          aria-pressed={isEditMode}
         >
           {isEditMode ? <Edit3 className="w-3.5 h-3.5" /> : <Eye className="w-3.5 h-3.5" />}
           <span>{isEditMode ? 'Editing' : 'Preview'}</span>
@@ -165,6 +167,8 @@ export const AdminEditor: React.FC<AdminEditorProps> = ({
         <button
           onClick={() => setIsPanelOpen(!isPanelOpen)}
           className="flex items-center gap-1.5 hover:text-[#163C3A] transition-colors cursor-pointer"
+          aria-label="Open experience settings"
+          aria-expanded={isPanelOpen}
         >
           <Settings className="w-3.5 h-3.5 text-[#2F6F8F]" />
           <span>Settings</span>
@@ -176,6 +180,7 @@ export const AdminEditor: React.FC<AdminEditorProps> = ({
           onClick={handleSave}
           className="flex items-center gap-1 hover:text-[#163C3A] transition-colors cursor-pointer"
           title="Save draft"
+          aria-label="Save draft"
         >
           <Save className="w-3.5 h-3.5" />
           <span>Save</span>
@@ -184,6 +189,7 @@ export const AdminEditor: React.FC<AdminEditorProps> = ({
         <button
           onClick={handlePublish}
           className="bg-[#163C3A] text-white px-3.5 py-1 rounded-full font-semibold hover:bg-[#2F6F8F] transition-all cursor-pointer shadow-md shadow-[#163C3A]/20"
+          aria-label="Publish site draft"
         >
           Publish
         </button>
@@ -193,10 +199,11 @@ export const AdminEditor: React.FC<AdminEditorProps> = ({
         <button
           onClick={() => setIsExportOpen(true)}
           className="flex items-center gap-1 text-[#85590A] hover:text-[#163C3A] font-semibold transition-colors cursor-pointer"
-          title="Export source code and prompt for Base44 & Lovable"
+          title="Export the project prompt and source files"
+          aria-label="Export project prompt and source files"
         >
           <Download className="w-3.5 h-3.5 text-[#C99A4B]" />
-          <span>Base44/Lovable</span>
+          <span>Project files</span>
         </button>
 
         {statusMessage && (
@@ -533,4 +540,3 @@ export const AdminEditor: React.FC<AdminEditorProps> = ({
     </>
   );
 };
-

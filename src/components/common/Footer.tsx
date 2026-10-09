@@ -4,7 +4,7 @@ import { Compass, Sparkles, BookOpen } from 'lucide-react';
 
 export const Footer: React.FC = () => {
   return (
-    <footer className="border-t border-[#2F6F6A]/15 bg-[#E8EFEA] text-[#4F5E57] pt-16 pb-12 mt-20">
+    <footer className="site-footer border-t border-[#2F6F6A]/15 bg-[#E8EFEA] text-[#4F5E57] pt-16 pb-12 mt-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
           {/* Brand & Concept */}

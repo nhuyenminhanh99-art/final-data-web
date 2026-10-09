@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Volume2, VolumeX, Menu, X, ChevronDown, Search, Download } from 'lucide-react';
+import { Volume2, VolumeX, Menu, X, ChevronDown, Search, BookOpen, Waves, ArrowRight, Download } from 'lucide-react';
 import { chaptersData } from '../../data/chaptersData';
 import { journeyCopy } from '../../data/journeyCopy';
 import { riverAudio } from '../scene/RiverAudio';
@@ -50,26 +50,22 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath }) => {
 
       {/* Floating Pill Desktop Header */}
       <header
-        className={`fixed left-4 right-4 sm:left-8 sm:right-8 z-40 transition-all duration-300 ${
+        className={`river-site-header fixed left-3 right-3 sm:left-6 sm:right-6 z-40 transition-all duration-300 ${
           isScrolled ? 'top-3 sm:top-4' : 'top-4 sm:top-6'
         }`}
       >
         <div
-          className={`max-w-7xl mx-auto px-5 sm:px-7 rounded-[28px] border border-[#163C3A]/15 bg-[#FFFDF8]/90 backdrop-blur-[16px] shadow-sm flex items-center justify-between transition-all ${
+          className={`river-header-shell max-w-7xl mx-auto px-5 sm:px-7 rounded-[28px] border border-[#163C3A]/15 bg-[#FFFDF8]/90 backdrop-blur-[16px] shadow-sm flex items-center justify-between transition-all ${
             isScrolled ? 'h-12' : 'h-14 sm:h-16'
           }`}
         >
           {/* Logo / Title */}
-          <a href="/" className="flex items-center gap-3 group focus:outline-none focus-visible:ring-2 focus-visible:ring-[#2F6F8F] rounded-lg">
-            <div className="w-2.5 h-2.5 rounded-full bg-[#163C3A] group-hover:bg-[#2F6F8F] group-hover:scale-125 transition-all" />
-            <div className="flex flex-col leading-none">
-              <span className="font-serif text-xs text-[#85590A] tracking-wider uppercase">
-                The River
-              </span>
-              <span className="font-serif text-lg tracking-wide text-[#163C3A] group-hover:text-[#2F6F8F] transition-colors font-medium">
-                of Insights
-              </span>
-            </div>
+          <a href="/" className="river-brand flex items-center gap-3 group focus:outline-none focus-visible:ring-2 focus-visible:ring-[#2F6F8F] rounded-lg">
+            <span className="river-brand-mark" aria-hidden="true"><Waves className="h-5 w-5" strokeWidth={1.35} /></span>
+            <span className="flex flex-col leading-none">
+              <span className="river-brand-overline font-serif text-[10px] text-[#85590A] tracking-[0.2em] uppercase">The River</span>
+              <span className="river-brand-name font-serif text-[19px] tracking-[0.015em] text-[#163C3A] group-hover:text-[#2F6F8F] transition-colors font-medium">of Insights</span>
+            </span>
           </a>
 
           {/* Desktop Navigation */}
@@ -161,21 +157,21 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath }) => {
           </nav>
 
           {/* Right Action buttons */}
-          <div className="flex items-center space-x-2.5">
-            {/* Base44 / Lovable Code Export Button */}
+          <div className="river-header-actions flex items-center space-x-2.5">
+            {/* Open the product prompt and project guide */}
             <button
               onClick={() => setIsExportModalOpen(true)}
-              className="hidden md:inline-flex items-center gap-1.5 h-9 px-3.5 rounded-full border border-[#163C3A]/20 bg-[#F2F7F5] hover:bg-[#163C3A] text-[#163C3A] hover:text-[#FFFDF8] text-xs font-sans font-semibold uppercase tracking-wider transition-all cursor-pointer shadow-sm focus-visible:ring-2 focus-visible:ring-[#2F6F8F]"
-              title={journeyCopy.controls.export.tooltip}
+              className="river-prompt-control hidden md:inline-flex items-center gap-2 h-9 px-3.5 rounded-full border border-[#163C3A]/15 bg-[#F2F7F5] hover:bg-[#E8EFEA] text-[#163C3A] text-xs font-sans font-semibold uppercase tracking-[0.14em] transition-all cursor-pointer focus-visible:ring-2 focus-visible:ring-[#2F6F8F]"
+              title="Open the project prompt, source files, and usage guide"
             >
-              <Download className="w-3.5 h-3.5 text-[#C99A4B]" />
-              <span className="text-[11px]">{journeyCopy.controls.export.label}</span>
+              <BookOpen className="w-3.5 h-3.5 text-[#85590A]" />
+              <span className="text-[10px]">Project Prompt</span>
             </button>
 
             {/* Search Icon button */}
             <a
               href="/glossary/"
-              className="w-9 h-9 rounded-full border border-[#163C3A]/15 flex items-center justify-center text-[#667085] hover:text-[#163C3A] hover:bg-white transition-all shadow-sm focus-visible:ring-2 focus-visible:ring-[#2F6F8F]"
+              className="river-icon-control river-search-control w-9 h-9 rounded-full border border-[#163C3A]/12 flex items-center justify-center text-[#667085] hover:text-[#163C3A] hover:bg-white transition-all focus-visible:ring-2 focus-visible:ring-[#2F6F8F]"
               title="Search leadership terms and case studies"
               aria-label="Search glossary"
             >
@@ -185,9 +181,10 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath }) => {
             {/* Audio Toggle */}
             <button
               onClick={toggleSound}
-              className="w-9 h-9 rounded-full border border-[#163C3A]/15 flex items-center justify-center text-[#667085] hover:text-[#163C3A] hover:bg-white transition-all cursor-pointer shadow-sm focus-visible:ring-2 focus-visible:ring-[#2F6F8F]"
+              className="river-icon-control river-sound-control w-9 h-9 rounded-full border border-[#163C3A]/12 flex items-center justify-center text-[#667085] hover:text-[#163C3A] hover:bg-white transition-all cursor-pointer focus-visible:ring-2 focus-visible:ring-[#2F6F8F]"
               title={isAudioMuted ? journeyCopy.controls.audio.unmute : journeyCopy.controls.audio.mute}
               aria-label={journeyCopy.accessibility.audioToggleAria}
+              aria-pressed={!isAudioMuted}
             >
               {isAudioMuted ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4 text-[#2F6F8F]" />}
             </button>
@@ -195,18 +192,19 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath }) => {
             {/* "Begin Journey" Primary Pill Button */}
             <a
               href="/journey"
-              className="inline-flex items-center justify-center h-9 px-4 sm:px-5 rounded-full bg-[#163C3A] text-[#FFFDF8] font-sans text-xs uppercase tracking-wider font-semibold hover:bg-[#2F6F8F] transition-all shadow-md shadow-[#163C3A]/15 focus-visible:ring-2 focus-visible:ring-[#2F6F8F]"
+              className="river-entry-cta inline-flex items-center justify-center gap-2 h-9 px-4 sm:px-5 rounded-full bg-[#163C3A] text-[#FFFDF8] font-sans text-xs uppercase tracking-wider font-semibold hover:bg-[#2F6F8F] transition-all shadow-md shadow-[#163C3A]/15 focus-visible:ring-2 focus-visible:ring-[#2F6F8F]"
             >
               {journeyCopy.navigation.getStarted}
+              <ArrowRight aria-hidden="true" className="h-3.5 w-3.5 river-entry-arrow" />
             </a>
 
             {/* Mobile Hamburger */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="lg:hidden p-2 text-[#1F2933] hover:text-[#163C3A] cursor-pointer focus-visible:ring-2 focus-visible:ring-[#2F6F8F] rounded-lg"
+              className="river-menu-control lg:hidden p-2 text-[#1F2933] hover:text-[#163C3A] cursor-pointer focus-visible:ring-2 focus-visible:ring-[#2F6F8F] rounded-lg"
               aria-label={isMobileMenuOpen ? journeyCopy.accessibility.mobileMenuClose : journeyCopy.accessibility.mobileMenuOpen}
             >
-              {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              {isMobileMenuOpen ? <X className="w-5 h-5" strokeWidth={1.6} /> : <Menu className="w-5 h-5" strokeWidth={1.6} />}
             </button>
           </div>
         </div>
@@ -214,7 +212,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath }) => {
 
       {/* Mobile Menu Overlay */}
       {isMobileMenuOpen && (
-        <div className="fixed inset-0 z-50 bg-[#FFFDF8]/95 backdrop-blur-xl lg:hidden flex flex-col p-6 animate-in fade-in duration-200">
+        <div className="river-mobile-menu fixed inset-0 z-50 bg-[#FFFDF8]/95 backdrop-blur-xl lg:hidden flex flex-col p-6 animate-in fade-in duration-200">
           <div className="flex items-center justify-between pb-6 border-b border-[#163C3A]/10">
             <span className="font-serif text-lg font-bold text-[#163C3A]">
               The River of Insights
@@ -239,6 +237,25 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath }) => {
                 {link.label}
               </a>
             ))}
+
+            <a
+              href="/glossary/"
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="river-mobile-search flex items-center gap-2 border-t border-[#163C3A]/10 pt-4 text-sm font-sans text-[#667085] hover:text-[#163C3A]"
+            >
+              <Search aria-hidden="true" className="h-4 w-4" /> Search the glossary
+            </a>
+
+            <button
+              type="button"
+              onClick={toggleSound}
+              className="river-mobile-sound flex min-h-11 items-center gap-2 text-sm font-sans text-[#667085] hover:text-[#163C3A]"
+              aria-label={journeyCopy.accessibility.audioToggleAria}
+              aria-pressed={!isAudioMuted}
+            >
+              {isAudioMuted ? <VolumeX aria-hidden="true" className="h-4 w-4" /> : <Volume2 aria-hidden="true" className="h-4 w-4" />}
+              {isAudioMuted ? journeyCopy.controls.audio.unmute : journeyCopy.controls.audio.mute}
+            </button>
 
             <div className="pt-4 border-t border-[#163C3A]/10">
               <span className="text-xs font-sans uppercase text-[#85590A] tracking-wider block mb-2 font-bold">
@@ -267,7 +284,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath }) => {
                 className="w-full py-3 rounded-2xl bg-[#163C3A] text-[#FFFDF8] font-sans text-xs uppercase font-semibold flex items-center justify-center gap-2 focus-visible:ring-2 focus-visible:ring-[#2F6F8F]"
               >
                 <Download className="w-4 h-4 text-[#C99A4B]" />
-                <span>Export for Base44 & Lovable</span>
+                <span>Project Prompt</span>
               </button>
             </div>
           </div>

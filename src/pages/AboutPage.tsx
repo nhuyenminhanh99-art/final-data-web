@@ -3,9 +3,9 @@ import { BookOpen, Shield } from 'lucide-react';
 
 export const AboutPage: React.FC = () => {
   return (
-    <div className="min-h-screen text-[#1E2B26] pt-28 pb-24">
+    <div className="site-editorial-page about-page min-h-screen text-[#1E2B26] pt-28 pb-24">
       <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-20 sm:space-y-24">
-        <header className="text-center max-w-2xl mx-auto">
+        <header className="site-page-intro max-w-2xl">
           <span className="text-xs uppercase font-sans tracking-[0.2em] text-[#85590A] font-semibold block mb-3">
             ✦ Project Philosophy & Origin ✦
           </span>
@@ -57,7 +57,7 @@ export const AboutPage: React.FC = () => {
             reflects the psychological and organizational climate of an analytics leader's evolution:
           </p>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-xs font-sans">
+          <div className="about-region-list grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-2 text-xs font-sans">
             <div className="bg-white p-6 rounded-2xl border border-[#163C3A]/14 shadow-[0_1px_3px_rgba(22,60,58,0.04),0_4px_12px_-2px_rgba(22,60,58,0.05)]">
               <span className="text-[#163C3A] block font-semibold mb-1.5 text-sm">Peach Village (Ch. 7)</span>
               <p className="text-[#4A5568] leading-relaxed">Warm morning light, blooming peach trees: the inception of data culture, leadership vision, and organizational foundations.</p>
