@@ -1,0 +1,40 @@
+{
+  "route": "/about",
+  "viewport": {
+    "width": 1366,
+    "height": 768
+  },
+  "capturedAt": "2026-10-09T18:06:57.439Z",
+  "title": "The River of Insights — Analytics Leadership",
+  "path": "/about",
+  "bodyInnerText": "SKIP TO MAIN CONTENT\nTHE RIVER\nof Insights\nHOME\nJOURNEY\nChapters\nCASE STUDIES\nGLOSSARY\nABOUT\nBEGIN JOURNEY\n✦ PROJECT PHILOSOPHY & ORIGIN ✦\nThe River of Insights\n\n\"I am stepping into a memory I have never lived — a bright, clear, spring-morning memory.\"\n\nTHE SOURCE WORK\nBehind Every Good Decision\n\nThis digital journey is an experiential adaptation of Chapters 7 through 11 of the acclaimed text by Piyanka Jain & Puneet Sharma:\nBehind Every Good Decision: How Anyone Can Use Business Analytics to Turn Data into Profitable Insight (AMACOM).\n\nCurriculum Scope:\nChapters 7 – 11 (Analytics Leadership)\nTarget Audience:\nAnalytics Directors, VPs, CDOs, and Business Executives\nThe River Metaphor & Design System\n\nRather than presenting another sterile dashboard or slide deck, we created a quiet, contemplative river where learning becomes an act of travel. Each region of the river reflects the psychological and organizational climate of an analytics leader's evolution:\n\nPeach Village (Ch. 7)\n\nWarm morning light, blooming peach trees: the inception of data culture, leadership vision, and organizational foundations.\n\nBamboo Forest (Ch. 8)\n\nDense stalks, shafts of light: discerning WHAT to do from WHO does it, cutting through the thicket of endless ad-hoc requests.\n\nMountain Valley (Ch. 9)\n\nSteep granite walls, rushing current: the rigorous climb of the 90-day playbook—30 days to diagnose, 60 days to execute.\n\nLantern Bridge (Ch. 10)\n\nSpanning arches, glowing lanterns: orchestrating 48 diverse stakeholders to achieve consensus on high-stakes capital investments.\n\nForgotten Garden (Ch. 11)\n\nOvergrown ancient ruins: a cautionary contemplation of the 36 recurring pitfalls that have derailed past data science investments.\n\nTECHNICAL & INCLUSIVE PRINCIPLES\nAccessible by Design\n\nThe 3D environment features high-fidelity procedural water dynamics, realistic wooden hull construction, and multi-tier blossom physics. For mobile users, low-memory devices, or those with motion sensitivity, the platform provides an instantaneous 2D Lite Journey fallback, while ensuring that every chapter and case study remains accessible as semantic, crawlable HTML.\n\nThe River of Insights\n\nA luminous spring morning river journey through the landscape of Analytics Leadership, distilling core frameworks from Chapters 7–11 of Behind Every Good Decision.\n\n\"Stepping into a memory you have never lived\"\nTHE FIVE LANDS\nPeach Village\nCh. 07\nBamboo Forest\nCh. 08\nMountain Valley\nCh. 09\nLantern Bridge\nCh. 010\nForgotten Garden\nCh. 011\nThe Harbour\nCases\nSOURCE WORK\n\nContent and frameworks synthesized directly from:\n\nBehind Every Good Decision: How Anyone Can Use Business Analytics to Turn Data into Profitable Insight\nby Piyanka Jain & Puneet Sharma.\n\nAbout & Methodology →\nAdmin & Theme CMS →\n\n© 2026 The River of Insights. Dedicated to accessible, cinematic data leadership.\n\nHOME\n3D RIVER\nCASE STUDIES\nABOUT\nPreview\n|\nSettings\n|\nSave\nPublish\n|\nProject files",
+  "sections": [
+    {
+      "order": 1,
+      "tag": "section",
+      "id": null,
+      "ariaLabel": null,
+      "labelledBy": null,
+      "className": "river-card p-7 sm:p-10 md:p-12 border border-[#2F6F6A]/20 bg-white",
+      "innerText": "THE SOURCE WORK\nBehind Every Good Decision\n\nThis digital journey is an experiential adaptation of Chapters 7 through 11 of the acclaimed text by Piyanka Jain & Puneet Sharma:\nBehind Every Good Decision: How Anyone Can Use Business Analytics to Turn Data into Profitable Insight (AMACOM).\n\nCurriculum Scope:\nChapters 7 – 11 (Analytics Leadership)\nTarget Audience:\nAnalytics Directors, VPs, CDOs, and Business Executives"
+    },
+    {
+      "order": 2,
+      "tag": "section",
+      "id": null,
+      "ariaLabel": null,
+      "labelledBy": null,
+      "className": "space-y-6",
+      "innerText": "The River Metaphor & Design System\n\nRather than presenting another sterile dashboard or slide deck, we created a quiet, contemplative river where learning becomes an act of travel. Each region of the river reflects the psychological and organizational climate of an analytics leader's evolution:\n\nPeach Village (Ch. 7)\n\nWarm morning light, blooming peach trees: the inception of data culture, leadership vision, and organizational foundations.\n\nBamboo Forest (Ch. 8)\n\nDense stalks, shafts of light: discerning WHAT to do from WHO does it, cutting through the thicket of endless ad-hoc requests.\n\nMountain Valley (Ch. 9)\n\nSteep granite walls, rushing current: the rigorous climb of the 90-day playbook—30 days to diagnose, 60 days to execute.\n\nLantern Bridge (Ch. 10)\n\nSpanning arches, glowing lanterns: orchestrating 48 diverse stakeholders to achieve consensus on high-stakes capital investments.\n\nForgotten Garden (Ch. 11)\n\nOvergrown ancient ruins: a cautionary contemplation of the 36 recurring pitfalls that have derailed past data science investments."
+    },
+    {
+      "order": 3,
+      "tag": "section",
+      "id": null,
+      "ariaLabel": null,
+      "labelledBy": null,
+      "className": "bg-white p-7 md:p-10 rounded-2xl border border-[#163C3A]/14 shadow-[0_1px_3px_rgba(22,60,58,0.04),0_6px_18px_-2px_rgba(22,60,58,0.06),0_16px_32px_-4px_rgba(22,60,58,0.04)] space-y-4",
+      "innerText": "TECHNICAL & INCLUSIVE PRINCIPLES\nAccessible by Design\n\nThe 3D environment features high-fidelity procedural water dynamics, realistic wooden hull construction, and multi-tier blossom physics. For mobile users, low-memory devices, or those with motion sensitivity, the platform provides an instantaneous 2D Lite Journey fallback, while ensuring that every chapter and case study remains accessible as semantic, crawlable HTML."
+    }
+  ]
+}
