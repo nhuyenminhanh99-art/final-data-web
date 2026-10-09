@@ -51,12 +51,12 @@ export class BoatNavigationSystem {
   private uAcceleration: number = 0.0; // d^2u/dt^2
   private smoothedLinearSpeed: number = 0.0; // meters / sec
 
-  // Dynamic 3-second Trajectory Execution State
+  // Leisurely, eased trajectory execution state
   private lastTargetU: number = -1.0;
   private trajectoryStartU: number = 0.0;
   private trajectoryTargetU: number = 0.0;
   private trajectoryElapsedSec: number = 0.0;
-  private trajectoryDurationSec: number = 3.0;
+  private trajectoryDurationSec: number = 7.5;
   private isTrajectoryActive: boolean = false;
   private navigationStartTimeMs: number = 0;
   private actualTravelTimeSec: number = 0.0;
@@ -92,8 +92,8 @@ export class BoatNavigationSystem {
 
   // Physical constants calibrated for a heavy handcrafted wooden river rowboat (~550kg displacement)
   private static readonly SPLINE_LENGTH = 335.0;         // River length (meters)
-  private static readonly NOMINAL_LEG_DURATION = 3.0;    // Target chapter-to-chapter duration in seconds
-  private static readonly STROKE_CYCLE_PERIOD = 1.48;    // Calm, rhythmic rowing stroke period (~2 strokes per 3s leg)
+  private static readonly NOMINAL_LEG_DURATION = 7.5;    // Calm chapter-to-chapter sailing duration in seconds
+  private static readonly STROKE_CYCLE_PERIOD = 2.1;     // Relaxed rowing rhythm to match the slower passage
 
   private static readonly YAW_DAMPING_LAMBDA = 1.85;     // Slow yaw response (rad/s) for heavy boat pivoting through water
   private static readonly BANK_DAMPING_LAMBDA = 2.2;     // Roll damping (rad/s)
@@ -206,7 +206,7 @@ export class BoatNavigationSystem {
     }
 
     // =========================================================================
-    // 1. MASS & MOMENTUM (Calculated Distance -> Dynamic ~3.0s Trajectory)
+    // 1. MASS & MOMENTUM (Calculated Distance -> Slow, minimum-jerk trajectory)
     // =========================================================================
     const clampedTargetU = Math.max(0, Math.min(targetU, 1.0));
 
@@ -220,8 +220,8 @@ export class BoatNavigationSystem {
 
       const distM = Math.abs(this.trajectoryTargetU - this.trajectoryStartU) * BoatNavigationSystem.SPLINE_LENGTH;
       if (distM > 0.25) {
-        // Leg duration calibrated to ~3.0 seconds for chapter-to-chapter transitions
-        this.trajectoryDurationSec = Math.max(1.8, Math.min(3.2, BoatNavigationSystem.NOMINAL_LEG_DURATION));
+        // Give each chapter passage room to accelerate and settle instead of rushing between stops.
+        this.trajectoryDurationSec = Math.max(7.0, Math.min(8.5, BoatNavigationSystem.NOMINAL_LEG_DURATION));
         this.isTrajectoryActive = true;
       } else {
         this.isTrajectoryActive = false;

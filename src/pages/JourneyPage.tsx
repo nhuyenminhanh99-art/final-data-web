@@ -577,7 +577,7 @@ export const JourneyPage: React.FC<JourneyPageProps> = ({ initialChapterSlug }) 
             </div>
             <div className="flex justify-between">
               <span className="text-slate-400">ACTUAL TRAVEL TIME:</span>
-              <span className="text-white font-bold">{actualTravelTime.toFixed(2)}s (Target: ~3.0s)</span>
+              <span className="text-white font-bold">{actualTravelTime.toFixed(2)}s (Target: ~7.5s)</span>
             </div>
             <div className="flex justify-between">
               <span className="text-slate-400">CAMERA MODE:</span>
