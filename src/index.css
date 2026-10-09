@@ -3068,3 +3068,152 @@ section[aria-labelledby="team-section-title"] .font-serif:not(#team-section-titl
     transition: none;
   }
 }
+
+/* Home typography refinement: restore the site's soft editorial contrast. */
+.home-page #hero h1,
+.home-page .home-section-intro h2,
+.home-page .home-question h3,
+.home-page #lands h3,
+.home-page #cases h2,
+.home-page #cases h3,
+.home-page #takeaway h4,
+.home-page #takeaway blockquote {
+  font-family: var(--font-serif);
+  font-optical-sizing: auto;
+  font-weight: 500;
+  text-wrap: balance;
+}
+
+.home-page #hero h1 {
+  max-width: 8.8ch;
+  font-size: clamp(4.1rem, 8.25vw, 7.8rem);
+  line-height: 0.91;
+  letter-spacing: -0.04em;
+}
+
+.home-page #hero h1 .text-gradient-teal-river {
+  background-image: linear-gradient(118deg, #102D3A 4%, #245B5A 66%, #4E8580 100%);
+  background-size: 100% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.home-page #hero .animate-memory > span:first-child {
+  max-width: 42ch;
+  color: #76500B;
+  font-size: 0.69rem;
+  line-height: 1.65;
+  letter-spacing: 0.19em;
+}
+
+.home-page #hero .space-y-3 > p:first-child {
+  max-width: 36ch;
+  color: #163C3A;
+  font-family: var(--font-serif);
+  font-size: clamp(1.55rem, 2.45vw, 2.15rem);
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -0.018em;
+  text-wrap: pretty;
+}
+
+.home-page #hero .space-y-3 > p:last-child {
+  max-width: 43ch;
+  color: #43565A;
+  font-size: clamp(0.98rem, 1.12vw, 1.08rem);
+  line-height: 1.75;
+  text-wrap: pretty;
+}
+
+.home-page .home-section-intro h2 {
+  max-width: 19ch;
+  color: #163C3A;
+  font-size: clamp(2.6rem, 4.3vw, 3.8rem);
+  font-weight: 500;
+  line-height: 1.03;
+  letter-spacing: -0.028em;
+}
+
+.home-page .home-section-intro p {
+  max-width: 42rem;
+  color: #52616A;
+  font-size: clamp(0.98rem, 1.15vw, 1.08rem);
+  line-height: 1.78;
+  text-wrap: pretty;
+}
+
+.home-page .home-question h3 {
+  color: #163C3A;
+  font-size: clamp(1.55rem, 2.1vw, 2rem);
+  font-weight: 500;
+  line-height: 1.14;
+  letter-spacing: -0.018em;
+}
+
+.home-page .home-question > div:first-child > p {
+  color: #4B5C60;
+  font-size: 0.94rem;
+  line-height: 1.72;
+}
+
+.home-page #lands h3 {
+  font-size: clamp(1.85rem, 2.5vw, 2.25rem);
+  font-weight: 500;
+  line-height: 1.06;
+  letter-spacing: -0.02em;
+}
+
+.home-page #lands p,
+.home-page #cases .river-card p {
+  line-height: 1.72;
+  text-wrap: pretty;
+}
+
+.home-page #cases h2 {
+  color: #163C3A;
+  font-size: clamp(2.45rem, 4vw, 3.45rem);
+  font-weight: 500;
+  line-height: 1.04;
+  letter-spacing: -0.025em;
+}
+
+.home-page #cases h3,
+.home-page #takeaway h4 {
+  font-weight: 500;
+  letter-spacing: -0.022em;
+  line-height: 1.1;
+}
+
+.home-page #takeaway blockquote {
+  font-size: clamp(1.35rem, 2vw, 1.7rem);
+  line-height: 1.42;
+  letter-spacing: -0.01em;
+}
+
+.home-page #about,
+.home-page #lands,
+.home-page #cases {
+  padding-block: clamp(5.25rem, 8vw, 7rem);
+}
+
+.home-page #takeaway {
+  padding-block: clamp(5.5rem, 8.5vw, 7.5rem);
+}
+
+@media (max-width: 720px) {
+  .home-page #hero h1 {
+    font-size: clamp(3.75rem, 15vw, 5.8rem);
+    line-height: 0.93;
+  }
+
+  .home-page #hero .animate-memory > span:first-child {
+    max-width: 34ch;
+    font-size: 0.62rem;
+    letter-spacing: 0.14em;
+  }
+
+  .home-page .home-section-intro h2 {
+    font-size: clamp(2.45rem, 10vw, 3.35rem);
+  }
+}
