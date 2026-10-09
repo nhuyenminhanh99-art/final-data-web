@@ -61,11 +61,11 @@ export const ChapterPanel: React.FC<ChapterPanelProps> = ({
       aria-modal="true"
       aria-labelledby="chapter-fullpage-title"
       ref={containerRef}
-      className="chapter-reading-panel fixed inset-0 z-50 overflow-y-auto bg-[#FFFDF8]/96 sm:bg-[#FFFDF8]/95 backdrop-blur-md text-[#1F2933] transition-opacity duration-300 ease-out animate-memory"
+      className="chapter-reading-panel fixed inset-0 z-50 overflow-y-auto bg-[#FFFDF8] text-[#1F2933] transition-opacity duration-300 ease-out animate-memory"
       data-chapter-number={chapter.number}
     >
       {/* Subtle Environmental Water Ambient Layer behind content */}
-      <div className="fixed inset-0 pointer-events-none z-0 opacity-40 bg-radial-gradient from-transparent via-[#E1EDF2]/30 to-[#EEF3F1]/50" />
+      <div className="chapter-environment-wash fixed inset-0 pointer-events-none z-0" />
 
       {/* STICKY TOP EDITORIAL NAVIGATION BAR */}
       <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-[#163C3A]/12 px-4 sm:px-8 py-3.5 shadow-xs transition-colors">

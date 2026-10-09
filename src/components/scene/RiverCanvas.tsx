@@ -1616,8 +1616,8 @@ export const RiverCanvas: React.FC<RiverCanvasProps> = ({
 
       {/* Floating Stop Indicator when arriving at a chapter */}
       {activeStopNotice && !isHeroMode && (
-        <div className="absolute bottom-16 left-1/2 -translate-x-1/2 z-30 animate-memory pointer-events-auto">
-          <div className="bg-[#FFFDF9] border border-[#163C3A]/15 rounded-2xl p-5 md:p-6 text-center shadow-xl max-w-sm md:max-w-md">
+        <div className="river-arrival-notice absolute bottom-16 left-1/2 -translate-x-1/2 z-30 animate-memory pointer-events-auto">
+          <div className="river-arrival-notice__surface bg-[#FFFDF9] border border-[#163C3A]/15 rounded-2xl p-5 md:p-6 text-center shadow-xl max-w-sm md:max-w-md">
             <span className="text-xs uppercase tracking-[0.16em] text-[#85590A] block mb-1.5 font-semibold">
               {activeStopNotice.kicker}
             </span>

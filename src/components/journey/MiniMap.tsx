@@ -16,13 +16,13 @@ export const MiniMap: React.FC<MiniMapProps> = ({ currentProgress, activeChapter
   return (
     <nav
       aria-label="River Journey Progress Map"
-      className="fixed left-6 top-1/2 -translate-y-1/2 z-40 hidden md:flex flex-col items-center bg-white/90 backdrop-blur-md border border-[#2F6F6A]/25 py-6 px-3 rounded-full shadow-lg"
+      className="journey-minimap fixed left-6 top-1/2 -translate-y-1/2 z-40 hidden md:flex flex-col items-center py-6 px-3"
     >
       <span className="text-[10px] font-mono uppercase tracking-widest text-[#85590A] font-semibold -rotate-90 my-4 select-none whitespace-nowrap">
         {nearest.regionName}
       </span>
 
-      <div className="relative h-48 w-1.5 bg-[#E8EFEA] rounded-full my-2 flex flex-col justify-between items-center">
+      <div className="journey-minimap-rail relative h-48 w-1.5 rounded-full my-2 flex flex-col justify-between items-center">
         {/* Fill bar */}
         <div
           className="absolute top-0 left-0 w-full bg-[#1F4F4B] rounded-full transition-all duration-150"
@@ -39,7 +39,7 @@ export const MiniMap: React.FC<MiniMapProps> = ({ currentProgress, activeChapter
             <button
               key={entry.id}
               onClick={() => onJumpTo(entry.id)}
-              className={`group relative z-10 w-4 h-4 rounded-full transition-all focus:outline-none focus:ring-2 focus:ring-[#1F4F4B] cursor-pointer ${
+              className={`journey-minimap-stop group relative z-10 w-4 h-4 rounded-full transition-all focus:outline-none focus:ring-2 focus:ring-[#1F4F4B] cursor-pointer ${
                 isActive
                   ? 'bg-[#1F4F4B] ring-4 ring-[#2F6F6A]/25 scale-125'
                   : 'bg-white border-2 border-[#8E9C96] hover:border-[#1F4F4B]'

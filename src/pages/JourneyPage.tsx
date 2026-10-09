@@ -408,7 +408,7 @@ export const JourneyPage: React.FC<JourneyPageProps> = ({ initialChapterSlug }) 
   const targetEntry = targetChapterId ? getChapterById(targetChapterId) : undefined;
 
   return (
-    <div className="relative w-screen h-screen overflow-hidden bg-[#FFFDF8] text-[#1F2933] select-none">
+    <div className="journey-world relative w-screen h-screen overflow-hidden bg-[#FFFDF8] text-[#1F2933] select-none">
       {/* Polite live region for screen reader announcements */}
       <div className="sr-only" aria-live="polite" role="status">
         {ariaAnnouncement}
@@ -465,7 +465,7 @@ export const JourneyPage: React.FC<JourneyPageProps> = ({ initialChapterSlug }) 
       {/* Floating Center Chapter Selector Pills (Absolute Chapter Button Rule) */}
       <nav
         aria-label="Chapter Stops Selection"
-        className="fixed bottom-6 left-1/2 -translate-x-1/2 z-30 hidden md:flex items-center gap-1.5 bg-white/95 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-[#163C3A]/20 shadow-xl pointer-events-auto"
+        className="journey-stop-selector fixed bottom-6 left-1/2 -translate-x-1/2 z-30 hidden md:flex items-center gap-1.5 pointer-events-auto"
       >
         {CHAPTER_REGISTRY.map((entry) => {
           const isActive = currentChapterId === entry.id;
@@ -476,7 +476,8 @@ export const JourneyPage: React.FC<JourneyPageProps> = ({ initialChapterSlug }) 
               key={entry.id}
               onClick={() => navigateToChapter(entry.id)}
               disabled={scrollLocked && !isActive}
-              className={`px-3 py-1 rounded-full text-xs font-mono transition-all cursor-pointer font-medium ${
+              data-visual-state={isActive ? 'active' : isTargeting ? 'selected' : 'available'}
+              className={`journey-stop-button px-3 py-1 rounded-full text-xs font-mono transition-all cursor-pointer font-medium ${
                 isActive
                   ? 'bg-[#163C3A] text-white shadow-sm font-semibold'
                   : isTargeting
@@ -572,7 +573,7 @@ export const JourneyPage: React.FC<JourneyPageProps> = ({ initialChapterSlug }) 
       {/* Top Floating Control Bar (Cinematic Auto-Fade) */}
       <header
         onMouseEnter={() => setIsControlsVisible(true)}
-        className={`fixed top-4 left-4 right-4 sm:left-8 sm:right-8 z-30 flex items-center justify-between pointer-events-none transition-opacity duration-500 ease-out ${
+        className={`journey-control-bar fixed top-4 left-4 right-4 sm:left-8 sm:right-8 z-30 flex items-center justify-between pointer-events-none transition-opacity duration-500 ease-out ${
           isControlsVisible ? 'opacity-100' : 'opacity-0 hover:opacity-100'
         }`}
       >
@@ -697,7 +698,7 @@ export const JourneyPage: React.FC<JourneyPageProps> = ({ initialChapterSlug }) 
       </header>
 
       {/* Subtle River Journey Progress Indicator (Requirement 13) */}
-      <footer className="fixed bottom-4 left-4 right-4 sm:left-8 sm:right-8 z-20 pointer-events-none flex items-center justify-between">
+      <footer className="journey-progress-bar fixed bottom-4 left-4 right-4 sm:left-8 sm:right-8 z-20 pointer-events-none flex items-center justify-between">
         <div className="bg-white/90 backdrop-blur-md border border-[#163C3A]/15 px-4 py-1.5 rounded-full text-xs text-[#163C3A] shadow-sm flex items-center gap-2">
           <span className="w-2 h-2 rounded-full bg-[#2F6F8F] animate-pulse" />
           {currentEntry ? (
