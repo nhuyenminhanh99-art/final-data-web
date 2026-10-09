@@ -720,7 +720,7 @@ export const JourneyPage: React.FC<JourneyPageProps> = ({ initialChapterSlug }) 
           <span className="w-2 h-2 rounded-full bg-[#2F6F8F] animate-pulse" />
           {currentEntry ? (
             <>
-              <span className="font-semibold text-[#85590A]">Ch. 0{currentEntry.chapterNumber}</span>
+              <span className="font-semibold text-[#85590A]">Ch. {currentEntry.chapterNumber}</span>
               <span className="text-[#667085]">·</span>
               <span className="truncate max-w-[140px] sm:max-w-[240px] font-sans font-medium">{currentEntry.title}</span>
             </>

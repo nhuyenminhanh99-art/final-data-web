@@ -177,7 +177,7 @@ export const CaseStudiesPage: React.FC = () => {
                   <div className="pt-2 flex items-center justify-between text-xs">
                     {relatedChapter ? (
                       <span className="text-[#2F6F8F] flex items-center gap-1 font-semibold">
-                        Ch. 0{relatedChapter.number} ({relatedChapter.regionName})
+                        Ch. {relatedChapter.number} ({relatedChapter.regionName})
                       </span>
                     ) : (
                       <span />

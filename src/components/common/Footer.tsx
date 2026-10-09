@@ -4,89 +4,69 @@ import { Compass, Sparkles, BookOpen } from 'lucide-react';
 
 export const Footer: React.FC = () => {
   return (
-    <footer className="site-footer border-t border-[#2F6F6A]/15 bg-[#E8EFEA] text-[#4F5E57] pt-16 pb-12 mt-20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
-          {/* Brand & Concept */}
-          <div className="space-y-4 md:col-span-2">
-            <div className="flex items-center gap-2">
-              <span className="w-2.5 h-2.5 rounded-full bg-[#2F6F6A]" />
-              <h3 className="font-serif text-2xl text-[#1E2B26]">The River of Insights</h3>
-            </div>
-            <p className="text-sm text-[#4F5E57] leading-relaxed max-w-md">
-              A luminous spring morning river journey through the landscape of Analytics Leadership,
-              distilling core frameworks from Chapters 7–11 of <em>Behind Every Good Decision</em>.
-            </p>
-            <div className="inline-flex items-center gap-2 text-xs font-sans text-[#1F4F4B] bg-white px-3.5 py-1.5 rounded-full border border-[#2F6F6A]/20 shadow-sm">
-              <Sparkles className="w-3.5 h-3.5 text-[#85590A]" />
-              <span>"Stepping into a memory you have never lived"</span>
-            </div>
+    <footer className="site-footer mt-20 pt-16 pb-12" aria-label="Site footer">
+      <div className="site-footer__grid max-w-[118rem] mx-auto px-4 sm:px-6 lg:px-8">
+        <section className="site-footer__card site-footer__brand-card md:col-span-6" aria-labelledby="footer-brand-title">
+          <div className="flex items-center gap-2">
+            <span className="w-2.5 h-2.5 rounded-full bg-[#C8A66A]" aria-hidden="true" />
+            <h3 id="footer-brand-title" className="font-serif text-2xl">The River of Insights</h3>
           </div>
+          <p className="text-sm leading-relaxed max-w-md">
+            A luminous spring morning river journey through the landscape of Analytics Leadership,
+            distilling core frameworks from Chapters 7–11 of <em>Behind Every Good Decision</em>.
+          </p>
+          <div className="site-footer__quote inline-flex items-center gap-2 text-xs font-sans px-3.5 py-1.5 rounded-full" aria-label="Project quote">
+            <Sparkles className="w-3.5 h-3.5" aria-hidden="true" />
+            <span>"Stepping into a memory you have never lived"</span>
+          </div>
+        </section>
 
-          {/* Chapter Lands */}
-          <div>
-            <h4 className="text-xs uppercase font-sans tracking-[0.18em] text-[#85590A] mb-4 flex items-center gap-2 font-semibold">
-              <Compass className="w-4 h-4 text-[#2F6F6A]" /> The Five Lands
-            </h4>
-            <ul className="space-y-2.5 text-xs font-sans">
-              {chaptersData.map((ch) => (
-                <li key={ch.slug}>
-                  <a
-                    href={`/${ch.slug}/`}
-                    className="hover:text-[#1F4F4B] transition-colors flex items-center justify-between group"
-                  >
-                    <span>{ch.regionName}</span>
-                    <span className="text-[#8E9C96] group-hover:text-[#1F4F4B]">
-                      Ch. 0{ch.number}
-                    </span>
-                  </a>
-                </li>
-              ))}
-              <li>
-                <a
-                  href="/case-studies/"
-                  className="hover:text-[#1F4F4B] transition-colors flex items-center justify-between group text-[#1F4F4B] font-semibold"
-                >
-                  <span>The Harbour</span>
-                  <span>Cases</span>
+        <section className="site-footer__card md:col-span-3" aria-labelledby="footer-lands-title">
+          <h4 id="footer-lands-title" className="site-footer__eyebrow mb-4 flex items-center gap-2 font-semibold">
+            <Compass className="w-4 h-4" aria-hidden="true" /> The Five Lands
+          </h4>
+          <ul className="space-y-2.5 text-xs font-sans">
+            {chaptersData.map((ch) => (
+              <li key={ch.slug}>
+                <a href={`/${ch.slug}/`} className="flex items-center justify-between group">
+                  <span>{ch.regionName}</span>
+                  <span className="site-footer__muted group-hover:text-[#E5C58A]">Ch. {ch.number}</span>
                 </a>
               </li>
-            </ul>
-          </div>
-
-          {/* Resources & Attribution */}
-          <div>
-            <h4 className="text-xs uppercase font-sans tracking-[0.18em] text-[#85590A] mb-4 flex items-center gap-2 font-semibold">
-              <BookOpen className="w-4 h-4 text-[#2F6F6A]" /> Source Work
-            </h4>
-            <p className="text-xs text-[#4F5E57] leading-relaxed mb-4 font-sans">
-              Content and frameworks synthesized directly from:
-              <br />
-              <strong className="text-[#1E2B26] block mt-1 font-semibold">
-                Behind Every Good Decision: How Anyone Can Use Business Analytics to Turn Data into
-                Profitable Insight
-              </strong>
-              by Piyanka Jain & Puneet Sharma.
-            </p>
-            <div className="space-y-2 text-xs font-sans">
-              <a href="/about/" className="block text-[#4F5E57] hover:text-[#1F4F4B] transition-colors">
-                About & Methodology →
+            ))}
+            <li>
+              <a href="/case-studies/" className="flex items-center justify-between font-semibold">
+                <span>The Harbour</span><span>Cases</span>
               </a>
-              <a href="/admin" className="block text-[#4F5E57] hover:text-[#1F4F4B] transition-colors">
-                Admin & Theme CMS →
-              </a>
-            </div>
-          </div>
-        </div>
+            </li>
+          </ul>
+        </section>
 
-        {/* Bottom Bar */}
-        <div className="pt-8 border-t border-[#2F6F6A]/10 flex flex-col sm:flex-row items-center justify-between text-xs text-[#8E9C96] gap-4 font-sans">
+        <section className="site-footer__card md:col-span-3" aria-labelledby="footer-source-title">
+          <h4 id="footer-source-title" className="site-footer__eyebrow mb-4 flex items-center gap-2 font-semibold">
+            <BookOpen className="w-4 h-4" aria-hidden="true" /> Source Work
+          </h4>
+          <p className="text-xs leading-relaxed mb-4 font-sans">
+            Content and frameworks synthesized directly from:
+            <br />
+            <strong className="site-footer__book-title block mt-1 font-semibold">
+              Behind Every Good Decision: How Anyone Can Use Business Analytics to Turn Data into Profitable Insight
+            </strong>
+            by Piyanka Jain &amp; Puneet Sharma.
+          </p>
+          <div className="space-y-2 text-xs font-sans">
+            <a href="/about/" className="block">About &amp; Methodology →</a>
+            <a href="/admin" className="block">Admin &amp; Theme CMS →</a>
+          </div>
+        </section>
+
+        <div className="site-footer__bottom md:col-span-12 pt-8 flex flex-col sm:flex-row items-center justify-between text-xs gap-4 font-sans">
           <p>© {new Date().getFullYear()} The River of Insights. Dedicated to accessible, cinematic data leadership.</p>
-          <div className="flex items-center space-x-6 text-xs uppercase tracking-wider font-medium">
-            <a href="/" className="hover:text-[#1F4F4B] transition-colors">Home</a>
-            <a href="/journey" className="hover:text-[#1F4F4B] transition-colors">3D River</a>
-            <a href="/case-studies/" className="hover:text-[#1F4F4B] transition-colors">Case Studies</a>
-            <a href="/about/" className="hover:text-[#1F4F4B] transition-colors">About</a>
+          <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-xs uppercase tracking-wider font-medium">
+            <a href="/">Home</a>
+            <a href="/journey">3D River</a>
+            <a href="/case-studies/">Case Studies</a>
+            <a href="/about/">About</a>
           </div>
         </div>
       </div>

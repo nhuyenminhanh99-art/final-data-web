@@ -1,0 +1,115 @@
+{
+  "passed": true,
+  "viewports": [
+    {
+      "width": 360,
+      "height": 740,
+      "desktop": false,
+      "checks": [
+        "mobile sheet and tap targets",
+        "footer contrast >= 4.5:1"
+      ]
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "desktop": false,
+      "checks": [
+        "mobile sheet and tap targets",
+        "footer contrast >= 4.5:1"
+      ]
+    },
+    {
+      "width": 430,
+      "height": 932,
+      "desktop": false,
+      "checks": [
+        "mobile sheet and tap targets",
+        "footer contrast >= 4.5:1"
+      ]
+    },
+    {
+      "width": 768,
+      "height": 1024,
+      "desktop": false,
+      "checks": [
+        "mobile sheet and tap targets",
+        "footer contrast >= 4.5:1"
+      ]
+    },
+    {
+      "width": 1024,
+      "height": 768,
+      "desktop": true,
+      "checks": [
+        "desktop navbar bounds, uppercase labels, and divider gap",
+        "footer contrast >= 4.5:1"
+      ]
+    },
+    {
+      "width": 1280,
+      "height": 720,
+      "desktop": true,
+      "checks": [
+        "desktop navbar bounds, uppercase labels, and divider gap",
+        "footer contrast >= 4.5:1"
+      ]
+    },
+    {
+      "width": 1366,
+      "height": 768,
+      "desktop": true,
+      "checks": [
+        "desktop navbar bounds, uppercase labels, and divider gap",
+        "footer contrast >= 4.5:1"
+      ]
+    },
+    {
+      "width": 1440,
+      "height": 900,
+      "desktop": true,
+      "checks": [
+        "desktop navbar bounds, uppercase labels, and divider gap",
+        "footer contrast >= 4.5:1"
+      ]
+    },
+    {
+      "width": 1536,
+      "height": 864,
+      "desktop": true,
+      "checks": [
+        "desktop navbar bounds, uppercase labels, and divider gap",
+        "footer contrast >= 4.5:1"
+      ]
+    },
+    {
+      "width": 1920,
+      "height": 1080,
+      "desktop": true,
+      "checks": [
+        "desktop navbar bounds, uppercase labels, and divider gap",
+        "footer contrast >= 4.5:1"
+      ]
+    },
+    {
+      "anchor": {
+        "targetTop": 2338.84375,
+        "headerBottom": 84,
+        "clearance": 2254.84375
+      },
+      "checks": [
+        "anchor heading clears sticky navbar"
+      ]
+    },
+    {
+      "toolbar": {
+        "lastBottom": 569.765625,
+        "toolbarTop": 638,
+        "clearance": 68.234375
+      },
+      "checks": [
+        "bottom editor toolbar clearance"
+      ]
+    }
+  ]
+}

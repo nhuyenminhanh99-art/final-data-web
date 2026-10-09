@@ -117,7 +117,7 @@ export const ChapterPage: React.FC<ChapterPageProps> = ({ slug }) => {
             aria-hidden="true"
             className="chapter-number-watermark text-[10rem] sm:text-[14rem] font-serif text-[#C99A4B]/10 select-none absolute -top-10 sm:-top-16 -right-4 sm:-right-8 pointer-events-none leading-none font-light"
           >
-            0{chapter.number}
+            {chapter.number}
           </span>
 
           <ChapterArrivalScene chapterNumber={chapter.number} />
@@ -257,7 +257,7 @@ export const ChapterPage: React.FC<ChapterPageProps> = ({ slug }) => {
         <section className="mt-20 pt-16 border-t border-[#163C3A]/12 text-center max-w-2xl mx-auto space-y-6">
           <div className="w-12 h-0.5 bg-[#C99A4B] mx-auto mb-2" />
           <span className="text-xs uppercase tracking-[0.2em] text-[#85590A] font-semibold font-sans block">
-            ✦ CHAPTER 0{chapter.number} EXPLORATION COMPLETE ✦
+            ✦ CHAPTER {chapter.number} EXPLORATION COMPLETE ✦
           </span>
           <h3 className="text-3xl sm:text-4xl font-serif text-[#163C3A] font-normal">
             Ready to Continue the River Voyage?
@@ -288,7 +288,7 @@ export const ChapterPage: React.FC<ChapterPageProps> = ({ slug }) => {
                 Previous Chapter
               </span>
               <span className="font-serif text-xl sm:text-2xl text-[#1F2933] group-hover:text-[#163C3A] transition-colors leading-snug">
-                Ch. 0{prevChapter.number}: {prevChapter.title}
+                Ch. {prevChapter.number}: {prevChapter.title}
               </span>
             </a>
           ) : (
@@ -305,7 +305,7 @@ export const ChapterPage: React.FC<ChapterPageProps> = ({ slug }) => {
                 <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform text-[#2F6F8F]" />
               </span>
               <span className="font-serif text-xl sm:text-2xl text-[#1F2933] group-hover:text-[#163C3A] transition-colors leading-snug">
-                Ch. 0{nextChapter.number}: {nextChapter.title}
+                Ch. {nextChapter.number}: {nextChapter.title}
               </span>
             </a>
           ) : (

@@ -110,7 +110,7 @@ export const AdminPage: React.FC = () => {
                       <span className="text-[#8E9C96]">· Region: {ch.regionName}</span>
                     </div>
                     <h3 className="text-xl font-serif text-[#1E2B26]">
-                      Ch. 0{ch.number}: {ch.title}
+                      Ch. {ch.number}: {ch.title}
                     </h3>
                     <p className="text-xs text-[#85590A] italic font-serif">"{ch.tagline}"</p>
                   </div>

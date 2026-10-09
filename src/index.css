@@ -3656,3 +3656,72 @@ section[aria-labelledby="team-section-title"] .font-serif:not(#team-section-titl
     radial-gradient(ellipse 36rem 22rem at 50% 72%, rgba(47, 111, 143, 0.19), transparent 72%),
     linear-gradient(180deg, #D7E6E5, #B8D5D0 58%, #E7E9DA);
 }
+
+/* ==========================================================================
+   Navigation / footer / editor pass
+   ========================================================================== */
+:root {
+  --navbar-height: clamp(4.25rem, 5vw, 5.25rem);
+  --editor-toolbar-safe-space: clamp(5.75rem, 8vw, 7.25rem);
+  --elevation-e3: 0 2px 5px rgba(12, 12, 11, 0.12), 0 18px 42px -22px rgba(16, 45, 58, 0.48), inset 0 1px rgba(255, 255, 255, 0.58);
+  --elevation-e4: 0 3px 7px rgba(12, 12, 11, 0.14), 0 24px 54px -24px rgba(16, 45, 58, 0.58), inset 0 1px rgba(255, 255, 255, 0.72);
+}
+html { scroll-padding-top: calc(var(--navbar-height) + 1rem); scroll-behavior: smooth; }
+.app-shell { padding-bottom: var(--editor-toolbar-safe-space); }
+.river-site-header { min-height: var(--navbar-height); }
+.river-header-shell {
+  min-height: var(--navbar-height); border-color: transparent;
+  background: linear-gradient(rgba(250, 252, 251, 0.9), rgba(237, 245, 241, 0.82)) padding-box, linear-gradient(118deg, rgba(255,255,255,0.88), rgba(200,166,106,0.62), rgba(47,111,143,0.28)) border-box;
+  box-shadow: var(--elevation-e3); backdrop-filter: blur(18px) saturate(125%); -webkit-backdrop-filter: blur(18px) saturate(125%);
+}
+.river-site-header--scrolled .river-header-shell { min-height: 3.75rem; box-shadow: var(--elevation-e4); }
+.river-desktop-nav { gap: clamp(0.85rem, 2vw, 2.25rem); margin-inline: clamp(0.75rem, 2.4vw, 2.75rem); }
+.river-nav-item { position: relative; display: inline-flex; min-height: 2.75rem; align-items: center; gap: 0.35rem; color: #52616A; font-size: clamp(0.62rem, 0.68vw, 0.75rem); font-weight: 600; letter-spacing: 0.14em; line-height: 1; text-decoration: none; white-space: nowrap; transition: color var(--motion-fast) ease; }
+.river-nav-item:hover, .river-nav-item:focus-visible, .river-nav-item.is-active { color: #163C3A; }
+.river-nav-item.is-active::after { position: absolute; right: 0; bottom: 0.15rem; left: 0; height: 2px; border-radius: 999px; background: #C8A66A; content: ""; }
+.river-nav-label { text-transform: uppercase; }
+.river-chapters-trigger { border: 0; background: transparent; cursor: pointer; font: inherit; }
+.river-chapters-chevron { transition: transform 180ms ease; }
+.river-chapters-chevron.is-open { transform: rotate(180deg); }
+.river-action-divider { width: 1px; height: 1.65rem; margin-right: 1.25rem; background: rgba(20, 43, 58, 0.22); }
+.river-prompt-control { border-color: rgba(20, 43, 58, 0.14); background: linear-gradient(135deg, rgba(245, 249, 247, 0.95), rgba(228, 239, 234, 0.86)); color: #163C3A; }
+.river-icon-control { display: inline-flex; width: 2.75rem; height: 2.75rem; align-items: center; justify-content: center; border: 1px solid rgba(20, 43, 58, 0.14); border-radius: 999px; color: #52616A; transition: color var(--motion-fast) ease, background-color var(--motion-fast) ease, transform var(--motion-fast) ease; }
+.river-icon-control:hover { color: #163C3A; background: rgba(255, 255, 255, 0.7); transform: translateY(-1px); }
+.river-chapters-dropdown { z-index: 60; border: 1px solid rgba(255, 255, 255, 0.68); background: linear-gradient(145deg, rgba(250, 252, 251, 0.97), rgba(228, 239, 234, 0.94)); box-shadow: var(--elevation-e4); backdrop-filter: blur(18px) saturate(120%); -webkit-backdrop-filter: blur(18px) saturate(120%); }
+.river-chapter-menu-item { color: #52616A; }
+.river-chapter-menu-item:hover, .river-chapter-menu-item:focus-visible { background: rgba(255, 255, 255, 0.66); color: #163C3A; }
+.river-chapter-dot { display: inline-block; width: 0.45rem; height: 0.45rem; flex: 0 0 auto; border-radius: 999px; box-shadow: 0 0 0 2px rgba(255,255,255,0.64); }
+.river-mobile-menu { padding-top: max(1.5rem, env(safe-area-inset-top)); padding-bottom: max(1.5rem, env(safe-area-inset-bottom)); background: linear-gradient(145deg, rgba(250, 252, 251, 0.98), rgba(225, 239, 234, 0.98)); }
+.river-mobile-nav-link, .river-mobile-action, .river-mobile-chapter-link { display: flex; min-height: 3rem; align-items: center; gap: 0.7rem; color: #163C3A; font-family: var(--font-sans); font-size: 1.05rem; font-weight: 600; letter-spacing: 0.09em; text-transform: uppercase; }
+.river-mobile-chapter-link, .river-mobile-action { min-height: 2.75rem; font-size: 0.88rem; letter-spacing: 0.04em; text-transform: none; color: #52616A; }
+.river-mobile-prompt { display: flex; min-height: 3rem; align-items: center; justify-content: center; gap: 0.5rem; border-radius: 999px; background: #163C3A; color: #FFFDF8; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; }
+.river-menu-control { display: grid; width: 2.75rem; height: 2.75rem; place-items: center; border: 1px solid rgba(22, 60, 58, 0.14); border-radius: 0.75rem; color: #163C3A; background: rgba(255,255,255,0.4); cursor: pointer; }
+.site-footer { border-top: 1px solid rgba(232, 228, 218, 0.22) !important; color: #E8E4DA !important; background: radial-gradient(ellipse 70% 85% at 94% 0%, rgba(200,166,106,0.22), transparent 68%), linear-gradient(135deg, #102D3A 0%, #163C3A 56%, #214B48 100%) !important; }
+.site-footer__grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 1rem; }
+.site-footer__card { padding: clamp(1.1rem, 2vw, 1.6rem); border: 1px solid rgba(232, 228, 218, 0.18); border-radius: 1.1rem 1.1rem 2.4rem 1.1rem; background: linear-gradient(145deg, rgba(255,255,255,0.11), rgba(255,255,255,0.045)); box-shadow: var(--elevation-e3); }
+.site-footer__card h3, .site-footer__card a { color: #E8E4DA !important; }
+.site-footer__card p, .site-footer__card span { color: #D6E5DF; }
+.site-footer__eyebrow { color: #E5C58A !important; font-size: 0.75rem; letter-spacing: 0.18em; text-transform: uppercase; }
+.site-footer__book-title { color: #FFFDF8 !important; }
+.site-footer__muted { color: #D6E5DF !important; }
+.site-footer__card a:hover, .site-footer__card a:focus-visible, .site-footer__bottom a:hover, .site-footer__bottom a:focus-visible { color: #E5C58A !important; }
+.site-footer__quote { border: 1px solid rgba(229, 197, 138, 0.55); background: rgba(12, 12, 11, 0.22); color: #FFFDF8; }
+.site-footer__quote span { color: #FFFDF8 !important; }
+.site-footer__quote svg { color: #E5C58A; }
+.site-footer__bottom { color: #D6E5DF; border-top: 1px solid rgba(232, 228, 218, 0.22); }
+.site-footer__bottom p, .site-footer__bottom a { color: #D6E5DF !important; }
+.river-cms-toolbar { bottom: calc(1rem + env(safe-area-inset-bottom, 0px)); border-color: rgba(200, 166, 106, 0.48); box-shadow: var(--elevation-e4); }
+@media (max-width: 1023px) { .river-desktop-nav { display: none; } .river-menu-control { display: grid; } .river-action-divider { display: none; } }
+@media (min-width: 1024px) and (max-width: 1130px) { .river-brand { gap: 0.45rem; } .river-brand-name { font-size: 1rem; } .river-brand-overline { font-size: 0.5rem; } .river-desktop-nav { gap: 0.72rem; margin-inline: 0.65rem; } .river-nav-item { font-size: 0.58rem; letter-spacing: 0.1em; } .river-header-actions { gap: 0.35rem; } .river-entry-cta { padding-inline: 0.75rem; font-size: 0.58rem; } .river-prompt-control { padding-inline: 0.55rem; } .river-prompt-control span { font-size: 0.52rem; } }
+@media (max-width: 640px) { .app-shell { padding-bottom: calc(5.25rem + env(safe-area-inset-bottom, 0px)); } .river-entry-cta { padding-inline: 0.75rem; font-size: 0.62rem; } .river-entry-arrow { display: none; } .site-footer__grid { grid-template-columns: 1fr; } .site-footer__card, .site-footer__bottom { grid-column: span 1 / span 1 !important; } .site-footer__bottom { align-items: flex-start; } }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .river-chapters-chevron, .river-icon-control { transition: none; } }
+
+@media (min-width: 1024px) {
+  .river-header-shell > .river-desktop-nav { display: flex; }
+  .river-menu-control { display: none; }
+}
+@media (min-width: 1024px) and (max-width: 1130px) {
+  .river-header-shell > .river-desktop-nav { display: flex; }
+}
+
+:where([id]) { scroll-margin-top: calc(var(--navbar-height) + 1rem); }

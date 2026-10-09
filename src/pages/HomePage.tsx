@@ -412,7 +412,7 @@ export const HomePage: React.FC = () => {
                           href={`/${d.chapterSlug}/`}
                           className="text-xs text-[#2F6F8F] hover:text-[#163C3A] font-semibold inline-flex items-center gap-1"
                         >
-                          Read Chapter 0{d.chapterNum} Guide <ChevronRight className="w-3.5 h-3.5" />
+                          Read Chapter {d.chapterNum} Guide <ChevronRight className="w-3.5 h-3.5" />
                         </a>
                       </div>
                     </div>

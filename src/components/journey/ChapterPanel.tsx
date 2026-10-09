@@ -128,7 +128,7 @@ export const ChapterPanel: React.FC<ChapterPanelProps> = ({
               aria-hidden="true"
               className="text-[10rem] sm:text-[14rem] font-serif text-[#C99A4B]/10 select-none absolute -top-10 sm:-top-16 -right-4 sm:-right-8 pointer-events-none leading-none font-light"
             >
-              0{chapter.number}
+              {chapter.number}
             </span>
 
             <ChapterArrivalScene chapterNumber={chapter.number} />
