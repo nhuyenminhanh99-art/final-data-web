@@ -2983,3 +2983,88 @@ section[aria-labelledby="team-section-title"] .font-serif:not(#team-section-titl
     scroll-behavior: auto !important;
   }
 }
+
+/* Reading polish for Chapters 7–11: improve rhythm without touching copy. */
+.chapter-content > .space-y-20 > .chapter-block + .chapter-block,
+.chapter-reader-body > .space-y-20 > .chapter-block + .chapter-block {
+  margin-block-start: clamp(3.25rem, 5.5vw, 4.5rem) !important;
+}
+
+.chapter-content .chapter-block--richText .editorial-open {
+  max-width: 46rem;
+  margin-block: 0;
+  padding-block: 0.25rem;
+}
+
+.chapter-content .chapter-block--richText .editorial-lead-dropcap {
+  font-size: clamp(1.05rem, 1.2vw, 1.16rem);
+  line-height: 1.78;
+  letter-spacing: 0.002em;
+}
+
+.chapter-content .chapter-block--richText .editorial-lead-dropcap > p {
+  margin-block-end: 1.25rem;
+  text-wrap: pretty;
+}
+
+.chapter-content .chapter-block--richText .editorial-lead-dropcap > h2 {
+  max-width: 22ch;
+  margin-block: 2.75rem 1rem;
+  padding-block-start: 0.8rem;
+  border-top: 1px solid color-mix(in srgb, var(--chapter-accent, var(--gold)) 34%, transparent);
+  font-size: clamp(1.9rem, 3.2vw, 2.6rem);
+  line-height: 1.12;
+  text-wrap: balance;
+}
+
+.chapter-content .chapter-block--richText .editorial-lead-dropcap > h3 {
+  margin-block: 2rem 0.75rem;
+  font-size: clamp(1.45rem, 2.5vw, 1.9rem);
+  line-height: 1.2;
+  text-wrap: balance;
+}
+
+.chapter-content .chapter-block--richText .editorial-lead-dropcap blockquote {
+  margin-block: 2rem;
+  padding-block: 1rem;
+  font-size: clamp(1.25rem, 2.2vw, 1.75rem);
+  line-height: 1.45;
+}
+
+.chapter-content .chapter-block--storyCard > article,
+.chapter-content .chapter-block--definitionBox > div,
+.chapter-content .chapter-block--bigNumber > div,
+.chapter-content .chapter-block--checklist > div,
+.chapter-content .chapter-block--callout > div {
+  transition: box-shadow 220ms ease, border-color 220ms ease, background-color 220ms ease;
+}
+
+.chapter-content .chapter-block--storyCard > article:hover,
+.chapter-content .chapter-block--definitionBox > div:hover,
+.chapter-content .chapter-block--bigNumber > div:hover,
+.chapter-content .chapter-block--checklist > div:hover,
+.chapter-content .chapter-block--callout > div:hover {
+  box-shadow: 0 24px 58px -44px rgba(22, 60, 58, 0.5), inset 0 1px rgba(255, 255, 255, 0.82);
+}
+
+@media (max-width: 640px) {
+  .chapter-content > .space-y-20 > .chapter-block + .chapter-block,
+  .chapter-reader-body > .space-y-20 > .chapter-block + .chapter-block {
+    margin-block-start: 2.75rem !important;
+  }
+
+  .chapter-content .chapter-block--richText .editorial-open {
+    padding-inline: 0;
+    border-left: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .chapter-content .chapter-block--storyCard > article,
+  .chapter-content .chapter-block--definitionBox > div,
+  .chapter-content .chapter-block--bigNumber > div,
+  .chapter-content .chapter-block--checklist > div,
+  .chapter-content .chapter-block--callout > div {
+    transition: none;
+  }
+}
