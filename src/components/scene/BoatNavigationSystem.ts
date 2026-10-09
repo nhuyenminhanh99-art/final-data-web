@@ -79,6 +79,16 @@ export class BoatNavigationSystem {
 
   private lastPosition: THREE.Vector3 = new THREE.Vector3();
   private isInitialized: boolean = false;
+  private lastTelemetryUpdateSec = Number.NEGATIVE_INFINITY;
+  private telemetryCache: CollisionTelemetry = {
+    nearestObstacle: null,
+    minClearance: 999,
+    isAvoiding: false,
+    avoidanceOffset: 0,
+    bankClearanceLeft: 0,
+    bankClearanceRight: 0,
+    lookAheadSamples: [],
+  };
 
   // Physical constants calibrated for a heavy handcrafted wooden river rowboat (~550kg displacement)
   private static readonly SPLINE_LENGTH = 335.0;         // River length (meters)
@@ -112,6 +122,7 @@ export class BoatNavigationSystem {
     this.trajectoryStartU = this.currentU;
     this.trajectoryTargetU = this.currentU;
     this.actualTravelTimeSec = 0.0;
+    this.lastTelemetryUpdateSec = Number.NEGATIVE_INFINITY;
 
     const maxOffset = this.getMaxLateralOffset(this.currentU);
     const { safeOffset } = collisionSystem.computeDeterministicAvoidanceOffset(
@@ -185,7 +196,8 @@ export class BoatNavigationSystem {
     targetU: number,
     deltaTime: number,
     requestedLateralOffset: number = 0.0,
-    timeOfDaySeconds: number = 0.0
+    timeOfDaySeconds: number = 0.0,
+    includeTelemetry: boolean = false
   ): BoatNavigationState {
     const dt = Math.max(0.001, Math.min(deltaTime, 0.066)); // Stable physics timestep
 
@@ -383,11 +395,18 @@ export class BoatNavigationSystem {
     const leftBankDist = halfWidth - (-this.currentLateralOffset);
     const rightBankDist = halfWidth - this.currentLateralOffset;
 
-    const telemetry = collisionSystem.evaluateTrajectory(
-      this.currentU,
-      this.currentLateralOffset,
-      maxOffset
-    );
+    // Full look-ahead telemetry is only used by the opt-in debug HUD. Keep
+    // physical avoidance active every frame, but avoid allocating five samples
+    // and scanning obstacle clearance on normal frames.
+    if (includeTelemetry && timeOfDaySeconds - this.lastTelemetryUpdateSec >= 0.12) {
+      this.telemetryCache = collisionSystem.evaluateTrajectory(
+        this.currentU,
+        this.currentLateralOffset,
+        maxOffset
+      );
+      this.lastTelemetryUpdateSec = timeOfDaySeconds;
+    }
+    const telemetry = this.telemetryCache;
 
     const nearestStop = CANONICAL_RIVER_STOPS.find(
       (s) => Math.abs(this.currentU - s.u) < 0.035

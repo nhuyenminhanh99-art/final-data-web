@@ -1,5 +1,4 @@
-import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
-import { RiverCanvas } from '../components/scene/RiverCanvas';
+import React, { Suspense, lazy, useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import { chaptersData } from '../data/chaptersData';
 import { caseStudiesData } from '../data/caseStudiesData';
 import { TeamSection } from '../components/common/TeamSection';
@@ -14,6 +13,8 @@ import {
   ChevronDown,
   BarChart3,
 } from 'lucide-react';
+
+const RiverCanvas = lazy(() => import('../components/scene/RiverCanvas').then((module) => ({ default: module.RiverCanvas })));
 
 export const HomePage: React.FC = () => {
   const [activeCaseIdx, setActiveCaseIdx] = useState(0);
@@ -145,7 +146,7 @@ export const HomePage: React.FC = () => {
     if (!isGuidedMode) return;
 
     let accumulatedDelta = 0;
-    let wheelTimeout: NodeJS.Timeout;
+    let wheelTimeout: ReturnType<typeof setTimeout>;
 
     const handleWheel = (e: WheelEvent) => {
       // Allow native scroll inside flow scenes if not at edge
@@ -238,7 +239,9 @@ export const HomePage: React.FC = () => {
       >
         {/* 3D River & Landscape Canvas (Hero Mode) */}
         <div className="absolute inset-0 z-0">
-          <RiverCanvas progress={0.01} isHeroMode={true} qualityTier="high" pauseWhenOffscreen />
+          <Suspense fallback={<div className="river-scene-loading river-scene-loading--home" aria-hidden="true" />}>
+            <RiverCanvas progress={0.01} isHeroMode={true} qualityTier="high" pauseWhenOffscreen />
+          </Suspense>
         </div>
 
         {/* Soft mist wash overlay ensuring text readability */}

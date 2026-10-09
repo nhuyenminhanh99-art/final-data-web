@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { SceneSettings, BlockType } from '../../types';
 import { Base44LovableModal } from '../common/Base44LovableModal';
-import { ASSET_MANIFEST } from '../scene/RealisticAssetManager';
 import {
   Settings,
   Eye,
@@ -25,6 +24,8 @@ interface AdminEditorProps {
   onPublish?: () => void;
 }
 
+type AssetManifest = typeof import('../scene/RealisticAssetManager').ASSET_MANIFEST;
+
 export const AdminEditor: React.FC<AdminEditorProps> = ({
   onAddBlock,
   onSaveDraft,
@@ -35,6 +36,18 @@ export const AdminEditor: React.FC<AdminEditorProps> = ({
   const [isPanelOpen, setIsPanelOpen] = useState(false);
   const [isExportOpen, setIsExportOpen] = useState(false);
   const [statusMessage, setStatusMessage] = useState<string | null>(null);
+  const [assetManifest, setAssetManifest] = useState<AssetManifest>([]);
+
+  useEffect(() => {
+    if (!isPanelOpen || activeTab !== 'audit' || assetManifest.length > 0) return;
+    let cancelled = false;
+    import('../scene/RealisticAssetManager').then(({ ASSET_MANIFEST }) => {
+      if (!cancelled) setAssetManifest(ASSET_MANIFEST);
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [activeTab, assetManifest.length, isPanelOpen]);
 
   // Scene settings state
   const [sceneSettings, setSceneSettings] = useState<SceneSettings>({
@@ -356,7 +369,7 @@ export const AdminEditor: React.FC<AdminEditorProps> = ({
               </div>
 
               <div className="space-y-3 max-h-[500px] overflow-y-auto pr-1">
-                {ASSET_MANIFEST.map((record) => (
+                {assetManifest.map((record) => (
                   <div
                     key={record.id}
                     className="p-3 rounded-xl border border-[#163C3A]/15 bg-white hover:border-[#2F6F8F] transition-all shadow-sm space-y-2"

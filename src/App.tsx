@@ -3,19 +3,20 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React, { useState, useEffect } from 'react';
+import React, { Suspense, lazy, useState, useEffect } from 'react';
 import { Navbar } from './components/common/Navbar';
 import { Footer } from './components/common/Footer';
-import { AdminEditor } from './components/cms/AdminEditor';
-import { HomePage } from './pages/HomePage';
-import { JourneyPage } from './pages/JourneyPage';
-import { ChapterPage } from './pages/ChapterPage';
-import { CaseStudiesPage } from './pages/CaseStudiesPage';
-import { GlossaryPage } from './pages/GlossaryPage';
-import { AboutPage } from './pages/AboutPage';
-import { AdminPage } from './pages/AdminPage';
-import { DevBlocksPage } from './pages/DevBlocksPage';
-import { NotFoundPage } from './pages/NotFoundPage';
+
+const AdminEditor = lazy(() => import('./components/cms/AdminEditor').then((module) => ({ default: module.AdminEditor })));
+const HomePage = lazy(() => import('./pages/HomePage').then((module) => ({ default: module.HomePage })));
+const JourneyPage = lazy(() => import('./pages/JourneyPage').then((module) => ({ default: module.JourneyPage })));
+const ChapterPage = lazy(() => import('./pages/ChapterPage').then((module) => ({ default: module.ChapterPage })));
+const CaseStudiesPage = lazy(() => import('./pages/CaseStudiesPage').then((module) => ({ default: module.CaseStudiesPage })));
+const GlossaryPage = lazy(() => import('./pages/GlossaryPage').then((module) => ({ default: module.GlossaryPage })));
+const AboutPage = lazy(() => import('./pages/AboutPage').then((module) => ({ default: module.AboutPage })));
+const AdminPage = lazy(() => import('./pages/AdminPage').then((module) => ({ default: module.AdminPage })));
+const DevBlocksPage = lazy(() => import('./pages/DevBlocksPage').then((module) => ({ default: module.DevBlocksPage })));
+const NotFoundPage = lazy(() => import('./pages/NotFoundPage').then((module) => ({ default: module.NotFoundPage })));
 
 const APP_BASE_PATH = import.meta.env.BASE_URL.replace(/\/$/, '');
 
@@ -137,13 +138,19 @@ export default function App() {
       {!isJourney && <Navbar currentPath={currentPath} />}
 
       {/* Main Page View */}
-      <div className="flex-1">{renderRoute()}</div>
+      <div className="flex-1">
+        <Suspense fallback={<div className={`route-loading-surface${isJourney ? ' route-loading-surface--journey' : ''}`} aria-busy="true" />}>
+          {renderRoute()}
+        </Suspense>
+      </div>
 
       {/* Atmospheric Footer (hidden on immersive /journey) */}
       {!isJourney && <Footer />}
 
       {/* Floating Admin & Visual CMS Pill */}
-      <AdminEditor />
+      <Suspense fallback={null}>
+        <AdminEditor />
+      </Suspense>
     </div>
   );
 }

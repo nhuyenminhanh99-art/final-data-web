@@ -3431,3 +3431,35 @@ section[aria-labelledby="team-section-title"] .font-serif:not(#team-section-titl
     animation: none;
   }
 }
+
+/* Lightweight first paint while route and WebGL chunks load on demand. */
+.route-loading-surface {
+  min-height: calc(100svh - 5rem);
+  background:
+    radial-gradient(ellipse 48rem 26rem at 88% 8%, rgba(47, 111, 143, 0.08), transparent 74%),
+    linear-gradient(180deg, #F7F7F1, #EEF3F1);
+}
+
+.route-loading-surface--journey {
+  min-height: 100svh;
+  background: linear-gradient(180deg, #D7E6E5, #B8D5D0 58%, #E7E9DA);
+}
+
+.river-scene-loading {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.river-scene-loading--home {
+  background:
+    radial-gradient(ellipse 42% 34% at 72% 42%, rgba(78, 133, 128, 0.28), transparent 78%),
+    linear-gradient(145deg, #E9EFEB, #D5E5E2 60%, #C5D9D5);
+}
+
+.river-scene-loading--journey {
+  background:
+    radial-gradient(ellipse 36rem 22rem at 50% 72%, rgba(47, 111, 143, 0.19), transparent 72%),
+    linear-gradient(180deg, #D7E6E5, #B8D5D0 58%, #E7E9DA);
+}

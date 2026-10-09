@@ -1204,7 +1204,7 @@ export const RiverCanvas: React.FC<RiverCanvasProps> = ({
       const requestedOffset = userPanX * 3.0;
 
       // Update Boat via Authoritative BoatNavigationSystem
-      const boatState = boatNavigator.update(targetProgress, dt, requestedOffset, elapsedTime);
+      const boatState = boatNavigator.update(targetProgress, dt, requestedOffset, elapsedTime, isDebugEnabled);
 
       // Throttled UI progress synchronization to prevent React re-renders during high-FPS sailing
       if (onProgressUpdate && !isHeroRef.current) {

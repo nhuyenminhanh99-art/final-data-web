@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react';
-import { RiverCanvas, CameraViewMode } from '../components/scene/RiverCanvas';
+import React, { Suspense, lazy, useState, useEffect, useRef, useCallback } from 'react';
+import type { CameraViewMode } from '../components/scene/RiverCanvas';
 import { LiteJourney } from '../components/scene/LiteJourney';
 import { ChapterPanel } from '../components/journey/ChapterPanel';
 import { MiniMap } from '../components/journey/MiniMap';
@@ -30,6 +30,8 @@ import {
   Download,
   Eye,
 } from 'lucide-react';
+
+const RiverCanvas = lazy(() => import('../components/scene/RiverCanvas').then((module) => ({ default: module.RiverCanvas })));
 
 interface JourneyPageProps {
   initialChapterSlug?: string;
@@ -73,7 +75,7 @@ export const JourneyPage: React.FC<JourneyPageProps> = ({ initialChapterSlug }) 
 
   // Cinematic UI Mode (Auto-fade non-essential controls during passive exploration)
   const [isControlsVisible, setIsControlsVisible] = useState(true);
-  const controlsFadeTimer = useRef<NodeJS.Timeout | null>(null);
+  const controlsFadeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const lastControlsActivityRef = useRef(0);
 
   const pokeControls = useCallback(() => {
@@ -121,7 +123,7 @@ export const JourneyPage: React.FC<JourneyPageProps> = ({ initialChapterSlug }) 
 
   // Wheel accumulation & Debug HUD telemetry
   const wheelAccumRef = useRef(0);
-  const wheelDebounceTimer = useRef<NodeJS.Timeout | null>(null);
+  const wheelDebounceTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const [debugScrollDelta, setDebugScrollDelta] = useState(0);
   const [debugScrollDir, setDebugScrollDir] = useState<'IDLE' | 'DOWN' | 'UP'>('IDLE');
   const [showDebugHUD, setShowDebugHUD] = useState(() => {
@@ -429,35 +431,37 @@ export const JourneyPage: React.FC<JourneyPageProps> = ({ initialChapterSlug }) 
       {/* 3D WebGL Canvas Layer with Rider Camera & Authoritative Physics */}
       {!useLiteMode ? (
         <div className="absolute inset-0 z-0 pointer-events-auto">
-          <RiverCanvas
-            progress={scrollProgress}
-            onReachStop={handleReachStop}
-            qualityTier="high"
-            cameraMode={cameraMode}
-            isAutoCruise={isAutoCruise}
-            isPaused={activeChapter !== null}
-            onProgressUpdate={(p, isArrived, velocity, dist, phase, travelTime) => {
-              boatProgressRef.current = p;
-              setBoatProgress(p);
-              setCurrentU(p);
-              if (velocity !== undefined) setForwardVelocity(velocity);
-              if (dist !== undefined) setDistanceToTarget(dist);
-              if (phase !== undefined && isNavigatingRef.current) {
-                setNavigationState(phase);
-                navigationStateRef.current = phase;
-              }
-              if (travelTime !== undefined && travelTime > 0) {
-                setActualTravelTime(travelTime);
-              }
+          <Suspense fallback={<div className="river-scene-loading river-scene-loading--journey" aria-hidden="true" />}>
+            <RiverCanvas
+              progress={scrollProgress}
+              onReachStop={handleReachStop}
+              qualityTier="high"
+              cameraMode={cameraMode}
+              isAutoCruise={isAutoCruise}
+              isPaused={activeChapter !== null}
+              onProgressUpdate={(p, isArrived, velocity, dist, phase, travelTime) => {
+                boatProgressRef.current = p;
+                setBoatProgress(p);
+                setCurrentU(p);
+                if (velocity !== undefined) setForwardVelocity(velocity);
+                if (dist !== undefined) setDistanceToTarget(dist);
+                if (phase !== undefined && isNavigatingRef.current) {
+                  setNavigationState(phase);
+                  navigationStateRef.current = phase;
+                }
+                if (travelTime !== undefined && travelTime > 0) {
+                  setActualTravelTime(travelTime);
+                }
 
-              if (isArrived && isNavigatingRef.current) {
-                const targetNumber = targetChapterIdRef.current
-                  ? getChapterById(targetChapterIdRef.current)?.chapterNumber
-                  : undefined;
-                if (targetNumber !== undefined) handleReachStop(targetNumber);
-              }
-            }}
-          />
+                if (isArrived && isNavigatingRef.current) {
+                  const targetNumber = targetChapterIdRef.current
+                    ? getChapterById(targetChapterIdRef.current)?.chapterNumber
+                    : undefined;
+                  if (targetNumber !== undefined) handleReachStop(targetNumber);
+                }
+              }}
+            />
+          </Suspense>
         </div>
       ) : (
         <div className="absolute inset-0 z-0 overflow-y-auto">
