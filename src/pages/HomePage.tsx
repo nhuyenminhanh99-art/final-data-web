@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import { RiverCanvas } from '../components/scene/RiverCanvas';
 import { chaptersData } from '../data/chaptersData';
 import { caseStudiesData } from '../data/caseStudiesData';
@@ -91,13 +91,13 @@ export const HomePage: React.FC = () => {
   ];
 
   // Defined Scenes matching §21.6
-  const scenes: SceneItem[] = [
+  const scenes: SceneItem[] = useMemo(() => [
     { id: 'scene-hero', label: 'Overview', type: 'fit', anchor: 'hero', nextLabel: 'The Five Questions' },
     { id: 'scene-about', label: 'Questions', type: 'flow', anchor: 'about', nextLabel: 'Five Lands' },
     { id: 'scene-lands', label: 'Lands', type: 'flow', anchor: 'lands', nextLabel: 'Case Studies' },
     { id: 'scene-cases', label: 'Cases', type: 'fit', anchor: 'cases', nextLabel: 'Executive Takeaway' },
     { id: 'scene-takeaway', label: 'Takeaway', type: 'flow', anchor: 'takeaway' },
-  ];
+  ], []);
 
   // Jump to specific scene
   const scrollToScene = useCallback((index: number) => {
@@ -115,20 +115,28 @@ export const HomePage: React.FC = () => {
 
   // Track scroll position to update current scene
   useEffect(() => {
+    let scrollFrame = 0;
     const handleScroll = () => {
-      if (isTransitioningRef.current) return;
-      const scrollPos = window.scrollY + window.innerHeight * 0.35;
-      for (let i = scenes.length - 1; i >= 0; i--) {
-        const el = document.getElementById(scenes[i].anchor);
-        if (el && el.offsetTop <= scrollPos) {
-          setCurrentSceneIdx(i);
-          break;
+      if (scrollFrame) return;
+      scrollFrame = requestAnimationFrame(() => {
+        scrollFrame = 0;
+        if (isTransitioningRef.current) return;
+        const scrollPos = window.scrollY + window.innerHeight * 0.35;
+        for (let i = scenes.length - 1; i >= 0; i--) {
+          const el = document.getElementById(scenes[i].anchor);
+          if (el && el.offsetTop <= scrollPos) {
+            setCurrentSceneIdx((current) => current === i ? current : i);
+            break;
+          }
         }
-      }
+      });
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      if (scrollFrame) cancelAnimationFrame(scrollFrame);
+    };
   }, [scenes]);
 
   // Guided wheel gesture detection matching §21.3

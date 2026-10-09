@@ -17,11 +17,21 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath }) => {
   const [isExportModalOpen, setIsExportModalOpen] = useState(false);
 
   useEffect(() => {
+    let scrollFrame = 0;
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+      if (scrollFrame) return;
+      scrollFrame = requestAnimationFrame(() => {
+        scrollFrame = 0;
+        const nextScrolled = window.scrollY > 20;
+        setIsScrolled((current) => current === nextScrolled ? current : nextScrolled);
+      });
     };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      if (scrollFrame) cancelAnimationFrame(scrollFrame);
+    };
   }, []);
 
   const toggleSound = () => {

@@ -19,6 +19,7 @@ interface RiverCanvasProps {
   qualityTier?: 'high' | 'medium' | 'lite';
   cameraMode?: CameraViewMode;
   isAutoCruise?: boolean;
+  isPaused?: boolean;
   onProgressUpdate?: (
     newProgress: number,
     isArrived?: boolean,
@@ -200,6 +201,7 @@ export const RiverCanvas: React.FC<RiverCanvasProps> = ({
   qualityTier = 'high',
   cameraMode = 'rider',
   isAutoCruise = false,
+  isPaused = false,
   onProgressUpdate,
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -207,6 +209,8 @@ export const RiverCanvas: React.FC<RiverCanvasProps> = ({
   const isHeroRef = useRef(isHeroMode);
   const cameraModeRef = useRef(cameraMode);
   const isAutoCruiseRef = useRef(isAutoCruise);
+  const isPausedRef = useRef(isPaused);
+  const animationLoopRef = useRef<{ start?: () => void; stop?: () => void }>({});
 
   const [activeStopNotice, setActiveStopNotice] = useState<{
     number: number;
@@ -255,6 +259,12 @@ export const RiverCanvas: React.FC<RiverCanvasProps> = ({
   useEffect(() => {
     isAutoCruiseRef.current = isAutoCruise;
   }, [isAutoCruise]);
+
+  useEffect(() => {
+    isPausedRef.current = isPaused;
+    if (isPaused) animationLoopRef.current.stop?.();
+    else animationLoopRef.current.start?.();
+  }, [isPaused]);
 
   useEffect(() => {
     const container = containerRef.current;
@@ -1095,7 +1105,9 @@ export const RiverCanvas: React.FC<RiverCanvasProps> = ({
     let lastFrameTime = performance.now();
     let lastPublishedU = -1;
     let lastPublishTime = 0;
-    let animationFrameId: number;
+    let lastDebugPublishTime = 0;
+    let animationFrameId: number | null = null;
+    let isLoopRunning = false;
     let lastReportedStop = -1;
     let lastStrokeState: string = 'rest';
     let activeStopNoticeNumber = -1;
@@ -1162,6 +1174,13 @@ export const RiverCanvas: React.FC<RiverCanvasProps> = ({
     window.addEventListener('resize', handleResize);
 
     const animate = () => {
+      // Keep the canvas mounted behind the chapter reader, but stop its costly
+      // simulation and WebGL draw calls while the scene is fully covered.
+      if (isPausedRef.current || document.visibilityState === 'hidden') {
+        isLoopRunning = false;
+        animationFrameId = null;
+        return;
+      }
       animationFrameId = requestAnimationFrame(animate);
       const now = performance.now();
       const dt = Math.min(Math.max((now - lastFrameTime) / 1000, 0.001), 0.066);
@@ -1487,7 +1506,8 @@ export const RiverCanvas: React.FC<RiverCanvasProps> = ({
       }
 
       // Update Debug Telemetry & Visualization if ?journeydebug=1
-      if (isDebugEnabled) {
+      if (isDebugEnabled && now - lastDebugPublishTime >= 120) {
+        lastDebugPublishTime = now;
         collisionSystem.updateDebugVisualization(
           boatState.worldPosition,
           boatState.quaternion,
@@ -1520,10 +1540,29 @@ export const RiverCanvas: React.FC<RiverCanvasProps> = ({
       renderer.render(scene, camera);
     };
 
-    animate();
+    const startAnimationLoop = () => {
+      if (isLoopRunning || isPausedRef.current || document.visibilityState === 'hidden') return;
+      isLoopRunning = true;
+      animationFrameId = requestAnimationFrame(animate);
+    };
+    const stopAnimationLoop = () => {
+      if (animationFrameId !== null) cancelAnimationFrame(animationFrameId);
+      animationFrameId = null;
+      isLoopRunning = false;
+    };
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === 'hidden') stopAnimationLoop();
+      else startAnimationLoop();
+    };
+
+    animationLoopRef.current = { start: startAnimationLoop, stop: stopAnimationLoop };
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+    startAnimationLoop();
 
     return () => {
-      cancelAnimationFrame(animationFrameId);
+      stopAnimationLoop();
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+      animationLoopRef.current = {};
       canvasDom.removeEventListener('mousedown', handlePointerDown);
       canvasDom.removeEventListener('touchstart', handlePointerDown);
       window.removeEventListener('mousemove', handlePointerMove);

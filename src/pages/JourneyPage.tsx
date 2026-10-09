@@ -74,6 +74,7 @@ export const JourneyPage: React.FC<JourneyPageProps> = ({ initialChapterSlug }) 
   // Cinematic UI Mode (Auto-fade non-essential controls during passive exploration)
   const [isControlsVisible, setIsControlsVisible] = useState(true);
   const controlsFadeTimer = useRef<NodeJS.Timeout | null>(null);
+  const lastControlsActivityRef = useRef(0);
 
   const pokeControls = useCallback(() => {
     setIsControlsVisible(true);
@@ -86,14 +87,21 @@ export const JourneyPage: React.FC<JourneyPageProps> = ({ initialChapterSlug }) 
   }, []);
 
   useEffect(() => {
-    const onActivity = () => pokeControls();
-    window.addEventListener('mousemove', onActivity);
+    const onActivity = () => {
+      const now = performance.now();
+      // Pointer movement can fire dozens of times per second. Refresh the fade
+      // timer at a modest cadence instead of doing timer work for every event.
+      if (now - lastControlsActivityRef.current < 250) return;
+      lastControlsActivityRef.current = now;
+      pokeControls();
+    };
+    window.addEventListener('pointermove', onActivity, { passive: true });
     window.addEventListener('touchstart', onActivity);
     window.addEventListener('keydown', onActivity);
     window.addEventListener('wheel', onActivity);
     pokeControls();
     return () => {
-      window.removeEventListener('mousemove', onActivity);
+      window.removeEventListener('pointermove', onActivity);
       window.removeEventListener('touchstart', onActivity);
       window.removeEventListener('keydown', onActivity);
       window.removeEventListener('wheel', onActivity);
@@ -304,8 +312,10 @@ export const JourneyPage: React.FC<JourneyPageProps> = ({ initialChapterSlug }) 
       if (Math.abs(dy) < 1.0) dy = Math.sign(dy) * 1.5;
 
       wheelAccumRef.current += dy;
-      setDebugScrollDelta(wheelAccumRef.current);
-      setDebugScrollDir(wheelAccumRef.current > 0 ? 'DOWN' : wheelAccumRef.current < 0 ? 'UP' : 'IDLE');
+      if (showDebugHUD) {
+        setDebugScrollDelta(wheelAccumRef.current);
+        setDebugScrollDir(wheelAccumRef.current > 0 ? 'DOWN' : wheelAccumRef.current < 0 ? 'UP' : 'IDLE');
+      }
 
       if (wheelDebounceTimer.current) {
         clearTimeout(wheelDebounceTimer.current);
@@ -332,8 +342,10 @@ export const JourneyPage: React.FC<JourneyPageProps> = ({ initialChapterSlug }) 
       } else {
         wheelDebounceTimer.current = setTimeout(() => {
           wheelAccumRef.current = 0;
-          setDebugScrollDelta(0);
-          setDebugScrollDir('IDLE');
+          if (showDebugHUD) {
+            setDebugScrollDelta(0);
+            setDebugScrollDir('IDLE');
+          }
         }, 180);
       }
     };
@@ -343,7 +355,7 @@ export const JourneyPage: React.FC<JourneyPageProps> = ({ initialChapterSlug }) 
       window.removeEventListener('wheel', handleWheel);
       if (wheelDebounceTimer.current) clearTimeout(wheelDebounceTimer.current);
     };
-  }, [isAutoCruise, navigateToChapter, activeChapter]);
+  }, [isAutoCruise, navigateToChapter, activeChapter, showDebugHUD]);
 
   // Keyboard navigation
   useEffect(() => {
@@ -423,6 +435,7 @@ export const JourneyPage: React.FC<JourneyPageProps> = ({ initialChapterSlug }) 
             qualityTier="high"
             cameraMode={cameraMode}
             isAutoCruise={isAutoCruise}
+            isPaused={activeChapter !== null}
             onProgressUpdate={(p, isArrived, velocity, dist, phase, travelTime) => {
               boatProgressRef.current = p;
               setBoatProgress(p);
