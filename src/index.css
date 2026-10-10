@@ -3871,3 +3871,20 @@ html { scroll-padding-top: calc(var(--navbar-height) + 1rem); scroll-behavior: s
     letter-spacing: 0.1em;
   }
 }
+
+/* CTA text must remain legible against the deep-teal pill on every viewport. */
+.river-entry-cta {
+  color: #FFFDF8 !important;
+  text-shadow: 0 1px 1px rgba(6, 24, 28, 0.72);
+  font-family: var(--font-sans);
+  font-weight: 700;
+  background: linear-gradient(118deg, #123C43 0%, #1E5C59 62%, #2A7772 100%);
+  border-color: rgba(229, 197, 138, 0.72);
+  box-shadow: 0 5px 12px rgba(8, 31, 38, 0.28), 0 16px 30px -16px rgba(8, 31, 38, 0.86), inset 0 1px rgba(255, 255, 255, 0.28), inset 0 -1px rgba(5, 26, 31, 0.38);
+}
+.river-entry-cta .river-entry-arrow { color: #F2D59D; filter: drop-shadow(0 1px 1px rgba(6, 24, 28, 0.55)); }
+.river-entry-cta:hover, .river-entry-cta:focus-visible {
+  color: #FFFFFF !important;
+  background: linear-gradient(118deg, #174A4D 0%, #286C68 62%, #36847E 100%);
+  box-shadow: 0 7px 16px rgba(8, 31, 38, 0.32), 0 18px 34px -16px rgba(8, 31, 38, 0.9), inset 0 1px rgba(255, 255, 255, 0.34), inset 0 -1px rgba(5, 26, 31, 0.32);
+}

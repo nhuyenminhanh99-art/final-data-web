@@ -65,3 +65,8 @@ None identified. No user-visible copy was changed except the owner-approved chap
 ## Navbar typography follow-up
 
 The Chapters trigger was inheriting the browser button font shorthand, which overrode the shared nav size, weight, tracking, and line-height. The trigger now explicitly uses the same Inter typography tokens as HOME, JOURNEY, CASE STUDIES, GLOSSARY, and ABOUT, including the compact 1024px rule. Computed-style checks match at 1024px, 1280px, and 1440px; navbar overlap checks pass at 1024px, 1280px, 1366px, 1440px, and 1920px.
+
+
+## BEGIN JOURNEY CTA contrast follow-up
+
+The mobile and desktop CTA had a dark inherited text color on a deep-teal gradient, making `BEGIN JOURNEY` appear recessed or nearly invisible. The CTA now uses ivory text with a restrained dark text shadow, brighter teal gradient, gold border, and layered inset/drop shadows for a more raised pill appearance. Computed-style checks pass at 390px, 428px, 1024px, and 1280px; build and TypeScript validation pass.
